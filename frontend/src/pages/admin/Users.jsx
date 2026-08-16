@@ -2243,7 +2243,8 @@ import toast from "react-hot-toast";
 // API
 // =========================================================
 
-const API_BASE_URL = "http://localhost:8080";
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL;
 
 
 // =========================================================
@@ -2396,7 +2397,7 @@ function Users() {
         // ---------------------------------------------------
 
         const response = await fetch(
-          `${API_BASE_URL}/api/admin/users?${params.toString()}`,
+          `${API_BASE_URL}/admin/users?${params.toString()}`,
           {
             method: "GET",
 
@@ -2574,7 +2575,7 @@ function Users() {
 
 
       const response = await fetch(
-        `${API_BASE_URL}/api/admin/users/${userId}`,
+        `${API_BASE_URL}/admin/users/${userId}`,
         {
           method: "GET",
 
@@ -2711,7 +2712,7 @@ function Users() {
 
 
       const response = await fetch(
-        `${API_BASE_URL}/api/admin/users/${user.id}/status`,
+        `${API_BASE_URL}/admin/users/${user.id}/status`,
         {
           method: "PATCH",
 

@@ -1,3 +1,702 @@
+// import {
+//   createContext,
+//   useContext,
+//   useEffect,
+//   useState,
+//   useCallback,
+// } from "react";
+
+// import {
+//   connectWebSocket,
+//   disconnectWebSocket,
+// } from "../services/websocketService";
+
+// const NotificationContext = createContext(null);
+
+// export const NotificationProvider = ({ children }) => {
+
+//   // =========================================================
+//   // FULL NOTIFICATION HISTORY
+//   // Used by /notifications page
+//   // =========================================================
+
+//   const [notifications, setNotifications] = useState([]);
+
+//   const [unreadCount, setUnreadCount] = useState(0);
+
+
+//   // =========================================================
+//   // BELL NOTIFICATIONS
+//   // Used ONLY by Navbar notification bell
+//   // =========================================================
+
+//   const [bellNotifications, setBellNotifications] =
+//     useState([]);
+
+//   const [bellUnreadCount, setBellUnreadCount] =
+//     useState(0);
+
+
+//   // =========================================================
+//   // WEBSOCKET STATUS
+//   // =========================================================
+
+//   const [connected, setConnected] = useState(false);
+
+
+//   // =========================================================
+//   // GET LOGGED-IN USER
+//   // =========================================================
+
+//   const getCurrentUser = () => {
+
+//     try {
+
+//       const storedUser =
+//         localStorage.getItem("user");
+
+//       if (!storedUser) {
+//         return null;
+//       }
+
+//       return JSON.parse(storedUser);
+
+//     } catch (error) {
+
+//       console.error(
+//         "Failed to read user from localStorage:",
+//         error
+//       );
+
+//       return null;
+//     }
+//   };
+
+
+//   // =========================================================
+//   // LOAD EXISTING NOTIFICATIONS
+//   // =========================================================
+
+//   const loadNotifications = useCallback(async () => {
+
+//     try {
+
+//       const token =
+//         localStorage.getItem("token");
+
+//       if (!token) {
+//         return;
+//       }
+
+
+//       const response = await fetch(
+//         "http://localhost:8080/api/notifications",
+//         {
+//           method: "GET",
+
+//           headers: {
+//             Authorization: `Bearer ${token}`,
+//             "Content-Type": "application/json",
+//           },
+//         }
+//       );
+
+
+//       if (!response.ok) {
+
+//         throw new Error(
+//           `Failed to load notifications: ${response.status}`
+//         );
+//       }
+
+
+//       const result =
+//         await response.json();
+
+
+//       const data =
+//         result.data || [];
+
+
+//       // =====================================================
+//       // FULL NOTIFICATION HISTORY
+//       // =====================================================
+
+//       setNotifications(data);
+
+
+//       // =====================================================
+//       // FULL PAGE UNREAD COUNT
+//       // =====================================================
+
+//       const unread =
+//         data.filter(
+//           (notification) =>
+//             notification.status === "UNREAD"
+//         ).length;
+
+
+//       setUnreadCount(unread);
+
+
+//       // =====================================================
+//       // BELL NOTIFICATIONS
+//       //
+//       // Check whether user previously clicked
+//       // "Clear all" in this browser session.
+//       // =====================================================
+
+//       const bellClearedAt =
+//         sessionStorage.getItem(
+//           "foodbridge_bell_cleared_at"
+//         );
+
+
+//       let bellData = data;
+
+
+//       if (bellClearedAt) {
+
+//         const clearTime =
+//           new Date(bellClearedAt).getTime();
+
+
+//         bellData =
+//           data.filter((notification) => {
+
+//             const notificationTime =
+//               new Date(
+//                 notification.createdAt
+//               ).getTime();
+
+//             return notificationTime > clearTime;
+//           });
+//       }
+
+
+//       setBellNotifications(
+//         bellData
+//       );
+
+
+//       // =====================================================
+//       // BELL UNREAD COUNT
+//       // =====================================================
+
+//       const bellUnread =
+//         bellData.filter(
+//           (notification) =>
+//             notification.status === "UNREAD"
+//         ).length;
+
+
+//       setBellUnreadCount(
+//         bellUnread
+//       );
+
+
+//     } catch (error) {
+
+//       console.error(
+//         "Failed to load notifications:",
+//         error
+//       );
+//     }
+
+//   }, []);
+
+
+//   // =========================================================
+//   // INITIALIZE
+//   // =========================================================
+
+//   useEffect(() => {
+
+//     const user =
+//       getCurrentUser();
+
+
+//     if (!user?.id) {
+
+//       console.log(
+//         "Notification WebSocket: user not available"
+//       );
+
+//       return;
+//     }
+
+
+//     // =======================================================
+//     // LOAD EXISTING NOTIFICATIONS
+//     // =======================================================
+
+//     loadNotifications();
+
+
+//     // =======================================================
+//     // CONNECT WEBSOCKET
+//     // =======================================================
+
+//     connectWebSocket({
+
+//       userId: user.id,
+
+
+//       // =====================================================
+//       // REAL-TIME NOTIFICATION
+//       // =====================================================
+
+//       onNotification: (notification) => {
+
+//         console.log(
+//           "🔔 New notification received:",
+//           notification
+//         );
+
+
+//         // ===================================================
+//         // ADD TO FULL NOTIFICATION HISTORY
+//         // ===================================================
+
+//         setNotifications((previous) => {
+
+//           const exists =
+//             previous.some(
+//               (item) =>
+//                 item.id === notification.id
+//             );
+
+
+//           if (exists) {
+//             return previous;
+//           }
+
+
+//           return [
+//             notification,
+//             ...previous,
+//           ];
+//         });
+
+
+//         // ===================================================
+//         // FULL PAGE UNREAD COUNT
+//         // ===================================================
+
+//         setUnreadCount(
+//           (previous) =>
+//             previous + 1
+//         );
+
+
+//         // ===================================================
+//         // ADD TO BELL
+//         // ===================================================
+
+//         setBellNotifications(
+//           (previous) => {
+
+//             const exists =
+//               previous.some(
+//                 (item) =>
+//                   item.id === notification.id
+//               );
+
+
+//             if (exists) {
+//               return previous;
+//             }
+
+
+//             return [
+//               notification,
+//               ...previous,
+//             ];
+//           }
+//         );
+
+
+//         // ===================================================
+//         // BELL UNREAD COUNT
+//         // ===================================================
+
+//         setBellUnreadCount(
+//           (previous) =>
+//             previous + 1
+//         );
+//       },
+
+
+//       // =====================================================
+//       // CONNECTED
+//       // =====================================================
+
+//       onConnected: () => {
+
+//         console.log(
+//           "✅ Notification WebSocket connected"
+//         );
+
+//         setConnected(true);
+//       },
+
+
+//       // =====================================================
+//       // ERROR
+//       // =====================================================
+
+//       onError: () => {
+
+//         setConnected(false);
+//       },
+
+//     });
+
+
+//     // =======================================================
+//     // CLEANUP
+//     // =======================================================
+
+//     return () => {
+
+//       disconnectWebSocket();
+
+//       setConnected(false);
+//     };
+
+//   }, [loadNotifications]);
+
+
+//   // =========================================================
+//   // MARK AS READ
+//   // =========================================================
+
+//   const markAsRead = async (
+//     notificationId
+//   ) => {
+
+//     try {
+
+//       const token =
+//         localStorage.getItem("token");
+
+
+//       if (!token) {
+//         return;
+//       }
+
+
+//       const response = await fetch(
+//         `http://localhost:8080/api/notifications/${notificationId}/read`,
+//         {
+//           method: "PATCH",
+
+//           headers: {
+//             Authorization: `Bearer ${token}`,
+//             "Content-Type": "application/json",
+//           },
+//         }
+//       );
+
+
+//       if (!response.ok) {
+
+//         throw new Error(
+//           `Failed to mark notification as read: ${response.status}`
+//         );
+//       }
+
+
+//       const result =
+//         await response.json();
+
+
+//       const updatedNotification =
+//         result.data;
+
+
+//       // =====================================================
+//       // UPDATE FULL HISTORY
+//       // =====================================================
+
+//       setNotifications(
+//         (previous) =>
+//           previous.map(
+//             (notification) =>
+//               notification.id === notificationId
+//                 ? updatedNotification
+//                 : notification
+//           )
+//       );
+
+
+//       // =====================================================
+//       // UPDATE BELL
+//       // =====================================================
+
+//       setBellNotifications(
+//         (previous) =>
+//           previous.map(
+//             (notification) =>
+//               notification.id === notificationId
+//                 ? updatedNotification
+//                 : notification
+//           )
+//       );
+
+
+//       // =====================================================
+//       // FULL PAGE UNREAD COUNT
+//       // =====================================================
+
+//       setUnreadCount(
+//         (previous) =>
+//           Math.max(previous - 1, 0)
+//       );
+
+
+//       // =====================================================
+//       // BELL UNREAD COUNT
+//       // =====================================================
+
+//       setBellUnreadCount(
+//         (previous) =>
+//           Math.max(previous - 1, 0)
+//       );
+
+
+//     } catch (error) {
+
+//       console.error(
+//         "Failed to mark notification as read:",
+//         error
+//       );
+//     }
+//   };
+
+
+//   // =========================================================
+//   // MARK ALL AS READ
+//   // =========================================================
+
+//   const markAllAsRead = async () => {
+
+//     try {
+
+//       const token =
+//         localStorage.getItem("token");
+
+
+//       if (!token) {
+//         return;
+//       }
+
+
+//       const response = await fetch(
+//         "http://localhost:8080/api/notifications/read-all",
+//         {
+//           method: "PATCH",
+
+//           headers: {
+//             Authorization: `Bearer ${token}`,
+//             "Content-Type": "application/json",
+//           },
+//         }
+//       );
+
+
+//       if (!response.ok) {
+
+//         throw new Error(
+//           `Failed to mark all notifications as read: ${response.status}`
+//         );
+//       }
+
+
+//       const now =
+//         new Date().toISOString();
+
+
+//       // =====================================================
+//       // UPDATE FULL HISTORY
+//       // =====================================================
+
+//       setNotifications(
+//         (previous) =>
+//           previous.map(
+//             (notification) => ({
+//               ...notification,
+//               status: "READ",
+//               readAt:
+//                 notification.readAt || now,
+//             })
+//           )
+//       );
+
+
+//       // =====================================================
+//       // UPDATE BELL
+//       // =====================================================
+
+//       setBellNotifications(
+//         (previous) =>
+//           previous.map(
+//             (notification) => ({
+//               ...notification,
+//               status: "READ",
+//               readAt:
+//                 notification.readAt || now,
+//             })
+//           )
+//       );
+
+
+//       setUnreadCount(0);
+
+//       setBellUnreadCount(0);
+
+
+//     } catch (error) {
+
+//       console.error(
+//         "Failed to mark all notifications as read:",
+//         error
+//       );
+//     }
+//   };
+
+
+//   // =========================================================
+//   // CLEAR BELL ONLY
+//   // =========================================================
+//   //
+//   // IMPORTANT:
+//   //
+//   // This DOES NOT modify:
+//   //
+//   // notifications
+//   //
+//   // Therefore /notifications page remains untouched.
+//   //
+//   // It ONLY clears:
+//   //
+//   // bellNotifications
+//   // bellUnreadCount
+//   //
+//   // =========================================================
+
+//   const clearBellNotifications = () => {
+
+//     const clearTime =
+//       new Date().toISOString();
+
+
+//     // Save timestamp in browser session.
+//     //
+//     // This means refreshing the page during the
+//     // same browser session will NOT immediately
+//     // bring the cleared notifications back.
+
+//     sessionStorage.setItem(
+//       "foodbridge_bell_cleared_at",
+//       clearTime
+//     );
+
+
+//     // Clear ONLY bell
+
+//     setBellNotifications([]);
+
+//     setBellUnreadCount(0);
+//   };
+
+
+//   // =========================================================
+//   // CONTEXT VALUE
+//   // =========================================================
+
+//   const value = {
+
+//     // -------------------------------------------------------
+//     // FULL NOTIFICATION PAGE
+//     // -------------------------------------------------------
+
+//     notifications,
+
+//     unreadCount,
+
+
+//     // -------------------------------------------------------
+//     // NAVBAR BELL
+//     // -------------------------------------------------------
+
+//     bellNotifications,
+
+//     bellUnreadCount,
+
+
+//     // -------------------------------------------------------
+//     // WEBSOCKET
+//     // -------------------------------------------------------
+
+//     connected,
+
+
+//     // -------------------------------------------------------
+//     // ACTIONS
+//     // -------------------------------------------------------
+
+//     markAsRead,
+
+//     markAllAsRead,
+
+//     clearBellNotifications,
+
+
+//     // -------------------------------------------------------
+//     // REFRESH
+//     // -------------------------------------------------------
+
+//     refreshNotifications:
+//       loadNotifications,
+//   };
+
+
+//   return (
+
+//     <NotificationContext.Provider
+//       value={value}
+//     >
+//       {children}
+//     </NotificationContext.Provider>
+
+//   );
+// };
+
+
+// // ===========================================================
+// // CUSTOM HOOK
+// // ===========================================================
+
+// export const useNotifications = () => {
+
+//   const context =
+//     useContext(
+//       NotificationContext
+//     );
+
+
+//   if (!context) {
+
+//     throw new Error(
+//       "useNotifications must be used inside NotificationProvider"
+//     );
+//   }
+
+
+//   return context;
+// };
+
 import {
   createContext,
   useContext,
@@ -11,18 +710,24 @@ import {
   disconnectWebSocket,
 } from "../services/websocketService";
 
+import axiosInstance from "../api/axiosInstance";
+
 const NotificationContext = createContext(null);
 
-export const NotificationProvider = ({ children }) => {
+export const NotificationProvider = ({
+  children,
+}) => {
 
   // =========================================================
   // FULL NOTIFICATION HISTORY
   // Used by /notifications page
   // =========================================================
 
-  const [notifications, setNotifications] = useState([]);
+  const [notifications, setNotifications] =
+    useState([]);
 
-  const [unreadCount, setUnreadCount] = useState(0);
+  const [unreadCount, setUnreadCount] =
+    useState(0);
 
 
   // =========================================================
@@ -41,7 +746,8 @@ export const NotificationProvider = ({ children }) => {
   // WEBSOCKET STATUS
   // =========================================================
 
-  const [connected, setConnected] = useState(false);
+  const [connected, setConnected] =
+    useState(false);
 
 
   // =========================================================
@@ -77,133 +783,118 @@ export const NotificationProvider = ({ children }) => {
   // LOAD EXISTING NOTIFICATIONS
   // =========================================================
 
-  const loadNotifications = useCallback(async () => {
+  const loadNotifications =
+    useCallback(async () => {
 
-    try {
+      try {
 
-      const token =
-        localStorage.getItem("token");
+        const response =
+          await axiosInstance.get(
+            "/notifications"
+          );
 
-      if (!token) {
-        return;
-      }
+        const result =
+          response.data;
+
+        const data =
+          result?.data || [];
 
 
-      const response = await fetch(
-        "http://localhost:8080/api/notifications",
-        {
-          method: "GET",
+        // =====================================================
+        // FULL NOTIFICATION HISTORY
+        // =====================================================
 
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
+        setNotifications(data);
+
+
+        // =====================================================
+        // FULL PAGE UNREAD COUNT
+        // =====================================================
+
+        const unread =
+          data.filter(
+            (notification) =>
+              notification.status ===
+              "UNREAD"
+          ).length;
+
+
+        setUnreadCount(unread);
+
+
+        // =====================================================
+        // BELL NOTIFICATIONS
+        //
+        // Check whether user previously clicked
+        // "Clear all" in this browser session.
+        // =====================================================
+
+        const bellClearedAt =
+          sessionStorage.getItem(
+            "foodbridge_bell_cleared_at"
+          );
+
+
+        let bellData = data;
+
+
+        if (bellClearedAt) {
+
+          const clearTime =
+            new Date(
+              bellClearedAt
+            ).getTime();
+
+
+          bellData =
+            data.filter(
+              (notification) => {
+
+                const notificationTime =
+                  new Date(
+                    notification.createdAt
+                  ).getTime();
+
+                return (
+                  notificationTime >
+                  clearTime
+                );
+              }
+            );
         }
-      );
 
 
-      if (!response.ok) {
-
-        throw new Error(
-          `Failed to load notifications: ${response.status}`
-        );
-      }
-
-
-      const result =
-        await response.json();
-
-
-      const data =
-        result.data || [];
-
-
-      // =====================================================
-      // FULL NOTIFICATION HISTORY
-      // =====================================================
-
-      setNotifications(data);
-
-
-      // =====================================================
-      // FULL PAGE UNREAD COUNT
-      // =====================================================
-
-      const unread =
-        data.filter(
-          (notification) =>
-            notification.status === "UNREAD"
-        ).length;
-
-
-      setUnreadCount(unread);
-
-
-      // =====================================================
-      // BELL NOTIFICATIONS
-      //
-      // Check whether user previously clicked
-      // "Clear all" in this browser session.
-      // =====================================================
-
-      const bellClearedAt =
-        sessionStorage.getItem(
-          "foodbridge_bell_cleared_at"
+        setBellNotifications(
+          bellData
         );
 
 
-      let bellData = data;
+        // =====================================================
+        // BELL UNREAD COUNT
+        // =====================================================
+
+        const bellUnread =
+          bellData.filter(
+            (notification) =>
+              notification.status ===
+              "UNREAD"
+          ).length;
 
 
-      if (bellClearedAt) {
+        setBellUnreadCount(
+          bellUnread
+        );
 
-        const clearTime =
-          new Date(bellClearedAt).getTime();
 
+      } catch (error) {
 
-        bellData =
-          data.filter((notification) => {
-
-            const notificationTime =
-              new Date(
-                notification.createdAt
-              ).getTime();
-
-            return notificationTime > clearTime;
-          });
+        console.error(
+          "Failed to load notifications:",
+          error
+        );
       }
 
-
-      setBellNotifications(
-        bellData
-      );
-
-
-      // =====================================================
-      // BELL UNREAD COUNT
-      // =====================================================
-
-      const bellUnread =
-        bellData.filter(
-          (notification) =>
-            notification.status === "UNREAD"
-        ).length;
-
-
-      setBellUnreadCount(
-        bellUnread
-      );
-
-
-    } catch (error) {
-
-      console.error(
-        "Failed to load notifications:",
-        error
-      );
-    }
-
-  }, []);
+    }, []);
 
 
   // =========================================================
@@ -246,7 +937,9 @@ export const NotificationProvider = ({ children }) => {
       // REAL-TIME NOTIFICATION
       // =====================================================
 
-      onNotification: (notification) => {
+      onNotification: (
+        notification
+      ) => {
 
         console.log(
           "🔔 New notification received:",
@@ -258,25 +951,28 @@ export const NotificationProvider = ({ children }) => {
         // ADD TO FULL NOTIFICATION HISTORY
         // ===================================================
 
-        setNotifications((previous) => {
+        setNotifications(
+          (previous) => {
 
-          const exists =
-            previous.some(
-              (item) =>
-                item.id === notification.id
-            );
+            const exists =
+              previous.some(
+                (item) =>
+                  item.id ===
+                  notification.id
+              );
 
 
-          if (exists) {
-            return previous;
+            if (exists) {
+              return previous;
+            }
+
+
+            return [
+              notification,
+              ...previous,
+            ];
           }
-
-
-          return [
-            notification,
-            ...previous,
-          ];
-        });
+        );
 
 
         // ===================================================
@@ -299,7 +995,8 @@ export const NotificationProvider = ({ children }) => {
             const exists =
               previous.some(
                 (item) =>
-                  item.id === notification.id
+                  item.id ===
+                  notification.id
               );
 
 
@@ -377,42 +1074,18 @@ export const NotificationProvider = ({ children }) => {
 
     try {
 
-      const token =
-        localStorage.getItem("token");
-
-
-      if (!token) {
-        return;
-      }
-
-
-      const response = await fetch(
-        `http://localhost:8080/api/notifications/${notificationId}/read`,
-        {
-          method: "PATCH",
-
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-
-      if (!response.ok) {
-
-        throw new Error(
-          `Failed to mark notification as read: ${response.status}`
+      const response =
+        await axiosInstance.patch(
+          `/notifications/${notificationId}/read`
         );
-      }
 
 
       const result =
-        await response.json();
+        response.data;
 
 
       const updatedNotification =
-        result.data;
+        result?.data;
 
 
       // =====================================================
@@ -423,7 +1096,8 @@ export const NotificationProvider = ({ children }) => {
         (previous) =>
           previous.map(
             (notification) =>
-              notification.id === notificationId
+              notification.id ===
+              notificationId
                 ? updatedNotification
                 : notification
           )
@@ -438,7 +1112,8 @@ export const NotificationProvider = ({ children }) => {
         (previous) =>
           previous.map(
             (notification) =>
-              notification.id === notificationId
+              notification.id ===
+              notificationId
                 ? updatedNotification
                 : notification
           )
@@ -451,7 +1126,10 @@ export const NotificationProvider = ({ children }) => {
 
       setUnreadCount(
         (previous) =>
-          Math.max(previous - 1, 0)
+          Math.max(
+            previous - 1,
+            0
+          )
       );
 
 
@@ -461,7 +1139,10 @@ export const NotificationProvider = ({ children }) => {
 
       setBellUnreadCount(
         (previous) =>
-          Math.max(previous - 1, 0)
+          Math.max(
+            previous - 1,
+            0
+          )
       );
 
 
@@ -483,34 +1164,9 @@ export const NotificationProvider = ({ children }) => {
 
     try {
 
-      const token =
-        localStorage.getItem("token");
-
-
-      if (!token) {
-        return;
-      }
-
-
-      const response = await fetch(
-        "http://localhost:8080/api/notifications/read-all",
-        {
-          method: "PATCH",
-
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
+      await axiosInstance.patch(
+        "/notifications/read-all"
       );
-
-
-      if (!response.ok) {
-
-        throw new Error(
-          `Failed to mark all notifications as read: ${response.status}`
-        );
-      }
 
 
       const now =
@@ -528,7 +1184,8 @@ export const NotificationProvider = ({ children }) => {
               ...notification,
               status: "READ",
               readAt:
-                notification.readAt || now,
+                notification.readAt ||
+                now,
             })
           )
       );
@@ -545,7 +1202,8 @@ export const NotificationProvider = ({ children }) => {
               ...notification,
               status: "READ",
               readAt:
-                notification.readAt || now,
+                notification.readAt ||
+                now,
             })
           )
       );
@@ -667,7 +1325,9 @@ export const NotificationProvider = ({ children }) => {
     <NotificationContext.Provider
       value={value}
     >
+
       {children}
+
     </NotificationContext.Provider>
 
   );

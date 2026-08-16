@@ -19,16 +19,17 @@ import {
 // API
 // =========================================================
 
-const API_BASE_URL = "http://localhost:8080";
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL;
 
 const USERS_API =
-  `${API_BASE_URL}/api/admin/users`;
+  `${API_BASE_URL}/admin/users`;
 
 const PENDING_FOUNDATIONS_API =
-  `${API_BASE_URL}/api/admin/foundations/pending`;
+  `${API_BASE_URL}/admin/foundations/pending`;
 
 const DONATIONS_API =
-  `${API_BASE_URL}/api/admin/donations`;
+  `${API_BASE_URL}/admin/donations`;
 
 
 // =========================================================
