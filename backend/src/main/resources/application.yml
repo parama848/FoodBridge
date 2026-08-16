@@ -34,7 +34,7 @@ jwt:
 
 app:
   websocket:
-    allowed-origins: ${WEBSOCKET_ALLOWED_ORIGINS:http://localhost:5173}
+    allowed-origins: ${WEBSOCKET_ALLOWED_ORIGINS:http://localhost:5173,https://food-bridge-client-weld.vercel.app}
 # spring:
 #   application:
 #     name: foodbridge
