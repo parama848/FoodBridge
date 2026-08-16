@@ -1,0 +1,8 @@
+.git/
+.gitignore
+.idea/
+.vscode/
+*.iml
+*.log
+foodbridge_backup.sql
+README.md

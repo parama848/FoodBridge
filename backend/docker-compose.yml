@@ -1,0 +1,50 @@
+services:
+
+  mysql:
+    image: mysql:8.4
+    container_name: foodbridge-mysql
+    restart: unless-stopped
+
+    environment:
+      MYSQL_DATABASE: foodbridge
+      MYSQL_ROOT_PASSWORD: Parama@57681
+
+    ports:
+      - "3307:3306"
+
+    volumes:
+      - foodbridge_mysql_data:/var/lib/mysql
+
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pfoodbridge_root_password"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+
+  foodbridge-api:
+    image: foodbridge-api:latest
+    container_name: foodbridge-api
+    restart: unless-stopped
+
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+    ports:
+      - "8080:8080"
+
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+
+      DB_PASSWORD: Parama@57681
+
+      JWT_SECRET: VCvOnRSvmY3afFhTuNB0OIitjCK8pE9vLXcbQfkPMTE
+
+      WEBSOCKET_ALLOWED_ORIGINS: http://localhost:5173
+
+      SERVER_PORT: 8080
+
+
+volumes:
+  foodbridge_mysql_data:
