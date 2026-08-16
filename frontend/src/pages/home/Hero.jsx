@@ -94,7 +94,7 @@ function Hero() {
                         <div className="mt-9 flex flex-col gap-3 sm:flex-row">
 
                             <Link
-                                to="/donations/create"
+                                to="/donor/donations/create"
                                 className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-emerald-400 px-7 text-sm font-bold text-black transition-all duration-200 hover:bg-emerald-300 hover:shadow-lg hover:shadow-emerald-400/10"
                             >
 
@@ -109,7 +109,7 @@ function Hero() {
 
 
                             <Link
-                                to="/donations"
+                                to="/donor/donations"
                                 className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] px-7 text-sm font-semibold text-white transition-all duration-200 hover:border-white/20 hover:bg-white/[0.06]"
                             >
                                 View my donations
