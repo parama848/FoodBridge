@@ -2,6 +2,12 @@ spring:
   application:
     name: foodbridge
 
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
   autoconfigure:
     exclude:
       - org.springframework.boot.security.autoconfigure.UserDetailsServiceAutoConfiguration
@@ -30,6 +36,7 @@ foodbridge:
 
 jwt:
   expiration: ${JWT_EXPIRATION:86400000}
+  secret: ${JWT_SECRET}
 
 app:
   websocket:
