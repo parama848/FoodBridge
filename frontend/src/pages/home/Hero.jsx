@@ -30,9 +30,9 @@ function Hero() {
             />
 
 
-            <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+            <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 
-                <div className="grid min-h-[calc(100vh-80px)] items-center gap-16 py-20 lg:grid-cols-[1.1fr_0.9fr] lg:py-24">
+                <div className="grid items-center gap-10 py-12 sm:gap-14 sm:py-16 lg:min-h-[calc(100vh-80px)] lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-24">
 
 
                     {/* =====================================================
@@ -62,7 +62,7 @@ function Hero() {
 
                         {/* Heading */}
 
-                        <h1 className="text-5xl font-black leading-[0.98] tracking-[-0.055em] text-white sm:text-6xl md:text-7xl lg:text-[76px]">
+                        <h1 className="text-[2.65rem] font-black leading-[1.02] tracking-[-0.045em] text-white xs:text-5xl sm:text-6xl md:text-7xl lg:text-[76px]">
 
                             Good food should
 
@@ -79,7 +79,7 @@ function Hero() {
 
                         {/* Description */}
 
-                        <p className="mt-8 max-w-2xl text-base leading-8 text-gray-400 sm:text-lg">
+                        <p className="mt-6 max-w-2xl text-sm leading-7 text-gray-400 sm:mt-8 sm:text-lg sm:leading-8">
 
                             FoodBridge connects surplus food donors
                             with verified foundations, turning excess
@@ -91,11 +91,11 @@ function Hero() {
 
                         {/* Buttons */}
 
-                        <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                        <div className="mt-7 flex w-full flex-col gap-3 sm:mt-9 sm:flex-row">
 
                             <Link
                                 to="/donor/donations/create"
-                                className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#1557D6] px-7 text-sm font-bold text-black transition-all duration-200 hover:bg-[#0F46B5] hover:shadow-lg hover:shadow-[#1557D6]/10"
+                                className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#1557D6] px-5 text-sm font-bold text-black transition-all duration-200 hover:bg-[#0F46B5] hover:shadow-lg hover:shadow-[#1557D6]/10 sm:w-auto sm:px-7"
                             >
 
                                 Donate food
@@ -110,7 +110,7 @@ function Hero() {
 
                             <Link
                                 to="/donor/donations"
-                                className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] px-7 text-sm font-semibold text-white transition-all duration-200 hover:border-white/20 hover:bg-white/[0.06]"
+                                className="inline-flex min-h-12 w-full items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] px-5 text-sm font-semibold text-white transition-all duration-200 hover:border-white/20 hover:bg-white/[0.06] sm:w-auto sm:px-7"
                             >
                                 View my donations
                             </Link>
@@ -120,7 +120,7 @@ function Hero() {
 
                         {/* Trust */}
 
-                        <div className="mt-9 flex flex-wrap items-center gap-x-5 gap-y-3 text-xs text-gray-600">
+                        <div className="mt-7 flex flex-wrap items-center gap-x-4 gap-y-3 text-[11px] text-gray-600 sm:mt-9 sm:gap-x-5 sm:text-xs">
 
                             <div className="flex items-center gap-2">
 
@@ -172,11 +172,11 @@ function Hero() {
                         RIGHT — VISUAL CARD
                     ===================================================== */}
 
-                    <div className="relative mx-auto w-full max-w-lg lg:ml-auto">
+                    <div className="relative mx-auto w-full max-w-[34rem] lg:ml-auto">
 
                         {/* Main card */}
 
-                        <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.035] p-5 shadow-2xl shadow-black/40 backdrop-blur-xl sm:p-6">
+                        <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.035] p-4 shadow-2xl shadow-black/40 backdrop-blur-xl sm:rounded-3xl sm:p-6">
 
 
                             {/* Card header */}
@@ -213,7 +213,7 @@ function Hero() {
 
                             <div className="mt-6 rounded-2xl border border-white/[0.08] bg-black/30 p-5">
 
-                                <div className="flex items-start justify-between gap-4">
+                                <div className="flex flex-col items-start gap-3 min-[400px]:flex-row min-[400px]:items-start min-[400px]:justify-between min-[400px]:gap-4">
 
                                     <div>
 
@@ -221,7 +221,7 @@ function Hero() {
                                             Donation
                                         </p>
 
-                                        <h4 className="mt-1 text-lg font-bold text-white">
+                                        <h4 className="mt-1 text-base font-bold text-white sm:text-lg">
                                             Fresh Vegetable Biryani
                                         </h4>
 
@@ -299,7 +299,7 @@ function Hero() {
 
                             {/* Foundation */}
 
-                            <div className="mt-4 flex items-center gap-4 rounded-2xl border border-white/[0.08] bg-black/20 p-4">
+                            <div className="mt-4 flex min-w-0 items-center gap-3 rounded-2xl border border-white/[0.08] bg-black/20 p-3 sm:gap-4 sm:p-4">
 
                                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#1557D6]/10 text-[#1557D6]">
 
@@ -314,7 +314,7 @@ function Hero() {
                                         Accepted by
                                     </p>
 
-                                    <p className="mt-1 truncate text-sm font-semibold text-white">
+                                    <p className="mt-1 truncate text-xs font-semibold text-white sm:text-sm">
                                         Hope Food Relief Foundation
                                     </p>
 

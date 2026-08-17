@@ -1010,12 +1010,7 @@ function Navbar() {
                                     onClick={
                                         closeMobileMenu
                                     }
-                                >
-
-                                    <Grid2X2
-                                        size={18}
-                                    />
-
+                                >                            
                                     Dashboard
 
                                 </NavLink>
