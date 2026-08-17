@@ -367,17 +367,25 @@ export default function NotificationBell() {
 
         <div
           className="
-            absolute
-            right-0
-            top-12
+            fixed
+            left-2
+            right-2
+            top-[76px]
             z-[100]
-            w-[350px]
+            w-auto
+            max-w-none
             overflow-hidden
             rounded-2xl
             border
             border-[#D9E1ED]
             bg-white
             shadow-[0_12px_32px_rgba(23,35,61,0.12)]
+            sm:absolute
+            sm:left-auto
+            sm:right-0
+            sm:top-12
+            sm:w-[350px]
+            sm:max-w-[350px]
           "
         >
 
@@ -394,7 +402,7 @@ export default function NotificationBell() {
               border-b
               border-[#D9E1ED]
               px-4
-              py-4
+              py-3.5
             "
           >
 
