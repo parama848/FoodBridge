@@ -1,739 +1,10 @@
-// import { useState } from "react";
-// import { Link, NavLink, useNavigate } from "react-router-dom";
-
-// import NotificationBell from "../notifications/NotificationBell";
-
-// import { useAuth } from "../../context/AuthContext";
-
-
-// function Navbar() {
-
-//     const {
-//         user,
-//         isAuthenticated,
-//         logout,
-//     } = useAuth();
-
-//     const navigate = useNavigate();
-
-//     const [mobileOpen, setMobileOpen] =
-//         useState(false);
-
-
-//     // =========================================================
-//     // NORMALIZE ROLE
-//     // =========================================================
-
-//     const role =
-//         user?.role?.toUpperCase();
-
-
-//     // =========================================================
-//     // ROLE BASED DASHBOARD
-//     // =========================================================
-
-//     const dashboardPath = {
-
-//         DONOR:
-//             "/donor/dashboard",
-
-//         FOUNDATION:
-//             "/foundation/dashboard",
-
-//         ADMIN:
-//             "/admin/dashboard",
-
-//     }[role] || "/home";
-
-
-//     // =========================================================
-//     // LOGOUT
-//     // =========================================================
-
-//     const handleLogout = () => {
-
-//         logout();
-
-//         setMobileOpen(false);
-
-//         navigate(
-//             "/login",
-//             {
-//                 replace: true,
-//             }
-//         );
-//     };
-
-
-//     // =========================================================
-//     // NAVIGATION STYLE
-//     // =========================================================
-
-//     const navClass = ({ isActive }) =>
-
-//         `rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 ${
-//             isActive
-//                 ? "bg-white/[0.06] text-white"
-//                 : "text-gray-400 hover:bg-white/[0.04] hover:text-white"
-//         }`;
-
-
-//     // =========================================================
-//     // CLOSE MOBILE MENU
-//     // =========================================================
-
-//     const closeMobileMenu = () => {
-
-//         setMobileOpen(false);
-
-//     };
-
-
-//     return (
-
-//         <header className="sticky top-0 z-50 w-full border-b border-white/[0.08] bg-[#050505]/90 backdrop-blur-xl">
-
-//             {/* =====================================================
-//                 MAIN NAVBAR
-//             ===================================================== */}
-
-//             <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8">
-
-
-//                 {/* =================================================
-//                     LOGO
-//                 ================================================= */}
-
-//                 <Link
-//                     to={
-//                         isAuthenticated
-//                             ? dashboardPath
-//                             : "/home"
-//                     }
-//                     onClick={closeMobileMenu}
-//                     className="flex shrink-0 items-center gap-3"
-//                 >
-
-//                     <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-black shadow-lg">
-
-//                         <span className="text-lg font-black">
-//                             F
-//                         </span>
-
-//                     </div>
-
-
-//                     <div className="hidden sm:block">
-
-//                         <div className="text-lg font-bold tracking-tight text-white">
-//                             FoodBridge
-//                         </div>
-
-//                         <div className="mt-0.5 text-[9px] font-semibold tracking-[0.18em] text-gray-500">
-//                             SHARE · CONNECT · IMPACT
-//                         </div>
-
-//                     </div>
-
-//                 </Link>
-
-
-//                 {/* =================================================
-//                     DESKTOP NAVIGATION
-//                 ================================================= */}
-
-//                 <nav className="hidden items-center gap-1 lg:flex">
-
-//                     {isAuthenticated ? (
-
-//                         <>
-
-//                             {/* =====================================
-//                                 DASHBOARD
-//                             ===================================== */}
-
-//                             <NavLink
-//                                 to={dashboardPath}
-//                                 className={navClass}
-//                             >
-//                                 Dashboard
-//                             </NavLink>
-
-
-//                             {/* =====================================
-//                                 DONOR
-//                             ===================================== */}
-
-//                             {role === "DONOR" && (
-
-//                                 <>
-
-//                                     <NavLink
-//                                         to="/donor/donations/create"
-//                                         className={navClass}
-//                                     >
-//                                         Donate Food
-//                                     </NavLink>
-
-
-//                                     <NavLink
-//                                         to="/donor/donations"
-//                                         className={navClass}
-//                                     >
-//                                         My Donations
-//                                     </NavLink>
-
-//                                 </>
-
-//                             )}
-
-
-//                             {/* =====================================
-//                                 FOUNDATION
-//                             ===================================== */}
-
-//                             {role === "FOUNDATION" && (
-
-//                                 <>
-
-//                                     <NavLink
-//                                         to="/foundation/available-food"
-//                                         className={navClass}
-//                                     >
-//                                         Available Food
-//                                     </NavLink>
-
-
-//                                     <NavLink
-//                                         to="/foundation/donations"
-//                                         className={navClass}
-//                                     >
-//                                         My Donations
-//                                     </NavLink>
-
-
-//                                     <NavLink
-//                                         to="/foundation/profile"
-//                                         className={navClass}
-//                                     >
-//                                         Foundation Profile
-//                                     </NavLink>
-
-//                                 </>
-
-//                             )}
-
-
-//                             {/* =====================================
-//                                 ADMIN
-//                             ===================================== */}
-
-//                             {role === "ADMIN" && (
-
-//                                 <>
-
-//                                     <NavLink
-//                                         to="/admin/users"
-//                                         className={navClass}
-//                                     >
-//                                         Users
-//                                     </NavLink>
-
-
-//                                     <NavLink
-//                                         to="/admin/foundations"
-//                                         className={navClass}
-//                                     >
-//                                         Foundations
-//                                     </NavLink>
-
-
-//                                     <NavLink
-//                                         to="/admin/donations"
-//                                         className={navClass}
-//                                     >
-//                                         Donations
-//                                     </NavLink>
-
-
-//                                     <NavLink
-//                                         to="/admin/reports"
-//                                         className={navClass}
-//                                     >
-//                                         Reports
-//                                     </NavLink>
-
-//                                 </>
-
-//                             )}
-
-
-//                             {/* =====================================
-//                                 NOTIFICATIONS
-//                             ===================================== */}
-
-//                             <NavLink
-//                                 to="/donor/notifications"
-//                                 className={navClass}
-//                             >
-//                                 Notifications
-//                             </NavLink>
-
-//                         </>
-
-//                     ) : (
-
-//                         <>
-
-//                             <a
-//                                 href="#how-it-works"
-//                                 className="rounded-lg px-3 py-2 text-sm font-medium text-gray-400 transition hover:bg-white/[0.04] hover:text-white"
-//                             >
-//                                 How It Works
-//                             </a>
-
-
-//                             <a
-//                                 href="#impact"
-//                                 className="rounded-lg px-3 py-2 text-sm font-medium text-gray-400 transition hover:bg-white/[0.04] hover:text-white"
-//                             >
-//                                 Our Impact
-//                             </a>
-
-
-//                             <a
-//                                 href="#about"
-//                                 className="rounded-lg px-3 py-2 text-sm font-medium text-gray-400 transition hover:bg-white/[0.04] hover:text-white"
-//                             >
-//                                 About
-//                             </a>
-
-//                         </>
-
-//                     )}
-
-//                 </nav>
-
-
-//                 {/* =================================================
-//                     DESKTOP RIGHT SIDE
-//                 ================================================= */}
-
-//                 <div className="hidden items-center gap-3 lg:flex">
-
-//                     {isAuthenticated ? (
-
-//                         <>
-
-//                             {/* =====================================
-//                                 NOTIFICATIONS
-//                             ===================================== */}
-
-//                             <Link
-//                                 to="/donor/notifications"
-//                                 className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 text-gray-400 transition hover:border-white/20 hover:bg-white/[0.05] hover:text-white"
-//                                 title="Notifications"
-//                             >
-
-//                                 <svg
-//                                     width="18"
-//                                     height="18"
-//                                     viewBox="0 0 24 24"
-//                                     fill="none"
-//                                     stroke="currentColor"
-//                                     strokeWidth="1.8"
-//                                 >
-
-//                                     <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" />
-
-//                                     <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-
-//                                 </svg>
-
-//                             </Link>
-
-
-//                             {/* =====================================
-//                                 USER
-//                             ===================================== */}
-
-//                             <div className="flex items-center gap-3 border-l border-white/10 pl-4">
-
-//                                 <div className="hidden text-right xl:block">
-
-//                                     <p className="text-sm font-semibold text-white">
-//                                         {user?.name || "User"}
-//                                     </p>
-
-//                                     <p className="text-[10px] font-medium tracking-wider text-gray-500">
-//                                         {role || "USER"}
-//                                     </p>
-
-//                                 </div>
-
-
-//                                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-400 font-bold text-black">
-
-//                                     {user?.name
-//                                         ?.charAt(0)
-//                                         ?.toUpperCase() || "U"}
-
-//                                 </div>
-
-//                             </div>
-
-
-//                             {/* =====================================
-//                                 LOGOUT
-//                             ===================================== */}
-
-//                             <button
-//                                 type="button"
-//                                 onClick={handleLogout}
-//                                 className="rounded-xl border border-white/10 px-4 py-2.5 text-sm font-medium text-gray-300 transition hover:border-red-400/30 hover:bg-red-400/10 hover:text-red-400"
-//                             >
-//                                 Logout
-//                             </button>
-
-//                         </>
-
-//                     ) : (
-
-//                         <>
-
-//                             <Link
-//                                 to="/login"
-//                                 className="rounded-xl px-4 py-2.5 text-sm font-medium text-gray-400 transition hover:text-white"
-//                             >
-//                                 Sign in
-//                             </Link>
-
-
-//                             <Link
-//                                 to="/register"
-//                                 className="rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-gray-200"
-//                             >
-//                                 Get started
-//                             </Link>
-
-//                         </>
-
-//                     )}
-
-//                 </div>
-
-
-//                 {/* =================================================
-//                     MOBILE MENU BUTTON
-//                 ================================================= */}
-
-//                 <button
-//                     type="button"
-//                     onClick={() =>
-//                         setMobileOpen(
-//                             !mobileOpen
-//                         )
-//                     }
-//                     className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-gray-300 transition hover:bg-white/[0.06] lg:hidden"
-//                     aria-label="Toggle navigation"
-//                 >
-
-//                     {mobileOpen ? (
-
-//                         <svg
-//                             width="21"
-//                             height="21"
-//                             viewBox="0 0 24 24"
-//                             fill="none"
-//                             stroke="currentColor"
-//                             strokeWidth="2"
-//                         >
-
-//                             <path d="M6 6l12 12" />
-
-//                             <path d="M18 6L6 18" />
-
-//                         </svg>
-
-//                     ) : (
-
-//                         <svg
-//                             width="21"
-//                             height="21"
-//                             viewBox="0 0 24 24"
-//                             fill="none"
-//                             stroke="currentColor"
-//                             strokeWidth="2"
-//                         >
-
-//                             <path d="M4 6h16" />
-
-//                             <path d="M4 12h16" />
-
-//                             <path d="M4 18h16" />
-
-//                         </svg>
-
-//                     )}
-
-//                 </button>
-
-//             </div>
-
-
-//             {/* =====================================================
-//                 MOBILE MENU
-//             ===================================================== */}
-
-//             {mobileOpen && (
-
-//                 <div className="border-t border-white/[0.08] bg-[#070707] px-5 py-5 lg:hidden">
-
-//                     <div className="mx-auto flex max-w-7xl flex-col gap-1">
-
-//                         {isAuthenticated ? (
-
-//                             <>
-
-//                                 {/* =================================
-//                                     DASHBOARD
-//                                 ================================= */}
-
-//                                 <NavLink
-//                                     to={dashboardPath}
-//                                     className={navClass}
-//                                     onClick={closeMobileMenu}
-//                                 >
-//                                     Dashboard
-//                                 </NavLink>
-
-
-//                                 {/* =================================
-//                                     DONOR
-//                                 ================================= */}
-
-//                                 {role === "DONOR" && (
-
-//                                     <>
-
-//                                         <NavLink
-//                                             to="/donor/donations/create"
-//                                             className={navClass}
-//                                             onClick={closeMobileMenu}
-//                                         >
-//                                             Donate Food
-//                                         </NavLink>
-
-
-//                                         <NavLink
-//                                             to="/donor/donations"
-//                                             className={navClass}
-//                                             onClick={closeMobileMenu}
-//                                         >
-//                                             My Donations
-//                                         </NavLink>
-
-//                                     </>
-
-//                                 )}
-
-
-//                                 {/* =================================
-//                                     FOUNDATION
-//                                 ================================= */}
-
-//                                 {role === "FOUNDATION" && (
-
-//                                     <>
-
-//                                         <NavLink
-//                                             to="/foundation/available-food"
-//                                             className={navClass}
-//                                             onClick={closeMobileMenu}
-//                                         >
-//                                             Available Food
-//                                         </NavLink>
-
-
-//                                         <NavLink
-//                                             to="/foundation/donations"
-//                                             className={navClass}
-//                                             onClick={closeMobileMenu}
-//                                         >
-//                                             My Donations
-//                                         </NavLink>
-
-
-//                                         <NavLink
-//                                             to="/foundation/profile"
-//                                             className={navClass}
-//                                             onClick={closeMobileMenu}
-//                                         >
-//                                             Foundation Profile
-//                                         </NavLink>
-
-//                                     </>
-
-//                                 )}
-
-
-//                                 {/* =================================
-//                                     ADMIN
-//                                 ================================= */}
-
-//                                 {role === "ADMIN" && (
-
-//                                     <>
-
-//                                         <NavLink
-//                                             to="/admin/users"
-//                                             className={navClass}
-//                                             onClick={closeMobileMenu}
-//                                         >
-//                                             Users
-//                                         </NavLink>
-
-
-//                                         <NavLink
-//                                             to="/admin/foundations"
-//                                             className={navClass}
-//                                             onClick={closeMobileMenu}
-//                                         >
-//                                             Foundations
-//                                         </NavLink>
-
-
-//                                         <NavLink
-//                                             to="/admin/donations"
-//                                             className={navClass}
-//                                             onClick={closeMobileMenu}
-//                                         >
-//                                             Donations
-//                                         </NavLink>
-
-
-//                                         <NavLink
-//                                             to="/admin/reports"
-//                                             className={navClass}
-//                                             onClick={closeMobileMenu}
-//                                         >
-//                                             Reports
-//                                         </NavLink>
-
-//                                     </>
-
-//                                 )}
-
-
-//                                 {/* =================================
-//                                     NOTIFICATIONS
-//                                 ================================= */}
-
-//                                 <NavLink
-//                                     to="/donor/notifications"
-//                                     className={navClass}
-//                                     onClick={closeMobileMenu}
-//                                 >
-//                                     Notifications
-//                                 </NavLink>
-
-
-//                                 <div className="my-3 border-t border-white/10" />
-
-
-//                                 {/* =================================
-//                                     LOGOUT
-//                                 ================================= */}
-
-//                                 <button
-//                                     type="button"
-//                                     onClick={handleLogout}
-//                                     className="rounded-xl px-3 py-3 text-left text-sm font-medium text-red-400 transition hover:bg-red-400/10"
-//                                 >
-//                                     Logout
-//                                 </button>
-
-//                             </>
-
-//                         ) : (
-
-//                             <>
-
-//                                 <a
-//                                     href="#how-it-works"
-//                                     className="rounded-lg px-3 py-3 text-sm text-gray-400 hover:bg-white/[0.04] hover:text-white"
-//                                     onClick={closeMobileMenu}
-//                                 >
-//                                     How It Works
-//                                 </a>
-
-
-//                                 <a
-//                                     href="#impact"
-//                                     className="rounded-lg px-3 py-3 text-sm text-gray-400 hover:bg-white/[0.04] hover:text-white"
-//                                     onClick={closeMobileMenu}
-//                                 >
-//                                     Our Impact
-//                                 </a>
-
-
-//                                 <a
-//                                     href="#about"
-//                                     className="rounded-lg px-3 py-3 text-sm text-gray-400 hover:bg-white/[0.04] hover:text-white"
-//                                     onClick={closeMobileMenu}
-//                                 >
-//                                     About
-//                                 </a>
-
-
-//                                 <div className="my-3 border-t border-white/10" />
-
-
-//                                 <Link
-//                                     to="/login"
-//                                     className="rounded-xl px-3 py-3 text-sm text-gray-300"
-//                                     onClick={closeMobileMenu}
-//                                 >
-//                                     Sign in
-//                                 </Link>
-
-
-//                                 <Link
-//                                     to="/register"
-//                                     className="mt-1 rounded-xl bg-white px-4 py-3 text-center text-sm font-semibold text-black"
-//                                     onClick={closeMobileMenu}
-//                                 >
-//                                     Get started
-//                                 </Link>
-
-//                             </>
-
-//                         )}
-
-//                     </div>
-
-//                 </div>
-
-//             )}
-
-//         </header>
-
-//     );
-// }
-
-
-// export default Navbar;
-
 import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import NotificationBell from "../notifications/NotificationBell";
-
 import { useAuth } from "../../context/AuthContext";
 
-
 function Navbar() {
-
     const {
         user,
         isAuthenticated,
@@ -742,81 +13,68 @@ function Navbar() {
 
     const navigate = useNavigate();
 
-    const [mobileOpen, setMobileOpen] =
-        useState(false);
-
+    const [mobileOpen, setMobileOpen] = useState(false);
 
     // =========================================================
     // NORMALIZE ROLE
     // =========================================================
 
-    const role =
-        user?.role?.toUpperCase();
-
+    const role = user?.role?.toUpperCase();
 
     // =========================================================
     // ROLE BASED DASHBOARD
     // =========================================================
 
     const dashboardPath = {
-
-        DONOR:
-            "/donor/dashboard",
-
-        FOUNDATION:
-            "/foundation/dashboard",
-
-        ADMIN:
-            "/admin/dashboard",
-
+        DONOR: "/donor/dashboard",
+        FOUNDATION: "/foundation/dashboard",
+        ADMIN: "/admin/dashboard",
     }[role] || "/home";
-
 
     // =========================================================
     // LOGOUT
     // =========================================================
 
     const handleLogout = () => {
-
         logout();
-
         setMobileOpen(false);
 
-        navigate(
-            "/login",
-            {
-                replace: true,
-            }
-        );
+        navigate("/login", {
+            replace: true,
+        });
     };
-
 
     // =========================================================
     // NAVIGATION STYLE
     // =========================================================
 
     const navClass = ({ isActive }) =>
-
         `rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 ${
             isActive
                 ? "bg-white/[0.06] text-white"
                 : "text-gray-400 hover:bg-white/[0.04] hover:text-white"
         }`;
 
+    // =========================================================
+    // MOBILE NAVIGATION STYLE
+    // =========================================================
+
+    const mobileNavClass = ({ isActive }) =>
+        `flex w-full items-center rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200 ${
+            isActive
+                ? "bg-white/[0.08] text-white"
+                : "text-gray-400 hover:bg-white/[0.04] hover:text-white"
+        }`;
 
     // =========================================================
     // CLOSE MOBILE MENU
     // =========================================================
 
     const closeMobileMenu = () => {
-
         setMobileOpen(false);
-
     };
 
-
     return (
-
         <header
             className="
                 sticky
@@ -825,11 +83,10 @@ function Navbar() {
                 w-full
                 border-b
                 border-white/[0.08]
-                bg-[#050505]/90
+                bg-[#050505]/95
                 backdrop-blur-xl
             "
         >
-
             {/* =====================================================
                 MAIN NAVBAR
             ===================================================== */}
@@ -838,17 +95,17 @@ function Navbar() {
                 className="
                     mx-auto
                     flex
-                    h-20
+                    h-[68px]
                     w-full
                     max-w-7xl
                     items-center
                     justify-between
-                    px-5
+                    px-4
+                    sm:h-20
                     sm:px-6
                     lg:px-8
                 "
             >
-
 
                 {/* =================================================
                     LOGO
@@ -863,41 +120,55 @@ function Navbar() {
                     onClick={closeMobileMenu}
                     className="
                         flex
+                        min-w-0
                         shrink-0
                         items-center
-                        gap-3
+                        gap-2.5
+                        sm:gap-3
                     "
                 >
+
+                    {/* Logo Icon */}
 
                     <div
                         className="
                             flex
-                            h-11
-                            w-11
+                            h-10
+                            w-10
+                            shrink-0
                             items-center
                             justify-center
                             rounded-xl
                             bg-white
                             text-black
                             shadow-lg
+                            sm:h-11
+                            sm:w-11
                         "
                     >
-
-                        <span className="text-lg font-black">
+                        <span
+                            className="
+                                text-base
+                                font-black
+                                sm:text-lg
+                            "
+                        >
                             F
                         </span>
-
                     </div>
 
-            
-                    <div className="hidden sm:block">
+                    {/* Brand */}
+
+                    <div className="min-w-0">
 
                         <div
                             className="
-                                text-lg
+                                truncate
+                                text-base
                                 font-bold
                                 tracking-tight
                                 text-white
+                                sm:text-lg
                             "
                         >
                             FoodBridge
@@ -905,11 +176,13 @@ function Navbar() {
 
                         <div
                             className="
-                                mt-0.5
+                                hidden
                                 text-[9px]
                                 font-semibold
                                 tracking-[0.18em]
                                 text-gray-500
+                                sm:mt-0.5
+                                sm:block
                             "
                         >
                             SHARE · CONNECT · IMPACT
@@ -937,9 +210,7 @@ function Navbar() {
 
                         <>
 
-                            {/* =====================================
-                                DASHBOARD
-                            ===================================== */}
+                            {/* Dashboard */}
 
                             <NavLink
                                 to={dashboardPath}
@@ -949,14 +220,10 @@ function Navbar() {
                             </NavLink>
 
 
-                            {/* =====================================
-                                DONOR
-                            ===================================== */}
+                            {/* Donor */}
 
                             {role === "DONOR" && (
-
                                 <>
-
                                     <NavLink
                                         to="/donor/donations/create"
                                         className={navClass}
@@ -964,34 +231,26 @@ function Navbar() {
                                         Donate Food
                                     </NavLink>
 
-
                                     <NavLink
                                         to="/donor/donations"
                                         className={navClass}
                                     >
                                         My Donations
                                     </NavLink>
-
                                 </>
-
                             )}
 
 
-                            {/* =====================================
-                                FOUNDATION
-                            ===================================== */}
+                            {/* Foundation */}
 
                             {role === "FOUNDATION" && (
-
                                 <>
-
                                     <NavLink
                                         to="/foundation/available-food"
                                         className={navClass}
                                     >
                                         Available Food
                                     </NavLink>
-
 
                                     <NavLink
                                         to="/foundation/donations"
@@ -1000,34 +259,26 @@ function Navbar() {
                                         My Donations
                                     </NavLink>
 
-
                                     <NavLink
                                         to="/foundation/profile"
                                         className={navClass}
                                     >
                                         Foundation Profile
                                     </NavLink>
-
                                 </>
-
                             )}
 
 
-                            {/* =====================================
-                                ADMIN
-                            ===================================== */}
+                            {/* Admin */}
 
                             {role === "ADMIN" && (
-
                                 <>
-
                                     <NavLink
                                         to="/admin/users"
                                         className={navClass}
                                     >
                                         Users
                                     </NavLink>
-
 
                                     <NavLink
                                         to="/admin/foundations"
@@ -1036,7 +287,6 @@ function Navbar() {
                                         Foundations
                                     </NavLink>
 
-
                                     <NavLink
                                         to="/admin/donations"
                                         className={navClass}
@@ -1044,22 +294,17 @@ function Navbar() {
                                         Donations
                                     </NavLink>
 
-
                                     <NavLink
                                         to="/admin/reports"
                                         className={navClass}
                                     >
                                         Reports
                                     </NavLink>
-
                                 </>
-
                             )}
 
 
-                            {/* =====================================
-                                NOTIFICATIONS
-                            ===================================== */}
+                            {/* Notifications */}
 
                             <NavLink
                                 to="/notifications"
@@ -1075,7 +320,7 @@ function Navbar() {
                         <>
 
                             <Link
-                               to="/how-it-works"
+                                to="/how-it-works"
                                 className="
                                     rounded-lg
                                     px-3
@@ -1090,7 +335,6 @@ function Navbar() {
                             >
                                 How It Works
                             </Link>
-
 
                             <Link
                                 to="/impact"
@@ -1108,7 +352,6 @@ function Navbar() {
                             >
                                 Our Impact
                             </Link>
-
 
                             <Link
                                 to="/about-us"
@@ -1151,16 +394,12 @@ function Navbar() {
 
                         <>
 
-                            {/* =====================================
-                                REAL-TIME NOTIFICATION BELL
-                            ===================================== */}
+                            {/* Notification */}
 
                             <NotificationBell />
 
 
-                            {/* =====================================
-                                USER
-                            ===================================== */}
+                            {/* User */}
 
                             <div
                                 className="
@@ -1172,6 +411,8 @@ function Navbar() {
                                     pl-4
                                 "
                             >
+
+                                {/* User Details */}
 
                                 <div
                                     className="
@@ -1205,6 +446,8 @@ function Navbar() {
                                 </div>
 
 
+                                {/* Avatar */}
+
                                 <div
                                     className="
                                         flex
@@ -1226,9 +469,7 @@ function Navbar() {
                             </div>
 
 
-                            {/* =====================================
-                                LOGOUT
-                            ===================================== */}
+                            {/* Logout */}
 
                             <button
                                 type="button"
@@ -1273,7 +514,6 @@ function Navbar() {
                                 Sign in
                             </Link>
 
-
                             <Link
                                 to="/register"
                                 className="
@@ -1299,71 +539,195 @@ function Navbar() {
 
 
                 {/* =================================================
-                    MOBILE MENU BUTTON
+                    MOBILE RIGHT SIDE
                 ================================================= */}
 
-                <button
-                    type="button"
-                    onClick={() =>
-                        setMobileOpen(!mobileOpen)
-                    }
+                <div
                     className="
                         flex
-                        h-11
-                        w-11
                         items-center
-                        justify-center
-                        rounded-xl
-                        border
-                        border-white/10
-                        bg-white/[0.03]
-                        text-gray-300
-                        transition
-                        hover:bg-white/[0.06]
+                        gap-2
                         lg:hidden
                     "
-                    aria-label="Toggle navigation"
                 >
 
-                    {mobileOpen ? (
+                    {/* =============================================
+                        AUTHENTICATED MOBILE
+                    ============================================= */}
 
-                        <svg
-                            width="21"
-                            height="21"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                        >
+                    {isAuthenticated ? (
 
-                            <path d="M6 6l12 12" />
+                        <>
+                            {/* Notification Bell */}
 
-                            <path d="M18 6L6 18" />
+                            <div
+                                className="
+                                    flex
+                                    h-10
+                                    w-10
+                                    items-center
+                                    justify-center
+                                    rounded-xl
+                                    border
+                                    border-white/10
+                                    bg-white/[0.03]
+                                "
+                            >
+                                <NotificationBell />
+                            </div>
 
-                        </svg>
+
+                            {/* Menu Button */}
+
+                            <button
+                                type="button"
+                                onClick={() =>
+                                    setMobileOpen(!mobileOpen)
+                                }
+                                className="
+                                    flex
+                                    h-10
+                                    w-10
+                                    items-center
+                                    justify-center
+                                    rounded-xl
+                                    border
+                                    border-white/10
+                                    bg-white/[0.03]
+                                    text-gray-300
+                                    transition
+                                    hover:bg-white/[0.06]
+                                "
+                                aria-label="Toggle navigation"
+                                aria-expanded={mobileOpen}
+                            >
+
+                                {mobileOpen ? (
+
+                                    <svg
+                                        width="21"
+                                        height="21"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                    >
+                                        <path d="M6 6l12 12" />
+                                        <path d="M18 6L6 18" />
+                                    </svg>
+
+                                ) : (
+
+                                    <svg
+                                        width="21"
+                                        height="21"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                    >
+                                        <path d="M4 6h16" />
+                                        <path d="M4 12h16" />
+                                        <path d="M4 18h16" />
+                                    </svg>
+
+                                )}
+
+                            </button>
+                        </>
 
                     ) : (
 
-                        <svg
-                            width="21"
-                            height="21"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                        >
+                        <>
+                            {/* Sign In */}
 
-                            <path d="M4 6h16" />
+                            <Link
+                                to="/login"
+                                onClick={closeMobileMenu}
+                                className="
+                                    rounded-xl
+                                    border
+                                    border-white/10
+                                    px-3.5
+                                    py-2
+                                    text-sm
+                                    font-medium
+                                    text-white
+                                    transition
+                                    hover:bg-white/[0.06]
+                                    sm:px-4
+                                "
+                            >
+                                Sign in
+                            </Link>
 
-                            <path d="M4 12h16" />
 
-                            <path d="M4 18h16" />
+                            {/* Menu */}
 
-                        </svg>
+                            <button
+                                type="button"
+                                onClick={() =>
+                                    setMobileOpen(!mobileOpen)
+                                }
+                                className="
+                                    flex
+                                    h-10
+                                    w-10
+                                    items-center
+                                    justify-center
+                                    rounded-xl
+                                    border
+                                    border-white/10
+                                    bg-white/[0.03]
+                                    text-gray-300
+                                    transition
+                                    hover:bg-white/[0.06]
+                                "
+                                aria-label="Toggle navigation"
+                                aria-expanded={mobileOpen}
+                            >
+
+                                {mobileOpen ? (
+
+                                    <svg
+                                        width="21"
+                                        height="21"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                    >
+                                        <path d="M6 6l12 12" />
+                                        <path d="M18 6L6 18" />
+                                    </svg>
+
+                                ) : (
+
+                                    <svg
+                                        width="21"
+                                        height="21"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                    >
+                                        <path d="M4 6h16" />
+                                        <path d="M4 12h16" />
+                                        <path d="M4 18h16" />
+                                    </svg>
+
+                                )}
+
+                            </button>
+                        </>
 
                     )}
 
-                </button>
+                </div>
 
             </div>
 
@@ -1379,8 +743,8 @@ function Navbar() {
                         border-t
                         border-white/[0.08]
                         bg-[#070707]
-                        px-5
-                        py-5
+                        px-4
+                        py-4
                         lg:hidden
                     "
                 >
@@ -1399,148 +763,189 @@ function Navbar() {
 
                             <>
 
-                                {/* =================================
-                                    DASHBOARD
-                                ================================= */}
+                                {/* =============================
+                                    USER INFO
+                                ============================= */}
+
+                                <div
+                                    className="
+                                        mb-3
+                                        flex
+                                        items-center
+                                        gap-3
+                                        rounded-2xl
+                                        border
+                                        border-white/[0.08]
+                                        bg-white/[0.02]
+                                        p-3
+                                    "
+                                >
+
+                                    <div
+                                        className="
+                                            flex
+                                            h-10
+                                            w-10
+                                            shrink-0
+                                            items-center
+                                            justify-center
+                                            rounded-xl
+                                            bg-emerald-400
+                                            font-bold
+                                            text-black
+                                        "
+                                    >
+                                        {user?.name
+                                            ?.charAt(0)
+                                            ?.toUpperCase() || "U"}
+                                    </div>
+
+                                    <div className="min-w-0">
+
+                                        <p
+                                            className="
+                                                truncate
+                                                text-sm
+                                                font-semibold
+                                                text-white
+                                            "
+                                        >
+                                            {user?.name || "User"}
+                                        </p>
+
+                                        <p
+                                            className="
+                                                mt-0.5
+                                                text-[10px]
+                                                font-medium
+                                                tracking-wider
+                                                text-gray-500
+                                            "
+                                        >
+                                            {role || "USER"}
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                {/* Dashboard */}
 
                                 <NavLink
                                     to={dashboardPath}
-                                    className={navClass}
+                                    className={mobileNavClass}
                                     onClick={closeMobileMenu}
                                 >
                                     Dashboard
                                 </NavLink>
 
 
-                                {/* =================================
-                                    DONOR
-                                ================================= */}
+                                {/* Donor */}
 
                                 {role === "DONOR" && (
-
                                     <>
-
                                         <NavLink
                                             to="/donor/donations/create"
-                                            className={navClass}
+                                            className={mobileNavClass}
                                             onClick={closeMobileMenu}
                                         >
                                             Donate Food
                                         </NavLink>
 
-
                                         <NavLink
                                             to="/donor/donations"
-                                            className={navClass}
+                                            className={mobileNavClass}
                                             onClick={closeMobileMenu}
                                         >
                                             My Donations
                                         </NavLink>
-
                                     </>
-
                                 )}
 
 
-                                {/* =================================
-                                    FOUNDATION
-                                ================================= */}
+                                {/* Foundation */}
 
                                 {role === "FOUNDATION" && (
-
                                     <>
-
                                         <NavLink
                                             to="/foundation/available-food"
-                                            className={navClass}
+                                            className={mobileNavClass}
                                             onClick={closeMobileMenu}
                                         >
                                             Available Food
                                         </NavLink>
 
-
                                         <NavLink
                                             to="/foundation/donations"
-                                            className={navClass}
+                                            className={mobileNavClass}
                                             onClick={closeMobileMenu}
                                         >
                                             My Donations
                                         </NavLink>
 
-
                                         <NavLink
                                             to="/foundation/profile"
-                                            className={navClass}
+                                            className={mobileNavClass}
                                             onClick={closeMobileMenu}
                                         >
                                             Foundation Profile
                                         </NavLink>
-
                                     </>
-
                                 )}
 
 
-                                {/* =================================
-                                    ADMIN
-                                ================================= */}
+                                {/* Admin */}
 
                                 {role === "ADMIN" && (
-
                                     <>
-
                                         <NavLink
                                             to="/admin/users"
-                                            className={navClass}
+                                            className={mobileNavClass}
                                             onClick={closeMobileMenu}
                                         >
                                             Users
                                         </NavLink>
 
-
                                         <NavLink
                                             to="/admin/foundations"
-                                            className={navClass}
+                                            className={mobileNavClass}
                                             onClick={closeMobileMenu}
                                         >
                                             Foundations
                                         </NavLink>
 
-
                                         <NavLink
                                             to="/admin/donations"
-                                            className={navClass}
+                                            className={mobileNavClass}
                                             onClick={closeMobileMenu}
                                         >
                                             Donations
                                         </NavLink>
 
-
                                         <NavLink
                                             to="/admin/reports"
-                                            className={navClass}
+                                            className={mobileNavClass}
                                             onClick={closeMobileMenu}
                                         >
                                             Reports
                                         </NavLink>
-
                                     </>
-
                                 )}
 
 
-                                {/* =================================
-                                    NOTIFICATIONS
-                                ================================= */}
+                                {/* Notifications */}
 
                                 <NavLink
                                     to="/notifications"
-                                    className={navClass}
+                                    className={mobileNavClass}
                                     onClick={closeMobileMenu}
                                 >
                                     Notifications
                                 </NavLink>
 
+
+                                {/* Divider */}
 
                                 <div
                                     className="
@@ -1551,16 +956,15 @@ function Navbar() {
                                 />
 
 
-                                {/* =================================
-                                    LOGOUT
-                                ================================= */}
+                                {/* Logout */}
 
                                 <button
                                     type="button"
                                     onClick={handleLogout}
                                     className="
+                                        w-full
                                         rounded-xl
-                                        px-3
+                                        px-4
                                         py-3
                                         text-left
                                         text-sm
@@ -1579,56 +983,52 @@ function Navbar() {
 
                             <>
 
+                                {/* How It Works */}
+
                                 <Link
                                     to="/how-it-works"
-                                    className="
-                                        rounded-lg
-                                        px-3
-                                        py-3
-                                        text-sm
-                                        text-gray-400
-                                        hover:bg-white/[0.04]
-                                        hover:text-white
-                                    "
+                                    className={`
+                                        ${mobileNavClass({
+                                            isActive: false,
+                                        })}
+                                    `}
                                     onClick={closeMobileMenu}
                                 >
                                     How It Works
                                 </Link>
 
 
+                                {/* Our Impact */}
+
                                 <Link
                                     to="/impact"
-                                    className="
-                                        rounded-lg
-                                        px-3
-                                        py-3
-                                        text-sm
-                                        text-gray-400
-                                        hover:bg-white/[0.04]
-                                        hover:text-white
-                                    "
+                                    className={`
+                                        ${mobileNavClass({
+                                            isActive: false,
+                                        })}
+                                    `}
                                     onClick={closeMobileMenu}
                                 >
                                     Our Impact
                                 </Link>
 
 
-                                <a
-                                    href="#about"
-                                    className="
-                                        rounded-lg
-                                        px-3
-                                        py-3
-                                        text-sm
-                                        text-gray-400
-                                        hover:bg-white/[0.04]
-                                        hover:text-white
-                                    "
+                                {/* About */}
+
+                                <Link
+                                    to="/about-us"
+                                    className={`
+                                        ${mobileNavClass({
+                                            isActive: false,
+                                        })}
+                                    `}
                                     onClick={closeMobileMenu}
                                 >
                                     About
-                                </a>
+                                </Link>
 
+
+                                {/* Divider */}
 
                                 <div
                                     className="
@@ -1639,14 +1039,25 @@ function Navbar() {
                                 />
 
 
+                                {/* Sign In */}
+
                                 <Link
                                     to="/login"
                                     className="
+                                        flex
+                                        w-full
+                                        items-center
+                                        justify-center
                                         rounded-xl
-                                        px-3
+                                        border
+                                        border-white/10
+                                        px-4
                                         py-3
                                         text-sm
-                                        text-gray-300
+                                        font-medium
+                                        text-white
+                                        transition
+                                        hover:bg-white/[0.05]
                                     "
                                     onClick={closeMobileMenu}
                                 >
@@ -1654,18 +1065,25 @@ function Navbar() {
                                 </Link>
 
 
+                                {/* Get Started */}
+
                                 <Link
                                     to="/register"
                                     className="
-                                        mt-1
+                                        mt-2
+                                        flex
+                                        w-full
+                                        items-center
+                                        justify-center
                                         rounded-xl
                                         bg-white
                                         px-4
                                         py-3
-                                        text-center
                                         text-sm
                                         font-semibold
                                         text-black
+                                        transition
+                                        hover:bg-gray-200
                                     "
                                     onClick={closeMobileMenu}
                                 >
@@ -1683,9 +1101,7 @@ function Navbar() {
             )}
 
         </header>
-
     );
 }
-
 
 export default Navbar;
