@@ -1,252 +1,163 @@
-import {
-    useState
-} from "react";
+import { useState } from "react";
 
-import {
-    Link,
-    useNavigate
-} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import {
-    Eye,
-    EyeOff,
-    Loader2,
-    LogIn
-} from "lucide-react";
+import { Eye, EyeOff, Loader2, LogIn } from "lucide-react";
 
 import { useAuth } from "../../context/AuthContext";
 
-
 function Login() {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const { login } = useAuth();
 
-    const {
-        login
-    } = useAuth();
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
+  const [showPassword, setShowPassword] = useState(false);
 
-    const [formData, setFormData] = useState({
-        email: "",
-        password: ""
-    });
+  const [loading, setLoading] = useState(false);
 
+  const [errors, setErrors] = useState({});
 
-    const [showPassword, setShowPassword] =
-        useState(false);
+  // =========================================================
+  // HANDLE INPUT
+  // =========================================================
 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
 
-    const [loading, setLoading] =
-        useState(false);
+    setFormData((previous) => ({
+      ...previous,
+      [name]: value,
+    }));
 
+    // Clear field error while typing
 
-    const [errors, setErrors] =
-        useState({});
+    if (errors[name]) {
+      setErrors((previous) => ({
+        ...previous,
+        [name]: "",
+      }));
+    }
+  };
 
+  // =========================================================
+  // VALIDATION
+  // =========================================================
 
-    // =========================================================
-    // HANDLE INPUT
-    // =========================================================
+  const validate = () => {
+    const newErrors = {};
 
-    const handleChange = (event) => {
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Enter a valid email address";
+    }
 
-        const {
-            name,
-            value
-        } = event.target;
+    if (!formData.password) {
+      newErrors.password = "Password is required";
+    } else if (formData.password.length < 8) {
+      newErrors.password = "Password must contain at least 8 characters";
+    }
 
+    setErrors(newErrors);
 
-        setFormData((previous) => ({
-            ...previous,
-            [name]: value
-        }));
+    return Object.keys(newErrors).length === 0;
+  };
 
+  // =========================================================
+  // LOGIN
+  // =========================================================
 
-        // Clear field error while typing
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-        if (errors[name]) {
+    if (!validate()) {
+      return;
+    }
 
-            setErrors((previous) => ({
-                ...previous,
-                [name]: ""
-            }));
-        }
-    };
+    setLoading(true);
 
+    try {
+      const loggedInUser = await login(formData.email, formData.password);
 
-    // =========================================================
-    // VALIDATION
-    // =========================================================
+      // -------------------------------------------------
+      // ROLE BASED REDIRECTION
+      // -------------------------------------------------
 
-    const validate = () => {
+      const role = loggedInUser?.role?.toUpperCase();
 
-        const newErrors = {};
+      switch (role) {
+        case "DONOR":
+          navigate("/donor/dashboard", {
+            replace: true,
+          });
 
+          break;
 
-        if (!formData.email.trim()) {
+        case "FOUNDATION":
+          navigate("/foundation/dashboard", {
+            replace: true,
+          });
 
-            newErrors.email =
-                "Email is required";
+          break;
 
-        } else if (
-            !/^[^\s@]+@[^\s@]+\.[^\s@]+$/
-                .test(formData.email)
-        ) {
-
-            newErrors.email =
-                "Enter a valid email address";
-        }
-
-
-        if (!formData.password) {
-
-            newErrors.password =
-                "Password is required";
-
-        } else if (
-            formData.password.length < 8
-        ) {
-
-            newErrors.password =
-                "Password must contain at least 8 characters";
-        }
-
-
-        setErrors(newErrors);
-
-
-        return Object.keys(newErrors).length === 0;
-    };
-
-
-    // =========================================================
-    // LOGIN
-    // =========================================================
-
-    const handleSubmit = async (event) => {
-
-        event.preventDefault();
-
-
-        if (!validate()) {
-            return;
-        }
-
-
-        setLoading(true);
-
-
-        try {
-
-            const loggedInUser =
-                await login(
-                    formData.email,
-                    formData.password
-                );
-
-
-            // -------------------------------------------------
-            // ROLE BASED REDIRECTION
-            // -------------------------------------------------
-
-            const role =
-                loggedInUser?.role?.toUpperCase();
-
-
-            switch (role) {
-
-                case "DONOR":
-
-                    navigate(
-                        "/donor/dashboard",
-                        {
-                            replace: true
-                        }
-                    );
-
-                    break;
-
-
-                case "FOUNDATION":
-
-                    navigate(
-                        "/foundation/dashboard",
-                        {
-                            replace: true
-                        }
-                    );
-
-                    break;
-
-
-                case "ADMIN":
-
-                    navigate(
-                        "/admin/dashboard",
-                        {
-                            replace: true
-                        }
-                    );
-
-                    break;
-
-
-                default:
-
-                    navigate(
-                        "/home",
-                        {
-                            replace: true
-                        }
-                    );
-            }
-
-        } catch (error) {
-
-            /*
-             * AuthContext already displays the
-             * professional error toast.
-             *
-             * We intentionally don't show another
-             * toast here to avoid duplicate messages.
-             */
-
-            console.error(
-                "Login failed:",
-                error
-            );
-
-        } finally {
-
-            setLoading(false);
-        }
-    };
-
-
-    // =========================================================
-    // UI
-    // =========================================================
-
-    return (
-
-        <div className="
+        case "ADMIN":
+          navigate("/admin/dashboard", {
+            replace: true,
+          });
+
+          break;
+
+        default:
+          navigate("/home", {
+            replace: true,
+          });
+      }
+    } catch (error) {
+      /*
+       * AuthContext already displays the
+       * professional error toast.
+       *
+       * We intentionally don't show another
+       * toast here to avoid duplicate messages.
+       */
+
+      console.error("Login failed:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // =========================================================
+  // UI
+  // =========================================================
+
+  return (
+    <div
+      className="
             min-h-screen
             bg-[#F8FAFD]
             px-5
             py-12
             text-[#111827]
-        ">
-
-            <div className="
+        "
+    >
+      <div
+        className="
                 mx-auto
                 flex
                 min-h-[calc(100vh-6rem)]
                 max-w-md
                 items-center
                 justify-center
-            ">
-
-                <div className="
+            "
+      >
+        <div
+          className="
                     w-full
                     rounded-3xl
                     border
@@ -256,18 +167,20 @@ function Login() {
                     shadow-[0_12px_35px_rgba(23,35,61,0.08)]
                     backdrop-blur-xl
                     sm:p-8
-                ">
-
-                    {/* =================================================
+                "
+        >
+          {/* =================================================
                         HEADER
                     ================================================= */}
 
-                    <div className="
+          <div
+            className="
                         mb-8
                         text-center
-                    ">
-
-                        <div className="
+                    "
+          >
+            <div
+              className="
                             mx-auto
                             mb-5
                             flex
@@ -279,75 +192,70 @@ function Login() {
                             bg-[#1557D6]
                             text-white
                             shadow-[0_6px_18px_rgba(21,87,214,0.20)]
-                        ">
-
-                            <span className="
+                        "
+            >
+              <span
+                className="
                                 text-xl
                                 font-black
-                            ">
-                                F
-                            </span>
+                            "
+              >
+                F
+              </span>
+            </div>
 
-                        </div>
-
-
-                        <h1 className="
+            <h1
+              className="
                             text-2xl
                             font-bold
                             tracking-tight
-                        ">
-                            Welcome back
-                        </h1>
+                        "
+            >
+              Welcome back
+            </h1>
 
-
-                        <p className="
+            <p
+              className="
                             mt-2
                             text-sm
                             text-[#17233D]
-                        ">
-                            Sign in to continue to FoodBridge
-                        </p>
+                        "
+            >
+              Sign in to continue to FoodBridge
+            </p>
+          </div>
 
-                    </div>
-
-
-                    {/* =================================================
+          {/* =================================================
                         FORM
                     ================================================= */}
 
-                    <form
-                        onSubmit={handleSubmit}
-                        className="space-y-5"
-                    >
+          <form onSubmit={handleSubmit} className="space-y-5">
+            {/* EMAIL */}
 
-                        {/* EMAIL */}
-
-                        <div>
-
-                            <label
-                                htmlFor="email"
-                                className="
+            <div>
+              <label
+                htmlFor="email"
+                className="
                                     mb-2
                                     block
                                     text-sm
                                     font-bold
                                     text-[#111827]
                                 "
-                            >
-                                Email address
-                            </label>
+              >
+                Email address
+              </label>
 
-
-                            <input
-                                id="email"
-                                name="email"
-                                type="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                autoComplete="email"
-                                placeholder="you@gmail.com"
-                                disabled={loading}
-                                className={`
+              <input
+                id="email"
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+                autoComplete="email"
+                placeholder="you@gmail.com"
+                disabled={loading}
+                className={`
                                     w-full
                                     rounded-xl
                                     border
@@ -364,66 +272,53 @@ function Login() {
                                     focus:ring-4
                                     focus:ring-[#1557D6]/10
                                     ${
-                                        errors.email
-                                            ? "border-red-300 focus:border-red-500"
-                                            : "border-[#D9E1ED] focus:border-[#1557D6]"
+                                      errors.email
+                                        ? "border-red-300 focus:border-red-500"
+                                        : "border-[#D9E1ED] focus:border-[#1557D6]"
                                     }
                                 `}
-                            />
+              />
 
-
-                            {errors.email && (
-
-                                <p className="
+              {errors.email && (
+                <p
+                  className="
                                     mt-2
                                     text-xs
                                     text-red-600
-                                ">
-                                    {errors.email}
-                                </p>
-                            )}
+                                "
+                >
+                  {errors.email}
+                </p>
+              )}
+            </div>
 
-                        </div>
+            {/* PASSWORD */}
 
-
-                        {/* PASSWORD */}
-
-                        <div>
-
-                            <label
-                                htmlFor="password"
-                                className="
+            <div>
+              <label
+                htmlFor="password"
+                className="
                                     mb-2
                                     block
                                     text-sm
                                     font-bold
                                     text-[#111827]
                                 "
-                            >
-                                Password
-                            </label>
+              >
+                Password
+              </label>
 
-
-                            <div className="relative">
-
-                                <input
-                                    id="password"
-                                    name="password"
-                                    type={
-                                        showPassword
-                                            ? "text"
-                                            : "password"
-                                    }
-                                    value={
-                                        formData.password
-                                    }
-                                    onChange={
-                                        handleChange
-                                    }
-                                    autoComplete="current-password"
-                                    placeholder="Enter your password"
-                                    disabled={loading}
-                                    className={`
+              <div className="relative">
+                <input
+                  id="password"
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  value={formData.password}
+                  onChange={handleChange}
+                  autoComplete="current-password"
+                  placeholder="Enter your password"
+                  disabled={loading}
+                  className={`
                                         w-full
                                         rounded-xl
                                         border
@@ -438,24 +333,18 @@ function Login() {
                                         placeholder:text-gray-600
                                         focus:bg-white/[0.05]
                                         ${
-                                            errors.password
-                                                ? "border-red-300 focus:border-red-500"
-                                                : "border-[#D9E1ED] focus:border-[#1557D6]"
+                                          errors.password
+                                            ? "border-red-300 focus:border-red-500"
+                                            : "border-[#D9E1ED] focus:border-[#1557D6]"
                                         }
                                     `}
-                                />
+                />
 
-
-                                <button
-                                    type="button"
-                                    onClick={() =>
-                                        setShowPassword(
-                                            (previous) =>
-                                                !previous
-                                        )
-                                    }
-                                    disabled={loading}
-                                    className="
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((previous) => !previous)}
+                  disabled={loading}
+                  className="
                                         absolute
                                         right-3
                                         top-1/2
@@ -467,52 +356,31 @@ function Login() {
                                         hover:bg-[#F2F6FF]
                                         hover:text-[#1557D6]
                                     "
-                                    aria-label={
-                                        showPassword
-                                            ? "Hide password"
-                                            : "Show password"
-                                    }
-                                >
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
 
-                                    {showPassword ? (
-
-                                        <EyeOff
-                                            size={18}
-                                        />
-
-                                    ) : (
-
-                                        <Eye
-                                            size={18}
-                                        />
-
-                                    )}
-
-                                </button>
-
-                            </div>
-
-
-                            {errors.password && (
-
-                                <p className="
+              {errors.password && (
+                <p
+                  className="
                                     mt-2
                                     text-xs
                                     text-red-600
-                                ">
-                                    {errors.password}
-                                </p>
-                            )}
+                                "
+                >
+                  {errors.password}
+                </p>
+              )}
+            </div>
 
-                        </div>
+            {/* LOGIN BUTTON */}
 
-
-                        {/* LOGIN BUTTON */}
-
-                        <button
-                            type="submit"
-                            disabled={loading}
-                            className="
+            <button
+              type="submit"
+              disabled={loading}
+              className="
                                 flex
                                 w-full
                                 items-center
@@ -531,70 +399,57 @@ function Login() {
                                 disabled:cursor-not-allowed
                                 disabled:opacity-60
                             "
-                        >
+            >
+              {loading ? (
+                <>
+                  <Loader2 size={18} className="animate-spin" />
+                  Signing in...
+                </>
+              ) : (
+                <>
+                  <LogIn size={18} />
+                  Sign in
+                </>
+              )}
+            </button>
+          </form>
 
-                            {loading ? (
+          {/* =================================================
+    REGISTER
+================================================= */}
 
-                                <>
-                                    <Loader2
-                                        size={18}
-                                        className="animate-spin"
-                                    />
+          <div
+            className="
+        mt-7
+        flex
+        items-center
+        justify-center
+        gap-1
+        whitespace-nowrap
+        text-center
+        text-sm
+        text-[#17233D]
+    "
+          >
+            <span>Don't have an account?</span>
 
-                                    Signing in...
-                                </>
-
-                            ) : (
-
-                                <>
-                                    <LogIn
-                                        size={18}
-                                    />
-
-                                    Sign in
-                                </>
-
-                            )}
-
-                        </button>
-
-                    </form>
-
-
-                    {/* =================================================
-                        REGISTER
-                    ================================================= */}
-
-                    <div className="
-                        mt-7
-                        text-center
-                        text-sm
-                        text-[#17233D]
-                    ">
-
-                        Don't have an account?{" "}
-
-                        <Link
-                            to="/register"
-                            className="
-                                font-bold
-                                text-[#1557D6]
-                                transition
-                                hover:text-[#0F46B5]
-                            "
-                        >
-                            Create New Account
-                        </Link>
-
-                    </div>
-
-                </div>
-
-            </div>
-
+            <Link
+              to="/register"
+              className="
+            shrink-0
+            font-bold
+            text-[#1557D6]
+            transition
+            hover:text-[#0F46B5]
+        "
+            >
+              Create New Account
+            </Link>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
-
 
 export default Login;
