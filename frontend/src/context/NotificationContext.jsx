@@ -2,8 +2,9 @@
  * FoodBridge - NotificationContext
  *
  * FIX:
- * Notifications now load immediately after authentication becomes
- * available. No browser refresh is required.
+ * Notifications load immediately after authentication becomes
+ * available. WebSocket is registered before the initial API load,
+ * with a small polling fallback so the bell does not need refresh.
  *
  * The provider waits for AuthContext restoration, then:
  *   1. Loads existing notifications
@@ -30,7 +31,107 @@ import {
 import axiosInstance from "../api/axiosInstance";
 import { useAuth } from "./AuthContext";
 
+
 const NotificationContext = createContext(null);
+
+// =========================================================
+// BACKEND TIMESTAMP NORMALIZATION
+// =========================================================
+// Spring LocalDateTime may arrive without a timezone.
+// FoodBridge server timestamps are treated as UTC when no
+// timezone/offset is present. Explicit Z/offset values are kept.
+
+function parseNotificationDate(value) {
+
+  if (!value) return null;
+
+  if (value instanceof Date) {
+    return value;
+  }
+
+  const valueString = String(value).trim();
+
+  if (/(?:Z|[+-]\d{2}:?\d{2})$/i.test(valueString)) {
+    const parsed = new Date(valueString);
+    return Number.isNaN(parsed.getTime()) ? null : parsed;
+  }
+
+  if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/.test(valueString)) {
+    const parsed = new Date(`${valueString}Z`);
+    return Number.isNaN(parsed.getTime()) ? null : parsed;
+  }
+
+  const parsed = new Date(valueString);
+  return Number.isNaN(parsed.getTime()) ? null : parsed;
+}
+
+function normalizeNotification(notification) {
+
+  if (!notification) return notification;
+
+  const created =
+    notification.createdAt ??
+    notification.created_at ??
+    notification.timestamp ??
+    notification.time ??
+    notification.updatedAt ??
+    notification.updated_at ??
+    null;
+
+  const updated =
+    notification.updatedAt ??
+    notification.updated_at ??
+    notification.createdAt ??
+    notification.created_at ??
+    null;
+
+  return {
+    ...notification,
+    createdAt:
+      parseNotificationDate(created)?.toISOString() ??
+      notification.createdAt ??
+      null,
+    updatedAt:
+      parseNotificationDate(updated)?.toISOString() ??
+      notification.updatedAt ??
+      null,
+  };
+}
+
+function notificationKey(notification) {
+  return (
+    notification?.id ??
+    notification?._id ??
+    `${notification?.type}-${notification?.createdAt}-${notification?.message}`
+  );
+}
+
+function mergeNotifications(current = [], incoming = []) {
+
+  const map = new Map();
+
+  [...current, ...incoming].forEach((item) => {
+
+    if (!item) return;
+
+    map.set(
+      notificationKey(item),
+      item
+    );
+  });
+
+  return Array.from(map.values()).sort((a, b) => {
+
+    const aTime =
+      parseNotificationDate(a.createdAt)?.getTime() ?? 0;
+
+    const bTime =
+      parseNotificationDate(b.createdAt)?.getTime() ?? 0;
+
+    return bTime - aTime;
+  });
+}
+
 
 export const NotificationProvider = ({
   children,
@@ -97,15 +198,25 @@ export const NotificationProvider = ({
         const result =
           response.data;
 
+        const rawData =
+          Array.isArray(result?.data)
+            ? result.data
+            : [];
+
         const data =
-          result?.data || [];
+          rawData.map(normalizeNotification);
 
 
         // =====================================================
         // FULL NOTIFICATION HISTORY
         // =====================================================
 
-        setNotifications(data);
+        setNotifications((previous) =>
+          mergeNotifications(
+            previous,
+            data
+          )
+        );
 
 
         // =====================================================
@@ -152,9 +263,9 @@ export const NotificationProvider = ({
               (notification) => {
 
                 const notificationTime =
-                  new Date(
+                  parseNotificationDate(
                     notification.createdAt
-                  ).getTime();
+                  )?.getTime() ?? 0;
 
                 return (
                   notificationTime >
@@ -165,8 +276,11 @@ export const NotificationProvider = ({
         }
 
 
-        setBellNotifications(
-          bellData
+        setBellNotifications((previous) =>
+          mergeNotifications(
+            [],
+            bellData
+          )
         );
 
 
@@ -241,14 +355,10 @@ export const NotificationProvider = ({
     }
 
     // -------------------------------------------------------
-    // LOAD EXISTING NOTIFICATIONS
+    // CONNECT WEBSOCKET FIRST
     // -------------------------------------------------------
-
-    loadNotifications();
-
-    // -------------------------------------------------------
-    // CONNECT WEBSOCKET
-    // -------------------------------------------------------
+    // Register the live listener before the HTTP request so a
+    // notification cannot arrive during loading and get lost.
 
     connectWebSocket({
 
@@ -265,52 +375,34 @@ export const NotificationProvider = ({
           notification
         );
 
+        const normalized =
+          normalizeNotification(notification);
+
         // ---------------------------------------------------
         // ADD TO FULL NOTIFICATION HISTORY
         // ---------------------------------------------------
 
-        setNotifications((previous) => {
-
-          const exists =
-            previous.some(
-              (item) =>
-                item.id === notification.id
-            );
-
-          if (exists) {
-            return previous;
-          }
-
-          return [
-            notification,
-            ...previous,
-          ];
-        });
+        setNotifications((previous) =>
+          mergeNotifications(
+            previous,
+            [normalized]
+          )
+        );
 
         // ---------------------------------------------------
         // ADD TO BELL
         // ---------------------------------------------------
 
-        setBellNotifications((previous) => {
-
-          const exists =
-            previous.some(
-              (item) =>
-                item.id === notification.id
-            );
-
-          if (exists) {
-            return previous;
-          }
-
-          return [
-            notification,
-            ...previous,
-          ];
-        });
+        setBellNotifications((previous) =>
+          mergeNotifications(
+            previous,
+            [normalized]
+          )
+        );
 
         // ---------------------------------------------------
         // UPDATE UNREAD COUNTS ONLY FOR UNREAD NOTIFICATIONS
+        // ---------------------------------------------------
         // ---------------------------------------------------
 
         if (notification.status === "UNREAD") {
@@ -356,10 +448,28 @@ export const NotificationProvider = ({
     });
 
     // -------------------------------------------------------
-    // CLEANUP
+    // LOAD EXISTING NOTIFICATIONS
     // -------------------------------------------------------
 
+    loadNotifications();
+
+    // -------------------------------------------------------
+    // BACKUP REFRESH
+    // -------------------------------------------------------
+    // WebSocket is primary; polling self-heals missed events.
+
+    const refreshTimer =
+      window.setInterval(() => {
+        loadNotifications();
+      }, 15000);
+
+    // -------------------------------------------------------
+    // CLEANUP
+        // -------------------------------------------------------
+
     return () => {
+
+      window.clearInterval(refreshTimer);
 
       disconnectWebSocket();
 

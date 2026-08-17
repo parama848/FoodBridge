@@ -1,4 +1,7 @@
-import { useState } from "react";
+import {
+  useEffect,
+  useState,
+} from "react";
 import { Link } from "react-router-dom";
 
 import { useNotifications } from "../../context/NotificationContext";
@@ -8,77 +11,70 @@ import { useNotifications } from "../../context/NotificationContext";
 // FORMAT NOTIFICATION TIME
 // =========================================================
 
-function formatTime(dateString) {
+function parseNotificationDate(value) {
 
-  if (!dateString) {
-    return "";
+  if (!value) return null;
+
+  if (value instanceof Date) return value;
+
+  const valueString = String(value).trim();
+
+  if (/(?:Z|[+-]\d{2}:?\d{2})$/i.test(valueString)) {
+    const parsed = new Date(valueString);
+    return Number.isNaN(parsed.getTime()) ? null : parsed;
   }
 
-
-  const date = new Date(dateString);
-
-
-  if (Number.isNaN(date.getTime())) {
-    return "";
+  if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/.test(valueString)) {
+    const parsed = new Date(`${valueString}Z`);
+    return Number.isNaN(parsed.getTime()) ? null : parsed;
   }
 
+  const parsed = new Date(valueString);
+  return Number.isNaN(parsed.getTime()) ? null : parsed;
+}
 
-  const now = new Date();
 
+function formatTime(
+  dateString,
+  now = new Date()
+) {
 
-  const difference =
+  const date =
+    parseNotificationDate(dateString);
+
+  if (!date) return "";
+
+  const difference = Math.max(
+    0,
     Math.floor(
       (now.getTime() - date.getTime()) / 1000
-    );
-
-
-  // -------------------------------------------------------
-  // JUST NOW
-  // -------------------------------------------------------
+    )
+  );
 
   if (difference < 60) {
     return "Just now";
   }
 
-
-  // -------------------------------------------------------
-  // MINUTES
-  // -------------------------------------------------------
-
   const minutes =
     Math.floor(difference / 60);
-
 
   if (minutes < 60) {
     return `${minutes}m ago`;
   }
 
-
-  // -------------------------------------------------------
-  // HOURS
-  // -------------------------------------------------------
-
   const hours =
     Math.floor(minutes / 60);
-
 
   if (hours < 24) {
     return `${hours}h ago`;
   }
 
-
-  // -------------------------------------------------------
-  // DAYS
-  // -------------------------------------------------------
-
   const days =
     Math.floor(hours / 24);
-
 
   if (days < 7) {
     return `${days}d ago`;
   }
-
 
   return date.toLocaleDateString();
 }
@@ -139,6 +135,22 @@ export default function NotificationBell() {
   const [open, setOpen] =
     useState(false);
 
+  const [currentTime, setCurrentTime] =
+    useState(() => new Date());
+
+  // Keep relative time live without refreshing.
+  useEffect(() => {
+
+    const timer =
+      window.setInterval(() => {
+        setCurrentTime(new Date());
+      }, 30000);
+
+    return () =>
+      window.clearInterval(timer);
+
+  }, []);
+
 
   const {
 
@@ -165,7 +177,29 @@ export default function NotificationBell() {
 
     clearBellNotifications,
 
+    refreshNotifications,
+
   } = useNotifications();
+
+
+  // =========================================================
+  // SELF-HEAL WHEN BELL OPENS
+  // =========================================================
+  // If the socket connected late or an event was missed,
+  // opening the bell immediately refreshes its data.
+
+  useEffect(() => {
+
+    if (!open || !refreshNotifications) {
+      return;
+    }
+
+    refreshNotifications();
+
+  }, [
+    open,
+    refreshNotifications,
+  ]);
 
 
   // =========================================================
