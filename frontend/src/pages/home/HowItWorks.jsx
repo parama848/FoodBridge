@@ -1,160 +1,3 @@
-// import {
-//     CheckCircle2,
-//     MapPin,
-//     PackagePlus,
-//     Truck
-// } from "lucide-react";
-
-// function HowItWorks() {
-
-//     const steps = [
-//         {
-//             number: "01",
-//             icon: PackagePlus,
-//             title: "Create a donation",
-//             description:
-//                 "Add the food details, quantity, preparation time, expiry time and pickup location.",
-//             label: "Donor"
-//         },
-//         {
-//             number: "02",
-//             icon: MapPin,
-//             title: "Find nearby foundations",
-//             description:
-//                 "Available food is shown to verified foundations within the configured service radius.",
-//             label: "Foundation"
-//         },
-//         {
-//             number: "03",
-//             icon: Truck,
-//             title: "Pickup & delivery",
-//             description:
-//                 "The accepted donation moves through pickup and delivery with status tracking.",
-//             label: "Fulfillment"
-//         }
-//     ];
-
-
-//     return (
-
-//         <section
-//             id="how-it-works"
-//             className="border-b border-white/[0.06]"
-//         >
-
-//             <div className="mx-auto max-w-7xl px-5 py-24 sm:px-6 lg:px-8">
-
-
-//                 {/* Header */}
-
-//                 <div className="max-w-2xl">
-
-//                     <p className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-400">
-//                         How it works
-//                     </p>
-
-//                     <h2 className="mt-4 text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
-//                         From surplus
-//                         <span className="text-gray-500">
-//                             {" "}to service.
-//                         </span>
-//                     </h2>
-
-//                     <p className="mt-5 text-sm leading-7 text-gray-500 sm:text-base">
-//                         A simple, transparent workflow designed to
-//                         move surplus food where it can make a difference.
-//                     </p>
-
-//                 </div>
-
-
-//                 {/* Steps */}
-
-//                 <div className="relative mt-16">
-
-
-//                     {/* Connecting line */}
-
-//                     <div className="absolute left-[28px] top-8 hidden h-px w-[calc(100%-56px)] bg-gradient-to-r from-emerald-400/40 via-white/10 to-emerald-400/40 md:block" />
-
-
-//                     <div className="grid gap-6 md:grid-cols-3">
-
-//                         {steps.map((step) => {
-
-//                             const Icon = step.icon;
-
-//                             return (
-
-//                                 <div
-//                                     key={step.number}
-//                                     className="relative"
-//                                 >
-
-//                                     {/* Number/icon */}
-
-//                                     <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-2xl border border-emerald-400/20 bg-[#050505] text-emerald-400 shadow-lg shadow-black/30">
-
-//                                         <Icon size={21} />
-
-//                                     </div>
-
-
-//                                     {/* Card */}
-
-//                                     <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.02] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-white/15 hover:bg-white/[0.035]">
-
-//                                         <div className="flex items-center justify-between">
-
-//                                             <span className="text-xs font-bold text-gray-600">
-//                                                 {step.number}
-//                                             </span>
-
-//                                             <span className="rounded-full border border-white/10 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-wider text-gray-500">
-//                                                 {step.label}
-//                                             </span>
-
-//                                         </div>
-
-
-//                                         <h3 className="mt-8 text-xl font-bold text-white">
-//                                             {step.title}
-//                                         </h3>
-
-
-//                                         <p className="mt-3 text-sm leading-7 text-gray-500">
-//                                             {step.description}
-//                                         </p>
-
-
-//                                         <div className="mt-6 flex items-center gap-2 text-xs font-medium text-emerald-400">
-
-//                                             <CheckCircle2 size={14} />
-
-//                                             Simple & transparent
-
-//                                         </div>
-
-//                                     </div>
-
-//                                 </div>
-
-//                             );
-
-//                         })}
-
-//                     </div>
-
-//                 </div>
-
-//             </div>
-
-//         </section>
-//     );
-// }
-
-// export default HowItWorks;
-
 import { useEffect, useState } from "react";
 import {
     ArrowDown,
@@ -436,7 +279,7 @@ function HowItWorks() {
                         w-[750px]
                         -translate-x-1/2
                         rounded-full
-                        bg-emerald-500/[0.08]
+                        bg-[#1557D6]/[0.08]
                         blur-[130px]
                     " />
 
@@ -476,13 +319,13 @@ function HowItWorks() {
                                 gap-2
                                 rounded-full
                                 border
-                                border-emerald-400/20
-                                bg-emerald-400/[0.05]
+                                border-[#1557D6]/20
+                                bg-[#1557D6]/[0.05]
                                 px-4
                                 py-2
                                 text-xs
                                 font-medium
-                                text-emerald-300
+                                text-[#1557D6]
                             ">
 
                                 <Radio
@@ -511,7 +354,7 @@ function HowItWorks() {
 
                                 <span className="
                                     block
-                                    text-emerald-400
+                                    text-[#1557D6]
                                 ">
                                     to meaningful meals.
                                 </span>
@@ -573,7 +416,7 @@ function HowItWorks() {
                                         w-full
                                         bg-gradient-to-r
                                         from-transparent
-                                        via-emerald-400/70
+                                        via-[#1557D6]/70
                                         to-transparent
                                     " />
 
@@ -634,7 +477,7 @@ function HowItWorks() {
                                                     style={{
                                                         boxShadow:
                                                             active
-                                                                ? "0 0 45px rgba(52,211,153,.18)"
+                                                                ? "0 0 45px rgba(21,87,214,.18)"
                                                                 : "none",
                                                     }}
                                                     >
@@ -647,7 +490,7 @@ function HowItWorks() {
                                                                 inset-0
                                                                 rounded-full
                                                                 border
-                                                                border-emerald-400/40
+                                                                border-[#1557D6]/40
                                                             " />
 
                                                         )}
@@ -657,7 +500,7 @@ function HowItWorks() {
                                                             size={27}
                                                             className={
                                                                 active
-                                                                    ? "text-emerald-400"
+                                                                    ? "text-[#1557D6]"
                                                                     : "text-gray-500 group-hover:text-gray-300"
                                                             }
                                                         />
@@ -746,8 +589,8 @@ function HowItWorks() {
                                                     items-center
                                                     justify-center
                                                     rounded-xl
-                                                    bg-emerald-400/[0.08]
-                                                    text-emerald-400
+                                                    bg-[#1557D6]/[0.08]
+                                                    text-[#1557D6]
                                                 ">
 
                                                     <Icon
@@ -764,7 +607,7 @@ function HowItWorks() {
                                                         font-semibold
                                                         uppercase
                                                         tracking-[0.2em]
-                                                        text-emerald-400
+                                                        text-[#1557D6]
                                                     ">
 
                                                         {step.number}
@@ -831,7 +674,7 @@ function HowItWorks() {
                                 <p className="
                                     text-sm
                                     font-medium
-                                    text-emerald-400
+                                    text-[#1557D6]
                                 ">
 
                                     The FoodBridge journey
@@ -893,7 +736,7 @@ function HowItWorks() {
                                                     ${
                                                         index ===
                                                         activeStep
-                                                            ? "border-emerald-400/30 bg-emerald-400/10 text-emerald-300"
+                                                            ? "border-[#1557D6]/30 bg-[#1557D6]/10 text-[#1557D6]"
                                                             : "border-white/10 text-gray-500 hover:text-white"
                                                     }
                                                 `}
@@ -933,15 +776,15 @@ function HowItWorks() {
                                     <span className="
                                         rounded-full
                                         border
-                                        border-emerald-400/20
-                                        bg-emerald-400/[0.06]
+                                        border-[#1557D6]/20
+                                        bg-[#1557D6]/[0.06]
                                         px-3
                                         py-1
                                         text-[10px]
                                         font-semibold
                                         uppercase
                                         tracking-[0.18em]
-                                        text-emerald-300
+                                        text-[#1557D6]
                                     ">
 
                                         Step{" "}
@@ -983,7 +826,7 @@ function HowItWorks() {
                                         return (
                                             <Icon
                                                 size={30}
-                                                className="text-emerald-400"
+                                                className="text-[#1557D6]"
                                             />
                                         );
 
@@ -1041,7 +884,7 @@ function HowItWorks() {
 
                                     <CheckCircle2
                                         size={16}
-                                        className="text-emerald-400"
+                                        className="text-[#1557D6]"
                                     />
 
                                     Connected through FoodBridge
@@ -1076,7 +919,7 @@ function HowItWorks() {
                         <p className="
                             text-sm
                             font-medium
-                            text-emerald-400
+                            text-[#1557D6]
                         ">
 
                             Complete workflow
@@ -1150,7 +993,7 @@ function HowItWorks() {
                                             transition-all
                                             duration-700
                                             hover:-translate-y-1
-                                            hover:border-emerald-400/20
+                                            hover:border-[#1557D6]/20
                                             ${
                                                 visible
                                                     ? "translate-y-0 opacity-100"
@@ -1172,7 +1015,7 @@ function HowItWorks() {
                                             <span className="
                                                 text-sm
                                                 font-semibold
-                                                text-emerald-400
+                                                text-[#1557D6]
                                             ">
 
                                                 {step.number}
@@ -1263,8 +1106,8 @@ function HowItWorks() {
                         overflow-hidden
                         rounded-3xl
                         border
-                        border-emerald-400/10
-                        bg-emerald-400/[0.04]
+                        border-[#1557D6]/10
+                        bg-[#1557D6]/[0.04]
                         px-6
                         py-16
                         text-center
@@ -1275,7 +1118,7 @@ function HowItWorks() {
                             size={30}
                             className="
                                 mx-auto
-                                text-emerald-400
+                                text-[#1557D6]
                             "
                         />
 

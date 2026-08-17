@@ -1,163 +1,3 @@
-// import {
-//     ArrowDown,
-//     Building2,
-//     Route,
-//     Utensils
-// } from "lucide-react";
-
-// function ImpactSection() {
-
-//     const impactItems = [
-//         {
-//             number: "01",
-//             icon: Utensils,
-//             title: "Reduce food waste",
-//             description:
-//                 "Give surplus food a second purpose instead of allowing perfectly usable meals to become waste."
-//         },
-//         {
-//             number: "02",
-//             icon: Building2,
-//             title: "Support communities",
-//             description:
-//                 "Connect donors with verified foundations that can distribute food responsibly to people who need it."
-//         },
-//         {
-//             number: "03",
-//             icon: Route,
-//             title: "Track every donation",
-//             description:
-//                 "Follow food from donation to acceptance, pickup and delivery with clear status updates."
-//         }
-//     ];
-
-
-//     return (
-
-//         <section
-//             id="impact"
-//             className="border-b border-white/[0.06] bg-white/[0.015]"
-//         >
-
-//             <div className="mx-auto max-w-7xl px-5 py-24 sm:px-6 lg:px-8">
-
-
-//                 {/* Header */}
-
-//                 <div className="grid gap-10 lg:grid-cols-2 lg:items-end">
-
-//                     <div>
-
-//                         <p className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-400">
-//                             Why FoodBridge?
-//                         </p>
-
-//                         <h2 className="mt-4 max-w-xl text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl">
-
-//                             One platform.
-
-//                             <span className="block text-gray-500">
-//                                 Real community impact.
-//                             </span>
-
-//                         </h2>
-
-//                     </div>
-
-
-//                     <div className="lg:pl-10">
-
-//                         <p className="max-w-xl text-sm leading-7 text-gray-500 sm:text-base">
-
-//                             FoodBridge creates a reliable bridge
-//                             between people with surplus food and
-//                             verified organizations that can put that
-//                             food to good use.
-
-//                         </p>
-
-//                     </div>
-
-//                 </div>
-
-
-//                 {/* Cards */}
-
-//                 <div className="mt-16 grid overflow-hidden rounded-3xl border border-white/10 md:grid-cols-3">
-
-//                     {impactItems.map((item, index) => {
-
-//                         const Icon = item.icon;
-
-//                         return (
-
-//                             <div
-//                                 key={item.number}
-//                                 className={`group relative min-h-[300px] bg-[#070707] p-8 transition-all duration-300 hover:bg-white/[0.025] sm:p-10 ${
-//                                     index > 0
-//                                         ? "border-t border-white/10 md:border-l md:border-t-0"
-//                                         : ""
-//                                 }`}
-//                             >
-
-//                                 {/* Number */}
-
-//                                 <div className="flex items-center justify-between">
-
-//                                     <span className="text-sm font-bold text-emerald-400">
-//                                         {item.number}
-//                                     </span>
-
-//                                     <Icon
-//                                         size={20}
-//                                         className="text-gray-700 transition-colors duration-300 group-hover:text-emerald-400"
-//                                     />
-
-//                                 </div>
-
-
-//                                 {/* Content */}
-
-//                                 <div className="mt-20">
-
-//                                     <h3 className="text-xl font-bold text-white">
-//                                         {item.title}
-//                                     </h3>
-
-//                                     <p className="mt-4 text-sm leading-7 text-gray-500">
-//                                         {item.description}
-//                                     </p>
-
-//                                 </div>
-
-
-//                                 {/* Bottom arrow */}
-
-//                                 <div className="absolute bottom-8 right-8 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-
-//                                     <ArrowDown
-//                                         size={16}
-//                                         className="-rotate-45 text-emerald-400"
-//                                     />
-
-//                                 </div>
-
-//                             </div>
-
-//                         );
-
-//                     })}
-
-//                 </div>
-
-//             </div>
-
-//         </section>
-//     );
-// }
-
-// export default ImpactSection;
-
 import {
     ArrowUpRight,
     CheckCircle2,
@@ -247,7 +87,7 @@ function ImpactSection() {
                         w-[700px]
                         -translate-x-1/2
                         rounded-full
-                        bg-emerald-500/[0.08]
+                        bg-[#1557D6]/[0.08]
                         blur-[120px]
                     " />
 
@@ -272,20 +112,20 @@ function ImpactSection() {
                                 gap-2
                                 rounded-full
                                 border
-                                border-emerald-400/20
-                                bg-emerald-400/[0.05]
+                                border-[#1557D6]/20
+                                bg-[#1557D6]/[0.05]
                                 px-4
                                 py-2
                                 text-xs
                                 font-medium
-                                text-emerald-300
+                                text-[#1557D6]
                             ">
 
                                 <span className="
                                     h-1.5
                                     w-1.5
                                     rounded-full
-                                    bg-emerald-400
+                                    bg-[#1557D6]
                                 " />
 
                                 OUR IMPACT
@@ -307,7 +147,7 @@ function ImpactSection() {
 
                                 <span className="
                                     block
-                                    text-emerald-400
+                                    text-[#1557D6]
                                 ">
 
                                     Real community impact.
@@ -364,7 +204,7 @@ function ImpactSection() {
                             <p className="
                                 text-sm
                                 font-medium
-                                text-emerald-400
+                                text-[#1557D6]
                             ">
 
                                 Why FoodBridge?
@@ -467,8 +307,8 @@ function ImpactSection() {
                                                 items-center
                                                 justify-center
                                                 rounded-xl
-                                                bg-emerald-400/[0.07]
-                                                text-emerald-400
+                                                bg-[#1557D6]/[0.07]
+                                                text-[#1557D6]
                                             ">
 
                                                 <Icon
@@ -540,7 +380,7 @@ function ImpactSection() {
                             <p className="
                                 text-sm
                                 font-medium
-                                text-emerald-400
+                                text-[#1557D6]
                             ">
 
                                 Impact through the journey
@@ -612,7 +452,7 @@ function ImpactSection() {
                                             <span className="
                                                 text-sm
                                                 font-semibold
-                                                text-emerald-400
+                                                text-[#1557D6]
                                             ">
 
                                                 {number}
@@ -687,7 +527,7 @@ function ImpactSection() {
                                 <p className="
                                     text-sm
                                     font-medium
-                                    text-emerald-400
+                                    text-[#1557D6]
                                 ">
 
                                     Our principle
@@ -733,8 +573,8 @@ function ImpactSection() {
                                 items-center
                                 justify-center
                                 rounded-2xl
-                                bg-emerald-400/[0.08]
-                                text-emerald-400
+                                bg-[#1557D6]/[0.08]
+                                text-[#1557D6]
                             ">
 
                                 <ArrowUpRight

@@ -183,7 +183,7 @@ function DonorDashboard() {
                 return {
                     label: "Pending",
                     className:
-                        "border-amber-400/20 bg-amber-400/10 text-amber-300",
+                        "border-amber-200 bg-amber-50 text-amber-700",
                     icon: Clock3
                 };
 
@@ -193,7 +193,7 @@ function DonorDashboard() {
                 return {
                     label: "Accepted",
                     className:
-                        "border-blue-400/20 bg-blue-400/10 text-blue-300",
+                        "border-blue-200 bg-blue-50 text-blue-700",
                     icon: CheckCircle2
                 };
 
@@ -203,7 +203,7 @@ function DonorDashboard() {
                 return {
                     label: "Picked Up",
                     className:
-                        "border-violet-400/20 bg-violet-400/10 text-violet-300",
+                        "border-violet-200 bg-violet-50 text-violet-700",
                     icon: Truck
                 };
 
@@ -213,7 +213,7 @@ function DonorDashboard() {
                 return {
                     label: "Delivered",
                     className:
-                        "border-emerald-400/20 bg-emerald-400/10 text-emerald-300",
+                        "border-[#C9D8F2] bg-[#1557D6]/10 text-[#1557D6]",
                     icon: CheckCircle2
                 };
 
@@ -223,7 +223,7 @@ function DonorDashboard() {
                 return {
                     label: status || "Unknown",
                     className:
-                        "border-white/10 bg-white/5 text-gray-400",
+                        "border-[#E1E6EE] bg-white/5 text-[#66748A]",
                     icon: Package
                 };
         }
@@ -270,7 +270,7 @@ function DonorDashboard() {
 
         return (
 
-            <div className="min-h-screen bg-[#050505] text-white">
+            <div className="min-h-screen bg-[#F8FAFD] text-[#17233D]">
 
 
                 <main className="mx-auto max-w-7xl px-5 py-10 sm:px-6 lg:px-8">
@@ -279,9 +279,9 @@ function DonorDashboard() {
 
                     <div className="animate-pulse">
 
-                        <div className="h-4 w-32 rounded bg-white/10" />
+                        <div className="h-4 w-32 rounded bg-[#E8EDF5]" />
 
-                        <div className="mt-4 h-10 w-80 rounded bg-white/10" />
+                        <div className="mt-4 h-10 w-80 rounded bg-[#E8EDF5]" />
 
                         <div className="mt-3 h-5 w-[450px] max-w-full rounded bg-white/5" />
 
@@ -297,7 +297,7 @@ function DonorDashboard() {
 
                                 <div
                                     key={item}
-                                    className="h-32 animate-pulse rounded-2xl border border-white/10 bg-white/[0.025]"
+                                    className="h-32 animate-pulse rounded-2xl border border-[#E1E6EE] bg-[#F8FAFD]"
                                 />
 
                             )
@@ -310,9 +310,9 @@ function DonorDashboard() {
 
                     <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_340px]">
 
-                        <div className="h-96 animate-pulse rounded-2xl border border-white/10 bg-white/[0.025]" />
+                        <div className="h-96 animate-pulse rounded-2xl border border-[#E1E6EE] bg-[#F8FAFD]" />
 
-                        <div className="h-96 animate-pulse rounded-2xl border border-white/10 bg-white/[0.025]" />
+                        <div className="h-96 animate-pulse rounded-2xl border border-[#E1E6EE] bg-[#F8FAFD]" />
 
                     </div>
 
@@ -331,7 +331,7 @@ function DonorDashboard() {
 
         return (
 
-            <div className="min-h-screen bg-[#050505] text-white">
+            <div className="min-h-screen bg-[#F8FAFD] text-[#17233D]">
 
                 <DashboardHeader
                     user={user}
@@ -341,9 +341,9 @@ function DonorDashboard() {
 
                 <main className="mx-auto flex min-h-[70vh] max-w-7xl items-center justify-center px-5 sm:px-6 lg:px-8">
 
-                    <div className="w-full max-w-md rounded-3xl border border-red-400/10 bg-red-400/[0.03] p-8 text-center">
+                    <div className="w-full max-w-md rounded-3xl border border-red-200 bg-red-50 p-8 text-center">
 
-                        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-red-400/10 text-red-400">
+                        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-red-50 text-red-600">
 
                             <Package size={24} />
 
@@ -355,7 +355,7 @@ function DonorDashboard() {
                         </h2>
 
 
-                        <p className="mt-3 text-sm leading-6 text-gray-500">
+                        <p className="mt-3 text-sm leading-6 text-[#66748A]">
                             {error}
                         </p>
 
@@ -363,7 +363,7 @@ function DonorDashboard() {
                         <button
                             type="button"
                             onClick={fetchDonations}
-                            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-gray-200"
+                            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-white transition hover:bg-gray-200"
                         >
 
                             <RefreshCw size={15} />
@@ -383,7 +383,7 @@ function DonorDashboard() {
 
     return (
 
-        <div className="min-h-screen bg-[#050505] text-white">
+        <div className="min-h-screen bg-[#F8FAFD] text-[#17233D]">
 
 
             {/* =====================================================
@@ -401,7 +401,7 @@ function DonorDashboard() {
 
                 <section>
 
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-400">
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#1557D6]">
                         Donor dashboard
                     </p>
 
@@ -412,14 +412,14 @@ function DonorDashboard() {
 
                             <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
                                 Welcome back,
-                                <span className="text-emerald-400">
+                                <span className="text-[#1557D6]">
                                     {" "}
                                     {user?.name || "Donor"}
                                 </span>
                             </h1>
 
 
-                            <p className="mt-3 max-w-2xl text-sm leading-7 text-gray-500 sm:text-base">
+                            <p className="mt-3 max-w-2xl text-sm leading-7 text-[#66748A] sm:text-base">
                                 Here's an overview of your food donations
                                 and their current journey.
                             </p>
@@ -429,7 +429,7 @@ function DonorDashboard() {
 
                         <Link
                             to="/donor/donations/create"
-                            className="group inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-emerald-400 px-5 text-sm font-bold text-black transition hover:bg-emerald-300"
+                            className="group inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#1557D6] px-5 text-sm font-bold text-white transition hover:bg-[#0F46B5]"
                         >
 
                             <Plus size={17} />
@@ -500,17 +500,17 @@ function DonorDashboard() {
                         RECENT DONATIONS
                     ================================================= */}
 
-                    <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02]">
+                    <div className="overflow-hidden rounded-2xl border border-[#E1E6EE] bg-white shadow-[0_3px_14px_rgba(23,35,61,0.035)]">
 
-                        <div className="flex items-center justify-between border-b border-white/[0.08] px-5 py-5 sm:px-6">
+                        <div className="flex items-center justify-between border-b border-[#E6EAF0] px-5 py-5 sm:px-6">
 
                             <div>
 
-                                <h2 className="font-semibold text-white">
+                                <h2 className="font-semibold text-[#17233D]">
                                     Recent donations
                                 </h2>
 
-                                <p className="mt-1 text-xs text-gray-600">
+                                <p className="mt-1 text-xs text-[#7B879A]">
                                     Your latest food contributions
                                 </p>
 
@@ -519,7 +519,7 @@ function DonorDashboard() {
 
                             <Link
                                 to="/donor/donations"
-                                className="hidden items-center gap-1.5 text-xs font-semibold text-gray-400 transition hover:text-white sm:flex"
+                                className="hidden items-center gap-1.5 text-xs font-semibold text-[#66748A] transition hover:text-[#17233D] sm:flex"
                             >
 
                                 View all
@@ -555,12 +555,12 @@ function DonorDashboard() {
 
                                             <div
                                                 key={donation.id}
-                                                className="group flex flex-col gap-4 px-5 py-5 transition hover:bg-white/[0.02] sm:flex-row sm:items-center sm:justify-between sm:px-6"
+                                                className="group flex flex-col gap-4 px-5 py-5 transition hover:bg-white sm:flex-row sm:items-center sm:justify-between sm:px-6"
                                             >
 
                                                 <div className="flex min-w-0 items-center gap-4">
 
-                                                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-gray-400">
+                                                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#E1E6EE] bg-[#F8FAFD] text-[#66748A]">
 
                                                         <UtensilsCrossed
                                                             size={18}
@@ -571,12 +571,12 @@ function DonorDashboard() {
 
                                                     <div className="min-w-0">
 
-                                                        <h3 className="truncate text-sm font-semibold text-white">
+                                                        <h3 className="truncate text-sm font-bold text-[#17233D]">
                                                             {donation.foodName || "Food Donation"}
                                                         </h3>
 
 
-                                                        <p className="mt-1 text-xs text-gray-600">
+                                                        <p className="mt-1 text-xs text-[#7B879A]">
 
                                                             {donation.quantity ?? "—"}
 
@@ -599,7 +599,7 @@ function DonorDashboard() {
 
                                                     <div className="text-right">
 
-                                                        <div className="text-xs text-gray-600">
+                                                        <div className="text-xs text-[#7B879A]">
                                                             {formatDate(
                                                                 donation.createdAt
                                                             )}
@@ -607,7 +607,7 @@ function DonorDashboard() {
 
                                                         {donation.acceptedFoundationName && (
 
-                                                            <div className="mt-1 max-w-[180px] truncate text-[10px] text-gray-700">
+                                                            <div className="mt-1 max-w-[180px] truncate text-[10px] text-[#8B97A8]">
                                                                 {donation.acceptedFoundationName}
                                                             </div>
 
@@ -640,11 +640,11 @@ function DonorDashboard() {
                         )}
 
 
-                        <div className="border-t border-white/[0.06] px-5 py-4 sm:hidden">
+                        <div className="border-t border-[#EEF1F5] px-5 py-4 sm:hidden">
 
                             <Link
                                 to="/donations"
-                                className="flex items-center justify-center gap-2 text-xs font-semibold text-gray-400"
+                                className="flex items-center justify-center gap-2 text-xs font-semibold text-[#66748A]"
                             >
 
                                 View all donations
@@ -662,15 +662,15 @@ function DonorDashboard() {
                         QUICK ACTIONS
                     ================================================= */}
 
-                    <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 sm:p-6">
+                    <div className="rounded-2xl border border-[#E1E6EE] bg-white p-5 shadow-[0_3px_14px_rgba(23,35,61,0.035)] sm:p-6">
 
                         <div>
 
-                            <h2 className="font-semibold text-white">
+                            <h2 className="font-semibold text-[#17233D]">
                                 Quick actions
                             </h2>
 
-                            <p className="mt-1 text-xs text-gray-600">
+                            <p className="mt-1 text-xs text-[#7B879A]">
                                 Manage your FoodBridge activity
                             </p>
 
@@ -709,22 +709,22 @@ function DonorDashboard() {
 
                         {/* Small summary */}
 
-                        <div className="mt-6 rounded-xl border border-white/[0.07] bg-black/20 p-4">
+                        <div className="mt-6 rounded-xl border border-[#E6EAF0] bg-black/20 p-4">
 
                             <div className="flex items-center justify-between">
 
-                                <span className="text-xs text-gray-600">
+                                <span className="text-xs text-[#7B879A]">
                                     Picked up
                                 </span>
 
-                                <span className="text-sm font-bold text-white">
+                                <span className="text-sm font-bold text-[#17233D]">
                                     {statistics.pickedUp}
                                 </span>
 
                             </div>
 
 
-                            <div className="mt-4 h-1 overflow-hidden rounded-full bg-white/10">
+                            <div className="mt-4 h-1 overflow-hidden rounded-full bg-[#E8EDF5]">
 
                                 <div
                                     className="h-full rounded-full bg-violet-400 transition-all"
@@ -744,7 +744,7 @@ function DonorDashboard() {
                             </div>
 
 
-                            <p className="mt-2 text-[10px] text-gray-700">
+                            <p className="mt-2 text-[10px] text-[#8B97A8]">
                                 Donations currently picked up
                             </p>
 
@@ -781,24 +781,24 @@ function StatCard({
 
     return (
 
-        <div className="group rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-all duration-200 hover:border-white/15 hover:bg-white/[0.03]">
+        <div className="group rounded-2xl border border-[#E1E6EE] bg-white p-5 shadow-[0_3px_14px_rgba(23,35,61,0.035)] transition-all duration-200 hover:border-[#D5DEEB] hover:bg-[#F8FAFD]">
 
             <div className="flex items-start justify-between">
 
                 <div>
 
-                    <p className="text-xs font-medium text-gray-500">
+                    <p className="text-xs font-bold text-[#17233D]">
                         {title}
                     </p>
 
-                    <p className="mt-3 text-3xl font-bold tracking-tight text-white">
+                    <p className="mt-3 text-3xl font-extrabold tracking-tight text-[#17233D]">
                         {value}
                     </p>
 
                 </div>
 
 
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-gray-500 transition group-hover:text-emerald-400">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E1E6EE] bg-[#F8FAFD] text-[#66748A] transition group-hover:text-[#1557D6]">
 
                     <Icon size={18} />
 
@@ -807,7 +807,7 @@ function StatCard({
             </div>
 
 
-            <p className="mt-4 text-[11px] text-gray-700">
+            <p className="mt-4 text-[11px] text-[#8B97A8]">
                 {description}
             </p>
 
@@ -834,16 +834,16 @@ function QuickAction({
             to={to}
             className={`group flex items-center gap-3 rounded-xl border p-3.5 transition ${
                 primary
-                    ? "border-emerald-400/20 bg-emerald-400/[0.05] hover:bg-emerald-400/[0.08]"
-                    : "border-white/[0.07] bg-white/[0.015] hover:border-white/15 hover:bg-white/[0.03]"
+                    ? "border-[#C9D8F2] bg-[#1557D6]/[0.05] hover:bg-[#1557D6]/[0.08]"
+                    : "border-[#E6EAF0] bg-white hover:border-[#D5DEEB] hover:bg-[#F8FAFD]"
             }`}
         >
 
             <div
                 className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${
                     primary
-                        ? "bg-emerald-400 text-black"
-                        : "bg-white/[0.05] text-gray-500 group-hover:text-white"
+                        ? "bg-[#1557D6] text-white"
+                        : "bg-[#F2F6FF] text-[#66748A] group-hover:text-[#17233D]"
                 }`}
             >
 
@@ -854,11 +854,11 @@ function QuickAction({
 
             <div className="min-w-0 flex-1">
 
-                <p className="text-sm font-semibold text-white">
+                <p className="text-sm font-bold text-[#17233D]">
                     {title}
                 </p>
 
-                <p className="mt-0.5 text-[10px] text-gray-600">
+                <p className="mt-0.5 text-[10px] text-[#7B879A]">
                     {description}
                 </p>
 
@@ -867,7 +867,7 @@ function QuickAction({
 
             <ArrowRight
                 size={14}
-                className="shrink-0 text-gray-700 transition group-hover:translate-x-0.5 group-hover:text-gray-400"
+                className="shrink-0 text-[#8B97A8] transition group-hover:translate-x-0.5 group-hover:text-[#66748A]"
             />
 
         </Link>
@@ -885,19 +885,19 @@ function EmptyDonations() {
 
         <div className="flex min-h-[300px] flex-col items-center justify-center px-6 text-center">
 
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] text-gray-600">
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#E1E6EE] bg-[#F8FAFD] text-[#7B879A]">
 
                 <UtensilsCrossed size={22} />
 
             </div>
 
 
-            <h3 className="mt-5 text-sm font-semibold text-white">
+            <h3 className="mt-5 text-sm font-bold text-[#17233D]">
                 No donations yet
             </h3>
 
 
-            <p className="mt-2 max-w-sm text-xs leading-6 text-gray-600">
+            <p className="mt-2 max-w-sm text-xs leading-6 text-[#7B879A]">
                 Your food donations will appear here once
                 you create your first donation.
             </p>
@@ -905,7 +905,7 @@ function EmptyDonations() {
 
             <Link
                 to="/donor/donations/create"
-                className="mt-5 inline-flex items-center gap-2 rounded-xl bg-emerald-400 px-4 py-2.5 text-xs font-bold text-black transition hover:bg-emerald-300"
+                className="mt-5 inline-flex items-center gap-2 rounded-xl bg-[#1557D6] px-4 py-2.5 text-xs font-bold text-white transition hover:bg-[#0F46B5]"
             >
 
                 <Plus size={14} />

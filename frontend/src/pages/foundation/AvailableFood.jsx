@@ -11,6 +11,30 @@ import {
 import axiosInstance from "../../api/axiosInstance";
 
 
+
+const availableFoodStyles = `
+@keyframes availableFoodCardIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.available-food-card {
+    animation: availableFoodCardIn .42s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .available-food-card {
+        animation: none !important;
+    }
+}
+`;
+
 function AvailableFood() {
 
     const navigate = useNavigate();
@@ -267,7 +291,7 @@ function AvailableFood() {
 
         return (
 
-            <main className="min-h-screen bg-[#050505] text-white">
+            <main className="min-h-screen bg-[#F8FAFD] text-[#17233D]">
 
                 <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:px-10">
 
@@ -275,11 +299,11 @@ function AvailableFood() {
 
                     <div className="animate-pulse">
 
-                        <div className="h-4 w-28 rounded bg-white/10" />
+                        <div className="h-4 w-28 rounded bg-[#E6ECF5]" />
 
-                        <div className="mt-4 h-10 w-72 rounded bg-white/10" />
+                        <div className="mt-4 h-10 w-72 rounded bg-[#E6ECF5]" />
 
-                        <div className="mt-4 h-5 w-full max-w-2xl rounded bg-white/5" />
+                        <div className="mt-4 h-5 w-full max-w-2xl rounded bg-[#EEF3FB]" />
 
                     </div>
 
@@ -293,7 +317,7 @@ function AvailableFood() {
 
                                 <div
                                     key={item}
-                                    className="h-[420px] animate-pulse rounded-3xl border border-white/10 bg-white/[0.03]"
+                                    className="h-[420px] animate-pulse rounded-3xl border border-[#E1E6EE] bg-[#F2F6FF]"
                                 />
 
                             )
@@ -314,7 +338,7 @@ function AvailableFood() {
 
     return (
 
-        <main className="min-h-screen bg-[#050505] text-white">
+        <main className="min-h-screen bg-[#F8FAFD] text-[#17233D]">
 
             <div className="mx-auto max-w-7xl px-5 py-10 sm:px-8 lg:px-10">
 
@@ -329,15 +353,15 @@ function AvailableFood() {
 
                         <div>
 
-                            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-400">
+                            <p className="text-sm font-extrabold uppercase tracking-[0.3em] text-[#1557D6]">
                                 Foundation
                             </p>
 
-                            <h1 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+                            <h1 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl">
                                 Available food
                             </h1>
 
-                            <p className="mt-4 max-w-2xl text-sm leading-7 text-gray-500 sm:text-base">
+                            <p className="mt-4 max-w-2xl text-sm leading-7 text-[#17233D] sm:text-base">
                                 Discover surplus food available near your foundation
                                 and help deliver meaningful meals to people who need them.
                             </p>
@@ -350,7 +374,7 @@ function AvailableFood() {
                         <button
                             type="button"
                             onClick={fetchDonations}
-                            className="inline-flex w-fit items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-5 py-3 text-sm font-medium text-gray-300 transition hover:border-white/20 hover:bg-white/[0.06] hover:text-white"
+                            className="inline-flex w-fit items-center gap-2 rounded-xl border border-[#E1E6EE] bg-[#F2F6FF] px-5 py-3 text-sm font-bold text-[#17233D] transition hover:border-[#C9D8EC] hover:bg-[#EEF3FB] hover:text-[#17233D]"
                         >
 
                             <span className="text-base">
@@ -372,39 +396,39 @@ function AvailableFood() {
 
                 <section className="mt-10 grid gap-4 sm:grid-cols-3">
 
-                    <div className="rounded-2xl border border-white/10 bg-white/[0.025] p-5">
+                    <div className="rounded-2xl border border-[#E1E6EE] bg-white p-5 shadow-[0_4px_18px_rgba(23,35,61,0.045)]">
 
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm font-semibold text-[#17233D]">
                             Available donations
                         </p>
 
-                        <p className="mt-3 text-3xl font-bold">
+                        <p className="mt-3 text-3xl font-extrabold">
                             {donations.length}
                         </p>
 
                     </div>
 
 
-                    <div className="rounded-2xl border border-white/10 bg-white/[0.025] p-5">
+                    <div className="rounded-2xl border border-[#E1E6EE] bg-white p-5 shadow-[0_4px_18px_rgba(23,35,61,0.045)]">
 
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm font-semibold text-[#17233D]">
                             Food categories
                         </p>
 
-                        <p className="mt-3 text-3xl font-bold">
+                        <p className="mt-3 text-3xl font-extrabold">
                             {foodTypes.length}
                         </p>
 
                     </div>
 
 
-                    <div className="rounded-2xl border border-white/10 bg-white/[0.025] p-5">
+                    <div className="rounded-2xl border border-[#E1E6EE] bg-white p-5 shadow-[0_4px_18px_rgba(23,35,61,0.045)]">
 
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm font-semibold text-[#17233D]">
                             Showing results
                         </p>
 
-                        <p className="mt-3 text-3xl font-bold">
+                        <p className="mt-3 text-3xl font-extrabold">
                             {filteredDonations.length}
                         </p>
 
@@ -425,7 +449,7 @@ function AvailableFood() {
 
                         <div className="relative flex-1">
 
-                            <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-xl text-gray-600">
+                            <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-xl text-[#17233D]">
                                 ⌕
                             </span>
 
@@ -438,7 +462,7 @@ function AvailableFood() {
                                     )
                                 }
                                 placeholder="Search food, type or pickup location..."
-                                className="w-full rounded-2xl border border-white/10 bg-white/[0.025] px-12 py-4 text-sm text-white outline-none transition placeholder:text-gray-700 focus:border-emerald-400/40 focus:bg-white/[0.04]"
+                                className="w-full rounded-2xl border border-[#E1E6EE] bg-white px-12 py-4 text-sm text-[#17233D] outline-none transition placeholder:text-[#53627A] focus:border-[#9FB8E8] focus:bg-[#F2F6FF]"
                             />
 
                         </div>
@@ -453,7 +477,7 @@ function AvailableFood() {
                                     event.target.value
                                 )
                             }
-                            className="rounded-2xl border border-white/10 bg-[#090909] px-5 py-4 text-sm text-gray-300 outline-none transition focus:border-emerald-400/40"
+                            className="rounded-2xl border border-[#E1E6EE] bg-white px-5 py-4 text-sm text-[#17233D] outline-none transition focus:border-[#9FB8E8]"
                         >
 
                             <option value="ALL">
@@ -487,9 +511,9 @@ function AvailableFood() {
 
                 {error && (
 
-                    <section className="mt-8 rounded-3xl border border-red-500/20 bg-red-500/[0.04] p-8 text-center">
+                    <section className="mt-8 rounded-3xl border border-red-200 bg-white p-8 text-center shadow-[0_5px_20px_rgba(23,35,61,0.045)]">
 
-                        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-red-500/10 text-2xl text-red-400">
+                        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-red-50 text-2xl text-red-700">
                             !
                         </div>
 
@@ -497,14 +521,14 @@ function AvailableFood() {
                             Unable to load donations
                         </h2>
 
-                        <p className="mx-auto mt-2 max-w-lg text-sm text-gray-500">
+                        <p className="mx-auto mt-2 max-w-lg text-sm text-[#17233D]">
                             {error}
                         </p>
 
                         <button
                             type="button"
                             onClick={fetchDonations}
-                            className="mt-6 rounded-xl bg-emerald-400 px-6 py-3 font-semibold text-black transition hover:bg-emerald-300"
+                            className="mt-6 rounded-xl bg-[#1557D6] px-6 py-3 font-semibold text-black transition hover:bg-[#0F46B5]"
                         >
                             Try again
                         </button>
@@ -520,9 +544,9 @@ function AvailableFood() {
                 {!error &&
                     filteredDonations.length === 0 && (
 
-                        <section className="mt-10 rounded-3xl border border-white/10 bg-white/[0.02] px-6 py-20 text-center">
+                        <section className="mt-10 rounded-3xl border border-[#E1E6EE] bg-white/[0.02] px-6 py-20 text-center">
 
-                            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-400/10 text-3xl">
+                            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#1557D6]/10 text-3xl">
                                 🍱
                             </div>
 
@@ -530,7 +554,7 @@ function AvailableFood() {
                                 No nearby donations available
                             </h2>
 
-                            <p className="mx-auto mt-3 max-w-lg text-sm leading-6 text-gray-500">
+                            <p className="mx-auto mt-3 max-w-lg text-sm leading-6 text-[#17233D]">
                                 There are currently no food donations matching
                                 your location or selected filters.
                             </p>
@@ -543,7 +567,7 @@ function AvailableFood() {
                                         setSearch("");
                                         setFoodType("ALL");
                                     }}
-                                    className="mt-6 rounded-xl border border-white/10 px-5 py-3 text-sm font-medium text-gray-300 transition hover:bg-white/[0.05] hover:text-white"
+                                    className="mt-6 rounded-xl border border-[#E1E6EE] px-5 py-3 text-sm font-bold text-[#17233D] transition hover:bg-[#EEF3FB] hover:text-[#17233D]"
                                 >
                                     Clear filters
                                 </button>
@@ -568,7 +592,7 @@ function AvailableFood() {
 
                                     <article
                                         key={donation.id}
-                                        className="group overflow-hidden rounded-3xl border border-white/10 bg-white/[0.025] transition duration-300 hover:-translate-y-1 hover:border-emerald-400/30 hover:bg-white/[0.04]"
+                                        className="available-food-card group overflow-hidden rounded-3xl border border-[#E1E6EE] bg-white transition duration-300 hover:-translate-y-1 hover:border-[#9FB8E8] hover:bg-[#F2F6FF]"
                                     >
 
 
@@ -576,23 +600,23 @@ function AvailableFood() {
                                             CARD HEADER
                                         --------------------------------- */}
 
-                                        <div className="border-b border-white/10 p-6">
+                                        <div className="border-b border-[#E1E6EE] p-6">
 
                                             <div className="flex items-start justify-between gap-4">
 
                                                 <div className="flex min-w-0 items-center gap-4">
 
-                                                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-400/10 text-xl">
+                                                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#1557D6]/10 text-xl">
                                                         🍽️
                                                     </div>
 
                                                     <div className="min-w-0">
 
-                                                        <h2 className="truncate text-lg font-semibold">
+                                                        <h2 className="truncate text-lg font-extrabold">
                                                             {donation.foodName}
                                                         </h2>
 
-                                                        <p className="mt-1 text-sm text-gray-500">
+                                                        <p className="mt-1 text-sm font-semibold text-[#17233D]">
                                                             {donation.foodType}
                                                         </p>
 
@@ -601,7 +625,7 @@ function AvailableFood() {
                                                 </div>
 
 
-                                                <span className="shrink-0 rounded-full border border-emerald-400/20 bg-emerald-400/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-emerald-400">
+                                                <span className="shrink-0 rounded-full border border-[#C9D8EC] bg-[#1557D6]/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-[#1557D6]">
                                                     {donation.status || "AVAILABLE"}
                                                 </span>
 
@@ -619,9 +643,9 @@ function AvailableFood() {
 
                                             {/* Quantity */}
 
-                                            <div className="flex items-center justify-between rounded-xl border border-white/10 bg-black/20 px-4 py-3">
+                                            <div className="flex items-center justify-between rounded-xl border border-[#E1E6EE] bg-black/20 px-4 py-3">
 
-                                                <span className="text-sm text-gray-500">
+                                                <span className="text-sm font-semibold text-[#17233D]">
                                                     Quantity
                                                 </span>
 
@@ -637,11 +661,11 @@ function AvailableFood() {
 
                                             <div>
 
-                                                <p className="text-xs uppercase tracking-wider text-gray-600">
+                                                <p className="text-xs font-extrabold uppercase tracking-wider text-[#17233D]">
                                                     Prepared
                                                 </p>
 
-                                                <p className="mt-1 text-sm text-gray-300">
+                                                <p className="mt-1 text-sm font-semibold text-[#17233D]">
                                                     {formatDateTime(
                                                         donation.preparedAt
                                                     )}
@@ -654,17 +678,17 @@ function AvailableFood() {
 
                                             <div>
 
-                                                <p className="text-xs uppercase tracking-wider text-gray-600">
+                                                <p className="text-xs font-extrabold uppercase tracking-wider text-[#17233D]">
                                                     Expires
                                                 </p>
 
                                                 <p
-                                                    className={`mt-1 text-sm font-medium ${
+                                                    className={`mt-1 text-sm font-bold ${
                                                         isExpiringSoon(
                                                             donation.expiresAt
                                                         )
-                                                            ? "text-red-400"
-                                                            : "text-gray-300"
+                                                            ? "text-red-700"
+                                                            : "text-[#17233D]"
                                                     }`}
                                                 >
                                                     {formatDateTime(
@@ -679,11 +703,11 @@ function AvailableFood() {
 
                                             <div>
 
-                                                <p className="text-xs uppercase tracking-wider text-gray-600">
+                                                <p className="text-xs font-extrabold uppercase tracking-wider text-[#17233D]">
                                                     Pickup location
                                                 </p>
 
-                                                <p className="mt-1 line-clamp-2 text-sm leading-6 text-gray-400">
+                                                <p className="mt-1 line-clamp-2 text-sm font-semibold leading-6 text-[#17233D]">
                                                     {donation.pickupAddress ||
                                                         "Pickup address unavailable"}
                                                 </p>
@@ -697,7 +721,7 @@ function AvailableFood() {
                                                 donation.expiresAt
                                             ) && (
 
-                                                <div className="rounded-xl border border-red-500/20 bg-red-500/[0.04] px-4 py-3 text-sm text-red-300">
+                                                <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">
                                                     Expires soon — prioritize this donation.
                                                 </div>
 
@@ -713,7 +737,7 @@ function AvailableFood() {
                                                         donation.id
                                                     )
                                                 }
-                                                className="w-full rounded-xl bg-emerald-400 py-3.5 font-semibold text-black transition hover:bg-emerald-300 active:scale-[0.99]"
+                                                className="w-full rounded-xl bg-[#1557D6] py-3.5 font-semibold text-black transition hover:bg-[#0F46B5] active:scale-[0.99]"
                                             >
                                                 View Donation
                                             </button>

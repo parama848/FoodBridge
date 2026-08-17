@@ -1,304 +1,3 @@
-// import { useState } from "react";
-// import { Link, useNavigate } from "react-router-dom";
-
-// import { useAuth } from "../../context/AuthContext";
-
-// function Login() {
-//   const navigate = useNavigate();
-
-//   const { login } = useAuth();
-
-//   // =========================================================
-//   // FORM STATE
-//   // =========================================================
-
-//   const [email, setEmail] = useState("");
-
-//   const [password, setPassword] = useState("");
-
-//   // =========================================================
-//   // UI STATE
-//   // =========================================================
-
-//   const [loading, setLoading] = useState(false);
-
-//   const [error, setError] = useState("");
-
-//   // =========================================================
-//   // LOGIN
-//   // =========================================================
-
-//   const handleSubmit = async (event) => {
-//     event.preventDefault();
-
-//     setError("");
-
-//     // -----------------------------------------------------
-//     // VALIDATION
-//     // -----------------------------------------------------
-
-//     if (!email.trim()) {
-//       setError("Please enter your email address.");
-
-//       return;
-//     }
-
-//     if (!password.trim()) {
-//       setError("Please enter your password.");
-
-//       return;
-//     }
-
-//     try {
-//       setLoading(true);
-
-//       // -------------------------------------------------
-//       // AUTH CONTEXT
-//       // -------------------------------------------------
-
-//       const loggedInUser = await login(email.trim(), password);
-
-//       console.log("Login successful:", loggedInUser);
-
-//       // -------------------------------------------------
-//       // REDIRECT
-//       // -------------------------------------------------
-
-//       navigate("/home", {
-//         replace: true,
-//       });
-//     } catch (error) {
-//       console.error("Login failed:", error);
-
-//       // -------------------------------------------------
-//       // BACKEND ERROR
-//       // -------------------------------------------------
-
-//       const message =
-//         error.response?.data?.message ||
-//         error.message ||
-//         "Invalid email or password.";
-
-//       setError(message);
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   return (
-//     <div className="min-h-screen bg-[#050505] text-white">
-//       <div className="grid min-h-screen lg:grid-cols-2">
-//         {/* =====================================================
-//                     LEFT SIDE — BRAND
-//                 ===================================================== */}
-
-//         <div className="relative hidden overflow-hidden lg:flex">
-//           {/* Background effects */}
-
-//           <div className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-emerald-500/20 blur-3xl" />
-
-//           <div className="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl" />
-
-//           <div className="relative flex w-full flex-col justify-between p-12">
-//             {/* Main message */}
-
-//             <div className="max-w-xl">
-//               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-gray-300">
-//                 <span className="h-2 w-2 rounded-full bg-emerald-400" />
-//                 Fighting food waste together
-//               </div>
-
-//               <h1 className="text-5xl font-bold leading-tight xl:text-6xl">
-//                 Turning
-//                 <span className="text-emerald-400"> surplus food</span>
-//                 <br />
-//                 into meaningful meals.
-//               </h1>
-
-//               <p className="mt-6 max-w-lg text-lg leading-8 text-gray-400">
-//                 FoodBridge connects food donors with verified foundations to
-//                 make food redistribution faster, safer and more impactful.
-//               </p>
-
-//               <Link to="/register">
-//                 <button
-//                   className="
-//                                     rounded-xl
-//                                    mt-10
-//                                     bg-white
-//                                     px-5
-//                                     py-2.5
-//                                     text-sm
-//                                     font-semibold
-//                                     text-black
-//                                     transition
-//                                     hover:bg-gray-200
-//                                 "
-//                 >
-//                   Get started
-//                 </button>
-//               </Link>
-//             </div>
-//           </div>
-//         </div>
-
-//         {/* =====================================================
-//                     RIGHT SIDE — LOGIN
-//                 ===================================================== */}
-
-//         <div className="flex min-h-screen items-center justify-center px-5 py-10 sm:px-8">
-//           <div className="w-full max-w-md">
-//             {/* Mobile Logo */}
-
-//             <div className="mb-10 flex items-center justify-center gap-3 lg:hidden">
-//               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-black">
-//                 <span className="font-black">F</span>
-//               </div>
-
-//               <span className="text-xl font-bold">FoodBridge</span>
-//             </div>
-
-//             {/* Heading */}
-
-//             <div className="mb-8">
-//               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-//                 Welcome back
-//               </h2>
-
-//               <p className="mt-3 text-gray-400">
-//                 Sign in to continue to your FoodBridge account.
-//               </p>
-//             </div>
-
-//             {/* Card */}
-
-//             <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 shadow-2xl shadow-black/40 sm:p-8">
-//               <form onSubmit={handleSubmit} className="space-y-6">
-//                 {/* =================================================
-//                                     EMAIL
-//                                 ================================================= */}
-
-//                 <div>
-//                   <label
-//                     htmlFor="email"
-//                     className="mb-2 block text-sm font-medium text-gray-300"
-//                   >
-//                     Email address
-//                   </label>
-
-//                   <input
-//                     id="email"
-//                     type="email"
-//                     value={email}
-//                     onChange={(event) => setEmail(event.target.value)}
-//                     placeholder="you@example.com"
-//                     autoComplete="email"
-//                     disabled={loading}
-//                     className="block w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3.5 text-white outline-none transition placeholder:text-gray-600 focus:border-emerald-400/60 focus:bg-black/60 focus:ring-4 focus:ring-emerald-400/10 disabled:cursor-not-allowed disabled:opacity-50"
-//                   />
-//                 </div>
-
-//                 {/* =================================================
-//                                     PASSWORD
-//                                 ================================================= */}
-
-//                 <div>
-//                   <div className="mb-2 flex items-center justify-between">
-//                     <label
-//                       htmlFor="password"
-//                       className="block text-sm font-medium text-gray-300"
-//                     >
-//                       Password
-//                     </label>
-
-//                     {/* <button
-//                                             type="button"
-//                                             className="text-xs font-medium text-gray-400 transition hover:text-white"
-//                                         >
-//                                             Forgot password?
-//                                         </button> */}
-//                   </div>
-
-//                   <input
-//                     id="password"
-//                     type="password"
-//                     value={password}
-//                     onChange={(event) => setPassword(event.target.value)}
-//                     placeholder="Enter your password"
-//                     autoComplete="current-password"
-//                     disabled={loading}
-//                     className="block w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3.5 text-white outline-none transition placeholder:text-gray-600 focus:border-emerald-400/60 focus:bg-black/60 focus:ring-4 focus:ring-emerald-400/10 disabled:cursor-not-allowed disabled:opacity-50"
-//                   />
-//                 </div>
-
-//                 {/* =================================================
-//                                     REMEMBER ME
-//                                 ================================================= */}
-
-//                 {/* <label className="flex items-center gap-3 text-sm text-gray-400">
-
-//                                     <input
-//                                         type="checkbox"
-//                                         className="h-4 w-4 rounded border-white/20 bg-black"
-//                                     />
-
-//                                     Remember me
-
-//                                 </label> */}
-
-//                 {/* =================================================
-//                                     ERROR
-//                                 ================================================= */}
-
-//                 {error && (
-//                   <div className="rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-400">
-//                     {error}
-//                   </div>
-//                 )}
-
-//                 {/* =================================================
-//                                     SIGN IN
-//                                 ================================================= */}
-
-//                 <button
-//                   type="submit"
-//                   disabled={loading}
-//                   className="w-full rounded-xl bg-emerald-400 py-3.5 font-semibold text-black transition hover:bg-emerald-300 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50"
-//                 >
-//                   {loading ? "Signing in..." : "Sign in"}
-//                 </button>
-//               </form>
-
-//               {/* =================================================
-//                                 REGISTER LINK
-//                             ================================================= */}
-
-//               <div className="mt-7 border-t border-white/10 pt-6 text-center text-sm text-gray-400">
-//                 Don't have an account?
-//                 <Link
-//                   to="/register"
-//                   className="ml-2 font-semibold text-white transition hover:text-emerald-400"
-//                 >
-//                   Create account
-//                 </Link>
-//               </div>
-//             </div>
-
-//             {/* Footer */}
-
-//             <p className="mt-6 text-center text-xs leading-5 text-gray-600">
-//               By continuing, you agree to FoodBridge's terms and privacy policy.
-//             </p>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Login;
-
-
 import {
     useState
 } from "react";
@@ -532,10 +231,10 @@ function Login() {
 
         <div className="
             min-h-screen
-            bg-[#050505]
+            bg-[#F8FAFD]
             px-5
             py-12
-            text-white
+            text-[#111827]
         ">
 
             <div className="
@@ -551,10 +250,10 @@ function Login() {
                     w-full
                     rounded-3xl
                     border
-                    border-white/[0.08]
-                    bg-white/[0.03]
+                    border-[#D9E1ED]
+                    bg-white
                     p-6
-                    shadow-2xl
+                    shadow-[0_12px_35px_rgba(23,35,61,0.08)]
                     backdrop-blur-xl
                     sm:p-8
                 ">
@@ -577,9 +276,9 @@ function Login() {
                             items-center
                             justify-center
                             rounded-2xl
-                            bg-white
-                            text-black
-                            shadow-lg
+                            bg-[#1557D6]
+                            text-white
+                            shadow-[0_6px_18px_rgba(21,87,214,0.20)]
                         ">
 
                             <span className="
@@ -604,7 +303,7 @@ function Login() {
                         <p className="
                             mt-2
                             text-sm
-                            text-gray-500
+                            text-[#17233D]
                         ">
                             Sign in to continue to FoodBridge
                         </p>
@@ -631,8 +330,8 @@ function Login() {
                                     mb-2
                                     block
                                     text-sm
-                                    font-medium
-                                    text-gray-300
+                                    font-bold
+                                    text-[#111827]
                                 "
                             >
                                 Email address
@@ -646,25 +345,28 @@ function Login() {
                                 value={formData.email}
                                 onChange={handleChange}
                                 autoComplete="email"
-                                placeholder="you@example.com"
+                                placeholder="you@gmail.com"
                                 disabled={loading}
                                 className={`
                                     w-full
                                     rounded-xl
                                     border
-                                    bg-white/[0.03]
+                                    border-[#D9E1ED]
+                                    bg-white
                                     px-4
                                     py-3
                                     text-sm
-                                    text-white
+                                    text-[#111827]
                                     outline-none
                                     transition
-                                    placeholder:text-gray-600
-                                    focus:bg-white/[0.05]
+                                    placeholder:text-[#64748B]
+                                    focus:bg-white
+                                    focus:ring-4
+                                    focus:ring-[#1557D6]/10
                                     ${
                                         errors.email
-                                            ? "border-red-400/50 focus:border-red-400"
-                                            : "border-white/10 focus:border-white/30"
+                                            ? "border-red-300 focus:border-red-500"
+                                            : "border-[#D9E1ED] focus:border-[#1557D6]"
                                     }
                                 `}
                             />
@@ -675,7 +377,7 @@ function Login() {
                                 <p className="
                                     mt-2
                                     text-xs
-                                    text-red-400
+                                    text-red-600
                                 ">
                                     {errors.email}
                                 </p>
@@ -694,8 +396,8 @@ function Login() {
                                     mb-2
                                     block
                                     text-sm
-                                    font-medium
-                                    text-gray-300
+                                    font-bold
+                                    text-[#111827]
                                 "
                             >
                                 Password
@@ -730,15 +432,15 @@ function Login() {
                                         py-3
                                         pr-12
                                         text-sm
-                                        text-white
+                                        text-black
                                         outline-none
                                         transition
                                         placeholder:text-gray-600
                                         focus:bg-white/[0.05]
                                         ${
                                             errors.password
-                                                ? "border-red-400/50 focus:border-red-400"
-                                                : "border-white/10 focus:border-white/30"
+                                                ? "border-red-300 focus:border-red-500"
+                                                : "border-[#D9E1ED] focus:border-[#1557D6]"
                                         }
                                     `}
                                 />
@@ -760,10 +462,10 @@ function Login() {
                                         -translate-y-1/2
                                         rounded-lg
                                         p-2
-                                        text-gray-500
+                                        text-[#475569]
                                         transition
-                                        hover:bg-white/[0.05]
-                                        hover:text-white
+                                        hover:bg-[#F2F6FF]
+                                        hover:text-[#1557D6]
                                     "
                                     aria-label={
                                         showPassword
@@ -796,7 +498,7 @@ function Login() {
                                 <p className="
                                     mt-2
                                     text-xs
-                                    text-red-400
+                                    text-red-600
                                 ">
                                     {errors.password}
                                 </p>
@@ -817,14 +519,15 @@ function Login() {
                                 justify-center
                                 gap-2
                                 rounded-xl
-                                bg-green-400
+                                bg-[#1557D6]
                                 px-5
                                 py-3
                                 text-sm
-                                font-semibold
-                                text-black
+                                font-bold
+                                text-white
+                                shadow-[0_6px_16px_rgba(21,87,214,0.18)]
                                 transition
-                                hover:bg-green-400
+                                hover:bg-[#0F46B5]
                                 disabled:cursor-not-allowed
                                 disabled:opacity-60
                             "
@@ -866,7 +569,7 @@ function Login() {
                         mt-7
                         text-center
                         text-sm
-                        text-gray-500
+                        text-[#17233D]
                     ">
 
                         Don't have an account?{" "}
@@ -874,10 +577,10 @@ function Login() {
                         <Link
                             to="/register"
                             className="
-                                font-medium
-                                text-white
+                                font-bold
+                                text-[#1557D6]
                                 transition
-                                hover:text-gray-300
+                                hover:text-[#0F46B5]
                             "
                         >
                             Create New Account

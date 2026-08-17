@@ -16,6 +16,30 @@ import { Link } from "react-router-dom";
 import axiosInstance from "../../api/axiosInstance";
 
 
+
+const dashboardCardStyles = `
+@keyframes foundationCardIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.foundation-card-in {
+    animation: foundationCardIn .4s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .foundation-card-in {
+        animation: none !important;
+    }
+}
+`;
+
 function FoundationDashboard() {
 
     // =========================================================
@@ -188,7 +212,7 @@ function FoundationDashboard() {
                     label: "Accepted",
                     icon: CheckCircle2,
                     className:
-                        "border-blue-500/20 bg-blue-500/10 text-blue-400"
+                        "border-blue-200 bg-blue-50 text-blue-700"
                 };
 
 
@@ -198,7 +222,7 @@ function FoundationDashboard() {
                     label: "Picked Up",
                     icon: Truck,
                     className:
-                        "border-amber-500/20 bg-amber-500/10 text-amber-400"
+                        "border-amber-200 bg-amber-50 text-amber-700"
                 };
 
 
@@ -208,7 +232,7 @@ function FoundationDashboard() {
                     label: "Delivered",
                     icon: CheckCircle2,
                     className:
-                        "border-emerald-500/20 bg-emerald-500/10 text-emerald-400"
+                        "border-green-200 bg-green-50 text-[#1557D6]"
                 };
 
 
@@ -218,7 +242,7 @@ function FoundationDashboard() {
                     label: status || "Unknown",
                     icon: Clock3,
                     className:
-                        "border-white/10 bg-white/5 text-gray-400"
+                        "border-[#D9E1ED] bg-white/5 text-[#17233D]"
                 };
 
         }
@@ -273,7 +297,7 @@ function FoundationDashboard() {
 
         return (
 
-            <div className="min-h-[70vh] bg-[#050505] text-white">
+            <div className="min-h-[70vh] bg-[#F8FAFD] text-[#17233D]">
 
                 <main className="mx-auto max-w-7xl px-5 py-10 sm:px-6 lg:px-8">
 
@@ -294,17 +318,17 @@ function FoundationDashboard() {
 
         return (
 
-            <div className="min-h-[70vh] bg-[#050505] text-white">
+            <div className="min-h-[70vh] bg-[#F8FAFD] text-[#17233D]">
 
                 <main className="mx-auto max-w-4xl px-5 py-16 sm:px-6">
 
-                    <div className="rounded-3xl border border-red-500/20 bg-red-500/[0.04] p-10 text-center">
+                    <div className="rounded-3xl border border-red-200 bg-red-50 p-10 text-center">
 
-                        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-red-500/10">
+                        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-red-50">
 
                             <AlertCircle
                                 size={26}
-                                className="text-red-400"
+                                className="text-red-700"
                             />
 
                         </div>
@@ -317,7 +341,7 @@ function FoundationDashboard() {
                         </h2>
 
 
-                        <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-gray-500">
+                        <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-[#17233D]">
 
                             {error}
 
@@ -327,7 +351,7 @@ function FoundationDashboard() {
                         <button
                             type="button"
                             onClick={fetchDonations}
-                            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-gray-200"
+                            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-bold text-black transition hover:bg-gray-200"
                         >
 
                             <RefreshCw size={16} />
@@ -351,7 +375,10 @@ function FoundationDashboard() {
 
     return (
 
-        <div className="min-h-[70vh] bg-[#050505] text-white">
+        <>
+            <style>{dashboardCardStyles}</style>
+
+            <div className="min-h-[70vh] bg-[#F8FAFD] text-[#17233D] foundation-card-in">
 
             <main className="mx-auto max-w-7xl px-5 py-10 sm:px-6 lg:px-8">
 
@@ -364,21 +391,21 @@ function FoundationDashboard() {
 
                     <div>
 
-                        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-400">
+                        <p className="text-xs font-extrabold uppercase tracking-[0.3em] text-[#1557D6]">
 
                             Foundation Dashboard
 
                         </p>
 
 
-                        <h1 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+                        <h1 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">
 
                             Donation Overview
 
                         </h1>
 
 
-                        <p className="mt-3 max-w-2xl text-sm leading-7 text-gray-500">
+                        <p className="mt-3 max-w-2xl text-sm leading-7 text-[#17233D]">
 
                             Monitor the food donations accepted by your
                             foundation and track their progress from
@@ -395,7 +422,7 @@ function FoundationDashboard() {
                         type="button"
                         onClick={fetchDonations}
                         disabled={loading}
-                        className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/10 px-5 text-sm font-semibold text-gray-400 transition hover:border-white/20 hover:bg-white/[0.04] hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+                        className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-[#D9E1ED] px-5 text-sm font-bold text-[#17233D] transition hover:border-[#C9D8EC] hover:bg-[#EEF3FB] hover:text-[#17233D] disabled:cursor-not-allowed disabled:opacity-50"
                     >
 
                         <RefreshCw
@@ -466,20 +493,20 @@ function FoundationDashboard() {
                         DELIVERY PROGRESS
                     ================================================= */}
 
-                    <div className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6 lg:col-span-2">
+                    <div className="foundation-card-in rounded-3xl border border-[#E1E6EE] bg-white p-6 shadow-[0_6px_24px_rgba(23,35,61,0.05)] lg:col-span-2">
 
                         <div className="flex items-start justify-between gap-4">
 
                             <div>
 
-                                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-600">
+                                <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#17233D]">
 
                                     Donation Progress
 
                                 </p>
 
 
-                                <h2 className="mt-2 text-lg font-semibold">
+                                <h2 className="mt-2 text-lg font-extrabold">
 
                                     Your foundation's activity
 
@@ -488,7 +515,7 @@ function FoundationDashboard() {
                             </div>
 
 
-                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-400/10 text-emerald-400">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#1557D6]/10 text-[#1557D6]">
 
                                 <Activity size={18} />
 
@@ -544,16 +571,16 @@ function FoundationDashboard() {
                         QUICK ACTIONS
                     ================================================= */}
 
-                    <div className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6">
+                    <div className="foundation-card-in rounded-3xl border border-[#E1E6EE] bg-white p-6 shadow-[0_6px_24px_rgba(23,35,61,0.05)]">
 
-                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-600">
+                        <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#17233D]">
 
                             Quick Access
 
                         </p>
 
 
-                        <h2 className="mt-2 text-lg font-semibold">
+                        <h2 className="mt-2 text-lg font-extrabold">
 
                             Manage donations
 
@@ -565,12 +592,12 @@ function FoundationDashboard() {
 
                             <Link
                                 to="/foundation/donations"
-                                className="group flex items-center justify-between rounded-2xl border border-white/[0.07] bg-white/[0.02] p-4 transition hover:border-emerald-400/20 hover:bg-white/[0.04]"
+                                className="group flex items-center justify-between rounded-2xl border border-[#E1E6EE] bg-white p-4 transition hover:border-[#9FB8E8] hover:bg-[#EEF3FB]"
                             >
 
                                 <div className="flex items-center gap-3">
 
-                                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-400/10 text-emerald-400">
+                                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#1557D6]/10 text-[#1557D6]">
 
                                         <Package size={17} />
 
@@ -579,14 +606,14 @@ function FoundationDashboard() {
 
                                     <div>
 
-                                        <p className="text-sm font-semibold">
+                                        <p className="text-sm font-bold">
 
                                             My Donations
 
                                         </p>
 
 
-                                        <p className="mt-1 text-xs text-gray-600">
+                                        <p className="mt-1 text-xs text-[#17233D]">
 
                                             View all accepted donations
 
@@ -599,7 +626,7 @@ function FoundationDashboard() {
 
                                 <ArrowRight
                                     size={16}
-                                    className="text-gray-700 transition group-hover:translate-x-1 group-hover:text-emerald-400"
+                                    className="text-[#17233D] transition group-hover:translate-x-1 group-hover:text-[#1557D6]"
                                 />
 
                             </Link>
@@ -607,12 +634,12 @@ function FoundationDashboard() {
 
                             <Link
                                 to="/foundation/available-food"
-                                className="group flex items-center justify-between rounded-2xl border border-white/[0.07] bg-white/[0.02] p-4 transition hover:border-emerald-400/20 hover:bg-white/[0.04]"
+                                className="group flex items-center justify-between rounded-2xl border border-[#E1E6EE] bg-white p-4 transition hover:border-[#9FB8E8] hover:bg-[#EEF3FB]"
                             >
 
                                 <div className="flex items-center gap-3">
 
-                                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/[0.04] text-gray-400">
+                                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#EEF3FB] text-[#17233D]">
 
                                         <UtensilsCrossed size={17} />
 
@@ -621,14 +648,14 @@ function FoundationDashboard() {
 
                                     <div>
 
-                                        <p className="text-sm font-semibold">
+                                        <p className="text-sm font-bold">
 
                                             Find Food
 
                                         </p>
 
 
-                                        <p className="mt-1 text-xs text-gray-600">
+                                        <p className="mt-1 text-xs text-[#17233D]">
 
                                             Browse available donations
 
@@ -641,7 +668,7 @@ function FoundationDashboard() {
 
                                 <ArrowRight
                                     size={16}
-                                    className="text-gray-700 transition group-hover:translate-x-1 group-hover:text-emerald-400"
+                                    className="text-[#17233D] transition group-hover:translate-x-1 group-hover:text-[#1557D6]"
                                 />
 
                             </Link>
@@ -657,23 +684,23 @@ function FoundationDashboard() {
                     RECENT DONATIONS
                 ================================================= */}
 
-                <section className="mt-8 rounded-3xl border border-white/[0.08] bg-white/[0.02]">
+                <section className="mt-8 rounded-3xl border border-[#E1E6EE] bg-white shadow-[0_6px_24px_rgba(23,35,61,0.05)]">
 
 
                     {/* HEADER */}
 
-                    <div className="flex flex-col gap-4 border-b border-white/[0.07] p-6 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="flex flex-col gap-4 border-b border-[#E1E6EE] p-6 sm:flex-row sm:items-center sm:justify-between">
 
                         <div>
 
-                            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-600">
+                            <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#17233D]">
 
                                 Activity
 
                             </p>
 
 
-                            <h2 className="mt-2 text-lg font-semibold">
+                            <h2 className="mt-2 text-lg font-extrabold">
 
                                 Recent Donations
 
@@ -684,7 +711,7 @@ function FoundationDashboard() {
 
                         <Link
                             to="/foundation/donations"
-                            className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-400 transition hover:text-emerald-300"
+                            className="inline-flex items-center gap-2 text-sm font-bold text-[#1557D6] transition hover:text-[#1557D6]"
                         >
 
                             View all
@@ -702,24 +729,24 @@ function FoundationDashboard() {
 
                         <div className="px-6 py-16 text-center">
 
-                            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white/[0.04]">
+                            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#EEF3FB]">
 
                                 <Package
                                     size={25}
-                                    className="text-gray-600"
+                                    className="text-[#17233D]"
                                 />
 
                             </div>
 
 
-                            <h3 className="mt-5 text-lg font-semibold">
+                            <h3 className="mt-5 text-lg font-extrabold">
 
                                 No donations yet
 
                             </h3>
 
 
-                            <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-gray-600">
+                            <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-[#17233D]">
 
                                 Donations accepted by your foundation
                                 will appear here.
@@ -751,7 +778,7 @@ function FoundationDashboard() {
                                                 donation.id
                                             }
                                             to={`/foundation/donations/${donation.id}`}
-                                            className="group block p-6 transition hover:bg-white/[0.02]"
+                                            className="group block p-6 transition hover:bg-white"
                                         >
 
                                             <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
@@ -761,7 +788,7 @@ function FoundationDashboard() {
 
                                                 <div className="flex min-w-0 items-center gap-4">
 
-                                                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-400/10 text-emerald-400">
+                                                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#1557D6]/10 text-[#1557D6]">
 
                                                         <UtensilsCrossed
                                                             size={19}
@@ -772,7 +799,7 @@ function FoundationDashboard() {
 
                                                     <div className="min-w-0">
 
-                                                        <h3 className="truncate text-sm font-semibold text-white">
+                                                        <h3 className="truncate text-sm font-bold text-[#17233D]">
 
                                                             {
                                                                 donation.foodName ||
@@ -782,7 +809,7 @@ function FoundationDashboard() {
                                                         </h3>
 
 
-                                                        <p className="mt-1 text-xs text-gray-600">
+                                                        <p className="mt-1 text-xs text-[#17233D]">
 
                                                             {
                                                                 donation.foodType ||
@@ -832,14 +859,14 @@ function FoundationDashboard() {
 
                                                     <div className="hidden text-right sm:block">
 
-                                                        <p className="text-[10px] uppercase tracking-wider text-gray-700">
+                                                        <p className="text-[10px] uppercase tracking-wider text-[#17233D]">
 
                                                             Updated
 
                                                         </p>
 
 
-                                                        <p className="mt-1 text-xs text-gray-500">
+                                                        <p className="mt-1 text-xs text-[#17233D]">
 
                                                             {
                                                                 formatDate(
@@ -855,7 +882,7 @@ function FoundationDashboard() {
 
                                                     <ArrowRight
                                                         size={16}
-                                                        className="text-gray-700 transition group-hover:translate-x-1 group-hover:text-emerald-400"
+                                                        className="text-[#17233D] transition group-hover:translate-x-1 group-hover:text-[#1557D6]"
                                                     />
 
                                                 </div>
@@ -916,7 +943,8 @@ function FoundationDashboard() {
 
             </main>
 
-        </div>
+            </div>
+        </>
     );
 }
 
@@ -934,18 +962,18 @@ function StatCard({
 
     return (
 
-        <div className="group rounded-3xl border border-white/[0.08] bg-white/[0.02] p-5 transition duration-300 hover:-translate-y-0.5 hover:border-white/[0.13] hover:bg-white/[0.035]">
+        <div className="foundation-card-in group rounded-3xl border border-[#E1E6EE] bg-white p-5 shadow-[0_5px_20px_rgba(23,35,61,0.045)] transition duration-300 hover:-translate-y-1 hover:border-[#C9D8EC] hover:shadow-[0_10px_28px_rgba(23,35,61,0.08)]">
 
             <div className="flex items-start justify-between gap-4">
 
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/[0.04] text-gray-400 transition group-hover:bg-emerald-400/10 group-hover:text-emerald-400">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#EEF3FB] text-[#17233D] transition group-hover:bg-[#1557D6]/10 group-hover:text-[#1557D6]">
 
                     <Icon size={19} />
 
                 </div>
 
 
-                <span className="text-3xl font-bold tracking-tight text-white">
+                <span className="text-3xl font-extrabold tracking-tight text-[#17233D]">
 
                     {value}
 
@@ -954,14 +982,14 @@ function StatCard({
             </div>
 
 
-            <p className="mt-5 text-sm font-semibold text-gray-300">
+            <p className="mt-5 text-sm font-bold text-[#17233D]">
 
                 {label}
 
             </p>
 
 
-            <p className="mt-1 text-xs leading-5 text-gray-600">
+            <p className="mt-1 text-xs leading-5 text-[#17233D]">
 
                 {description}
 
@@ -1004,10 +1032,10 @@ function ProgressRow({
 
                     <Icon
                         size={15}
-                        className="text-gray-600"
+                        className="text-[#17233D]"
                     />
 
-                    <span className="text-xs font-medium text-gray-400">
+                    <span className="text-xs font-bold text-[#17233D]">
 
                         {label}
 
@@ -1016,7 +1044,7 @@ function ProgressRow({
                 </div>
 
 
-                <span className="text-xs font-semibold text-gray-400">
+                <span className="text-xs font-semibold text-[#17233D]">
 
                     {value}
 
@@ -1025,10 +1053,10 @@ function ProgressRow({
             </div>
 
 
-            <div className="h-2 overflow-hidden rounded-full bg-white/[0.05]">
+            <div className="h-2 overflow-hidden rounded-full bg-[#E3EAF4]">
 
                 <div
-                    className="h-full rounded-full bg-emerald-400 transition-all duration-700"
+                    className="h-full rounded-full bg-[#1557D6] transition-all duration-700"
                     style={{
                         width: `${percentage}%`
                     }}
@@ -1037,7 +1065,7 @@ function ProgressRow({
             </div>
 
 
-            <p className="mt-1.5 text-right text-[10px] text-gray-700">
+            <p className="mt-1.5 text-right text-[10px] text-[#17233D]">
 
                 {percentage}% of total
 
@@ -1060,18 +1088,18 @@ function MiniSummary({
 
     return (
 
-        <div className="flex items-center justify-between rounded-2xl border border-white/[0.07] bg-white/[0.02] p-5">
+        <div className="flex items-center justify-between rounded-2xl border border-[#E1E6EE] bg-white p-5">
 
             <div className="flex items-center gap-3">
 
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/[0.04] text-gray-500">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#EEF3FB] text-[#17233D]">
 
                     <Icon size={16} />
 
                 </div>
 
 
-                <span className="text-sm text-gray-500">
+                <span className="text-sm text-[#17233D]">
 
                     {label}
 
@@ -1080,7 +1108,7 @@ function MiniSummary({
             </div>
 
 
-            <span className="text-xl font-bold text-white">
+            <span className="text-xl font-extrabold text-[#17233D]">
 
                 {value}
 
@@ -1105,11 +1133,11 @@ function DashboardSkeleton() {
 
             <div className="space-y-3">
 
-                <div className="h-3 w-36 rounded bg-white/[0.06]" />
+                <div className="h-3 w-36 rounded bg-[#E6ECF5]" />
 
-                <div className="h-9 w-64 rounded bg-white/[0.06]" />
+                <div className="h-9 w-64 rounded bg-[#E6ECF5]" />
 
-                <div className="h-4 w-full max-w-xl rounded bg-white/[0.04]" />
+                <div className="h-4 w-full max-w-xl rounded bg-[#EEF3FB]" />
 
             </div>
 
@@ -1124,7 +1152,7 @@ function DashboardSkeleton() {
 
                     <div
                         key={index}
-                        className="h-36 rounded-3xl border border-white/[0.06] bg-white/[0.02]"
+                        className="h-36 rounded-3xl border border-[#E8EDF4] bg-white"
                     />
 
                 ))}
@@ -1136,16 +1164,16 @@ function DashboardSkeleton() {
 
             <div className="mt-8 grid gap-6 lg:grid-cols-3">
 
-                <div className="h-72 rounded-3xl border border-white/[0.06] bg-white/[0.02] lg:col-span-2" />
+                <div className="h-72 rounded-3xl border border-[#E8EDF4] bg-white lg:col-span-2" />
 
-                <div className="h-72 rounded-3xl border border-white/[0.06] bg-white/[0.02]" />
+                <div className="h-72 rounded-3xl border border-[#E8EDF4] bg-white" />
 
             </div>
 
 
             {/* RECENT */}
 
-            <div className="mt-8 h-96 rounded-3xl border border-white/[0.06] bg-white/[0.02]" />
+            <div className="mt-8 h-96 rounded-3xl border border-[#E8EDF4] bg-white" />
 
         </div>
     );

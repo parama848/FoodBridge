@@ -1,94 +1,3 @@
-// import { ArrowRight, HeartHandshake } from "lucide-react";
-// import { Link } from "react-router-dom";
-
-// function CTASection() {
-
-//     return (
-
-//         <section
-//             id="about"
-//             className="px-5 py-24 sm:px-6 lg:px-8"
-//         >
-
-//             <div className="relative mx-auto max-w-7xl overflow-hidden rounded-3xl border border-emerald-400/15 bg-emerald-400/[0.035]">
-
-//                 {/* Glow */}
-
-//                 <div className="pointer-events-none absolute left-1/2 top-[-280px] h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-emerald-400/[0.08] blur-[130px]" />
-
-
-//                 <div className="relative px-6 py-20 text-center sm:px-12 lg:px-20">
-
-
-//                     {/* Icon */}
-
-//                     <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-emerald-400/20 bg-emerald-400/[0.06] text-emerald-400">
-
-//                         <HeartHandshake size={24} />
-
-//                     </div>
-
-
-//                     <p className="mt-7 text-xs font-bold uppercase tracking-[0.18em] text-emerald-400">
-//                         Be part of the change
-//                     </p>
-
-
-//                     <h2 className="mx-auto mt-5 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
-
-//                         Every donation can become
-//                         <span className="block text-gray-500">
-//                             someone's next meal.
-//                         </span>
-
-//                     </h2>
-
-
-//                     <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-gray-500 sm:text-base">
-
-//                         Whether you have surplus food or represent
-//                         a foundation, FoodBridge gives you a simple
-//                         way to make that food count.
-
-//                     </p>
-
-
-//                     <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
-
-//                         <Link
-//                             to="/donations/create"
-//                             className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white px-7 text-sm font-bold text-black transition hover:bg-gray-200"
-//                         >
-
-//                             Start a donation
-
-//                             <ArrowRight
-//                                 size={16}
-//                                 className="transition-transform group-hover:translate-x-1"
-//                             />
-
-//                         </Link>
-
-
-//                         <Link
-//                             to="/register"
-//                             className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/10 px-7 text-sm font-semibold text-white transition hover:bg-white/[0.05]"
-//                         >
-//                             Join FoodBridge
-//                         </Link>
-
-//                     </div>
-
-//                 </div>
-
-//             </div>
-
-//         </section>
-//     );
-// }
-
-// export default CTASection;
-
 import {
     HeartHandshake,
     MapPinned,
@@ -152,7 +61,7 @@ function About() {
                         w-[700px]
                         -translate-x-1/2
                         rounded-full
-                        bg-emerald-500/[0.08]
+                        bg-[#1557D6]/[0.08]
                         blur-[120px]
                     " />
 
@@ -177,13 +86,13 @@ function About() {
                                 gap-2
                                 rounded-full
                                 border
-                                border-emerald-400/20
-                                bg-emerald-400/[0.05]
+                                border-[#1557D6]/20
+                                bg-[#1557D6]/[0.05]
                                 px-4
                                 py-2
                                 text-xs
                                 font-medium
-                                text-emerald-300
+                                text-[#1557D6]
                             ">
 
                                 <HeartHandshake
@@ -209,7 +118,7 @@ function About() {
 
                                 <span className="
                                     block
-                                    text-emerald-400
+                                    text-[#1557D6]
                                 ">
 
                                     between surplus and need.
@@ -274,7 +183,7 @@ function About() {
                                 <p className="
                                     text-sm
                                     font-medium
-                                    text-emerald-400
+                                    text-[#1557D6]
                                 ">
 
                                     The idea
@@ -366,7 +275,7 @@ function About() {
                         <p className="
                             text-sm
                             font-medium
-                            text-emerald-400
+                            text-[#1557D6]
                         ">
 
                             One ecosystem
@@ -408,7 +317,7 @@ function About() {
                             transition
                             duration-300
                             hover:-translate-y-1
-                            hover:border-emerald-400/20
+                            hover:border-[#1557D6]/20
                         ">
 
                             <div className="
@@ -418,8 +327,8 @@ function About() {
                                 items-center
                                 justify-center
                                 rounded-2xl
-                                bg-emerald-400/[0.08]
-                                text-emerald-400
+                                bg-[#1557D6]/[0.08]
+                                text-[#1557D6]
                             ">
 
                                 <Users
@@ -468,7 +377,7 @@ function About() {
                             transition
                             duration-300
                             hover:-translate-y-1
-                            hover:border-emerald-400/20
+                            hover:border-[#1557D6]/20
                         ">
 
                             <div className="
@@ -478,8 +387,8 @@ function About() {
                                 items-center
                                 justify-center
                                 rounded-2xl
-                                bg-emerald-400/[0.08]
-                                text-emerald-400
+                                bg-[#1557D6]/[0.08]
+                                text-[#1557D6]
                             ">
 
                                 <ShieldCheck
@@ -528,7 +437,7 @@ function About() {
                             transition
                             duration-300
                             hover:-translate-y-1
-                            hover:border-emerald-400/20
+                            hover:border-[#1557D6]/20
                         ">
 
                             <div className="
@@ -538,8 +447,8 @@ function About() {
                                 items-center
                                 justify-center
                                 rounded-2xl
-                                bg-emerald-400/[0.08]
-                                text-emerald-400
+                                bg-[#1557D6]/[0.08]
+                                text-[#1557D6]
                             ">
 
                                 <HeartHandshake
@@ -604,7 +513,7 @@ function About() {
                             <p className="
                                 text-sm
                                 font-medium
-                                text-emerald-400
+                                text-[#1557D6]
                             ">
 
                                 What guides us
@@ -666,8 +575,8 @@ function About() {
                                                 items-center
                                                 justify-center
                                                 rounded-xl
-                                                bg-emerald-400/[0.07]
-                                                text-emerald-400
+                                                bg-[#1557D6]/[0.07]
+                                                text-[#1557D6]
                                             ">
 
                                                 <Icon
@@ -735,8 +644,8 @@ function About() {
                         overflow-hidden
                         rounded-3xl
                         border
-                        border-emerald-400/10
-                        bg-emerald-400/[0.04]
+                        border-[#1557D6]/10
+                        bg-[#1557D6]/[0.04]
                         px-6
                         py-16
                         text-center
@@ -752,7 +661,7 @@ function About() {
                             w-[600px]
                             -translate-x-1/2
                             rounded-full
-                            bg-emerald-400/[0.08]
+                            bg-[#1557D6]/[0.08]
                             blur-[100px]
                         " />
 
@@ -763,7 +672,7 @@ function About() {
                                 size={32}
                                 className="
                                     mx-auto
-                                    text-emerald-400
+                                    text-[#1557D6]
                                 "
                             />
 

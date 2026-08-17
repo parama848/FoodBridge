@@ -9,11 +9,11 @@ function Hero() {
 
             <div className="pointer-events-none absolute inset-0">
 
-                <div className="absolute left-1/2 top-[-180px] h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-emerald-500/[0.08] blur-[140px]" />
+                <div className="absolute left-1/2 top-[-180px] h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-[#1557D6]/[0.08] blur-[140px]" />
 
                 <div className="absolute bottom-[-200px] left-[-150px] h-[400px] w-[400px] rounded-full bg-cyan-500/[0.04] blur-[120px]" />
 
-                <div className="absolute right-[-150px] top-[40%] h-[400px] w-[400px] rounded-full bg-emerald-500/[0.03] blur-[120px]" />
+                <div className="absolute right-[-150px] top-[40%] h-[400px] w-[400px] rounded-full bg-[#1557D6]/[0.03] blur-[120px]" />
 
             </div>
 
@@ -43,17 +43,17 @@ function Hero() {
 
                         {/* Badge */}
 
-                        <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/[0.05] px-4 py-2">
+                        <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-[#1557D6]/20 bg-[#1557D6]/[0.05] px-4 py-2">
 
                             <span className="relative flex h-2 w-2">
 
-                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-50" />
+                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#1557D6] opacity-50" />
 
-                                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#1557D6]" />
 
                             </span>
 
-                            <span className="text-xs font-semibold tracking-wide text-emerald-300">
+                            <span className="text-xs font-semibold tracking-wide text-[#1557D6]">
                                 Making every meal count
                             </span>
 
@@ -70,7 +70,7 @@ function Hero() {
                                 never
                             </span>
 
-                            <span className="block text-emerald-400">
+                            <span className="block text-[#1557D6]">
                                 go to waste.
                             </span>
 
@@ -95,7 +95,7 @@ function Hero() {
 
                             <Link
                                 to="/donor/donations/create"
-                                className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-emerald-400 px-7 text-sm font-bold text-black transition-all duration-200 hover:bg-emerald-300 hover:shadow-lg hover:shadow-emerald-400/10"
+                                className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#1557D6] px-7 text-sm font-bold text-black transition-all duration-200 hover:bg-[#0F46B5] hover:shadow-lg hover:shadow-[#1557D6]/10"
                             >
 
                                 Donate food
@@ -126,7 +126,7 @@ function Hero() {
 
                                 <ShieldCheck
                                     size={14}
-                                    className="text-emerald-400"
+                                    className="text-[#1557D6]"
                                 />
 
                                 Verified foundations
@@ -141,7 +141,7 @@ function Hero() {
 
                                 <Zap
                                     size={14}
-                                    className="text-emerald-400"
+                                    className="text-[#1557D6]"
                                 />
 
                                 Real-time updates
@@ -156,7 +156,7 @@ function Hero() {
 
                                 <Heart
                                     size={14}
-                                    className="text-emerald-400"
+                                    className="text-[#1557D6]"
                                 />
 
                                 Community impact
@@ -196,11 +196,11 @@ function Hero() {
                                 </div>
 
 
-                                <div className="flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/[0.06] px-3 py-1.5">
+                                <div className="flex items-center gap-2 rounded-full border border-[#1557D6]/20 bg-[#1557D6]/[0.06] px-3 py-1.5">
 
-                                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                                    <span className="h-1.5 w-1.5 rounded-full bg-[#1557D6]" />
 
-                                    <span className="text-[10px] font-semibold text-emerald-300">
+                                    <span className="text-[10px] font-semibold text-[#1557D6]">
                                         LIVE
                                     </span>
 
@@ -232,7 +232,7 @@ function Hero() {
                                     </div>
 
 
-                                    <span className="rounded-full bg-emerald-400/10 px-3 py-1 text-[10px] font-semibold text-emerald-300">
+                                    <span className="rounded-full bg-[#1557D6]/10 px-3 py-1 text-[10px] font-semibold text-[#1557D6]">
                                         ACTIVE
                                     </span>
 
@@ -245,7 +245,7 @@ function Hero() {
 
                                     <div className="relative h-1 rounded-full bg-white/10">
 
-                                        <div className="absolute left-0 top-0 h-1 w-[75%] rounded-full bg-emerald-400" />
+                                        <div className="absolute left-0 top-0 h-1 w-[75%] rounded-full bg-[#1557D6]" />
 
                                     </div>
 
@@ -254,7 +254,7 @@ function Hero() {
 
                                         <div>
 
-                                            <div className="font-semibold text-emerald-400">
+                                            <div className="font-semibold text-[#1557D6]">
                                                 Donated
                                             </div>
 
@@ -267,7 +267,7 @@ function Hero() {
 
                                         <div>
 
-                                            <div className="font-semibold text-emerald-400">
+                                            <div className="font-semibold text-[#1557D6]">
                                                 Accepted
                                             </div>
 
@@ -301,7 +301,7 @@ function Hero() {
 
                             <div className="mt-4 flex items-center gap-4 rounded-2xl border border-white/[0.08] bg-black/20 p-4">
 
-                                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-400/10 text-emerald-400">
+                                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#1557D6]/10 text-[#1557D6]">
 
                                     <Heart size={19} />
 
@@ -325,7 +325,7 @@ function Hero() {
 
                                     <ShieldCheck
                                         size={18}
-                                        className="text-emerald-400"
+                                        className="text-[#1557D6]"
                                     />
 
                                 </div>
@@ -345,7 +345,7 @@ function Hero() {
 
                             <p className="mt-1 text-xl font-bold text-white">
                                 One meal
-                                <span className="text-emerald-400"> matters.</span>
+                                <span className="text-[#1557D6]"> matters.</span>
                             </p>
 
                         </div>

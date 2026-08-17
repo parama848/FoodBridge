@@ -14,7 +14,6 @@ import {
 
 import { useNotifications } from "../../context/NotificationContext";
 
-
 function getNotificationIcon(type) {
   switch (type) {
     case "NEW_DONATION":
@@ -43,38 +42,35 @@ function getNotificationIcon(type) {
   }
 }
 
-
 function getNotificationColor(type) {
   switch (type) {
     case "NEW_DONATION":
-      return "bg-emerald-400/10 text-emerald-400";
+      return "bg-[#EAF1FF] text-[#1557D6]";
 
     case "DONATION_ACCEPTED":
-      return "bg-blue-400/10 text-blue-400";
+      return "bg-[#EAF1FF] text-[#1557D6]";
 
     case "DONATION_PICKED_UP":
-      return "bg-yellow-400/10 text-yellow-400";
+      return "bg-[#FFF6DF] text-[#B7791F]";
 
     case "DONATION_DELIVERED":
-      return "bg-green-400/10 text-green-400";
+      return "bg-[#EAF8F2] text-[#16845A]";
 
     case "DONATION_EXPIRED":
-      return "bg-red-400/10 text-red-400";
+      return "bg-[#FFF0F2] text-[#C83E4D]";
 
     case "FOUNDATION_VERIFIED":
-      return "bg-emerald-400/10 text-emerald-400";
+      return "bg-[#EAF1FF] text-[#1557D6]";
 
     case "FOUNDATION_REJECTED":
-      return "bg-red-400/10 text-red-400";
+      return "bg-[#FFF0F2] text-[#C83E4D]";
 
     default:
-      return "bg-gray-400/10 text-gray-400";
+      return "bg-gray-400/10 text-[#17233D]";
   }
 }
 
-
 function formatDate(dateString) {
-
   if (!dateString) {
     return "";
   }
@@ -94,16 +90,41 @@ function formatDate(dateString) {
   });
 }
 
+const notificationStyles = `
+@keyframes notificationCardIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.notification-card {
+    animation: notificationCardIn .38s ease-out both;
+}
+
+.notification-card:hover {
+    transform: translateY(-1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .notification-card {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+`;
 
 export default function Notifications() {
-
   const {
     notifications = [],
     unreadCount = 0,
     markAsRead,
     markAllAsRead,
   } = useNotifications();
-
 
   // =========================================================
   // LOAD / REFRESH
@@ -114,90 +135,60 @@ export default function Notifications() {
     // loading notifications from the backend.
   }, []);
 
-
   // =========================================================
   // MARK AS READ
   // =========================================================
 
-  const handleMarkAsRead = async (
-    notification
-  ) => {
-
-    if (
-      notification.status !== "UNREAD" ||
-      !markAsRead
-    ) {
+  const handleMarkAsRead = async (notification) => {
+    if (notification.status !== "UNREAD" || !markAsRead) {
       return;
     }
 
     try {
-
-      await markAsRead(
-        notification.id
-      );
-
+      await markAsRead(notification.id);
     } catch (error) {
-
-      console.error(
-        "Failed to mark notification as read:",
-        error
-      );
-
+      console.error("Failed to mark notification as read:", error);
     }
   };
-
 
   // =========================================================
   // MARK ALL AS READ
   // =========================================================
 
   const handleMarkAllAsRead = async () => {
-
-    if (
-      unreadCount === 0 ||
-      !markAllAsRead
-    ) {
+    if (unreadCount === 0 || !markAllAsRead) {
       return;
     }
 
     try {
-
       await markAllAsRead();
-
     } catch (error) {
-
-      console.error(
-        "Failed to mark all notifications as read:",
-        error
-      );
-
+      console.error("Failed to mark all notifications as read:", error);
     }
   };
 
-
   return (
+    <>
+      <style>{notificationStyles}</style>
 
-    <main
-      className="
+      <main
+        className="
         min-h-[calc(100vh-5rem)]
-        bg-[#050505]
+        bg-[#F8FAFD]
         px-5
         py-10
-        text-white
+        text-[#17233D]
         sm:px-6
         lg:px-8
       "
-    >
-
-      <div className="mx-auto max-w-4xl">
-
-
-        {/* =====================================================
+      >
+        <div className="mx-auto max-w-4xl">
+          {/* =====================================================
             HEADER
         ===================================================== */}
 
-        <div
-          className="
+          <div
+            className="
             mb-8
             flex
             flex-col
@@ -206,190 +197,152 @@ export default function Notifications() {
             sm:items-end
             sm:justify-between
           "
-        >
-
-          <div>
-
-            <div
-              className="
+          >
+            <div>
+              <div
+                className="
                 mb-3
                 flex
                 items-center
                 gap-2
                 text-xs
-                font-semibold
+                font-bold
                 uppercase
                 tracking-[0.25em]
-                text-emerald-400
+                text-[#1557D6]
               "
-            >
-              <Bell size={15} />
+              >
+                <Bell size={15} />
+                Notifications
+              </div>
 
-              Notifications
-
-            </div>
-
-
-            <h1
-              className="
+              <h1
+                className="
                 text-3xl
-                font-bold
+                font-extrabold
                 tracking-tight
-                text-white
+                text-[#17233D]
                 sm:text-4xl
               "
-            >
-              Your notifications
-            </h1>
+              >
+                Your notifications
+              </h1>
 
-
-            <p
-              className="
+              <p
+                className="
                 mt-2
                 text-sm
                 leading-6
-                text-gray-500
+                text-[#17233D]
               "
-            >
-              Stay updated with your FoodBridge activity.
-            </p>
+              >
+                Stay updated with your FoodBridge activity.
+              </p>
+            </div>
 
-          </div>
-
-
-          {/* =================================================
+            {/* =================================================
               MARK ALL
           ================================================= */}
 
-          {unreadCount > 0 && (
-
-            <button
-              type="button"
-              onClick={handleMarkAllAsRead}
-              className="
+            {unreadCount > 0 && (
+              <button
+                type="button"
+                onClick={handleMarkAllAsRead}
+                className="
                 inline-flex
                 items-center
                 justify-center
                 gap-2
                 rounded-xl
                 border
-                border-white/10
+                border-[#E1E6EE]
                 px-4
                 py-2.5
                 text-sm
-                font-medium
-                text-gray-300
+                font-semibold
+                text-[#17233D]
                 transition
-                hover:border-emerald-400/30
-                hover:bg-emerald-400/10
-                hover:text-emerald-400
+                hover:border-[#9FB8E8]
+                hover:bg-[#EAF1FF]
+                hover:text-[#1557D6]
               "
-            >
+              >
+                <CheckCheck size={16} />
+                Mark all as read
+              </button>
+            )}
+          </div>
 
-              <CheckCheck size={16} />
-
-              Mark all as read
-
-            </button>
-
-          )}
-
-        </div>
-
-
-        {/* =====================================================
+          {/* =====================================================
             SUMMARY
         ===================================================== */}
 
-        <div
-          className="
+          <div
+            className="
             mb-5
             rounded-2xl
             border
-            border-white/10
-            bg-white/[0.02]
+            border-[#E1E6EE]
+            bg-[#F8FAFD]
             px-5
             py-4
           "
-        >
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-wider text-[#17233D]">
+                  Total notifications
+                </p>
 
-          <div className="flex items-center justify-between">
+                <p className="mt-1 text-xl font-extrabold text-[#17233D]">
+                  {notifications.length}
+                </p>
+              </div>
 
-            <div>
+              <div>
+                <p className="text-right text-xs font-bold uppercase tracking-wider text-[#17233D]">
+                  Unread
+                </p>
 
-              <p className="text-xs uppercase tracking-wider text-gray-600">
-                Total notifications
-              </p>
-
-              <p className="mt-1 text-xl font-semibold text-white">
-                {notifications.length}
-              </p>
-
+                <p className="mt-1 text-right text-xl font-extrabold text-[#1557D6]">
+                  {unreadCount}
+                </p>
+              </div>
             </div>
-
-
-            <div>
-
-              <p className="text-right text-xs uppercase tracking-wider text-gray-600">
-                Unread
-              </p>
-
-              <p className="mt-1 text-right text-xl font-semibold text-emerald-400">
-                {unreadCount}
-              </p>
-
-            </div>
-
           </div>
 
-        </div>
-
-
-        {/* =====================================================
+          {/* =====================================================
             NOTIFICATION LIST
         ===================================================== */}
 
-        {notifications.length > 0 ? (
-
-          <div
-            className="
+          {notifications.length > 0 ? (
+            <div
+              className="
               overflow-hidden
               rounded-2xl
               border
-              border-white/10
-              bg-[#090909]
+              border-[#E1E6EE]
+              bg-white
+              shadow-[0_6px_24px_rgba(23,35,61,0.05)]
             "
-          >
-
-            {notifications.map(
-              (notification, index) => {
-
-                const unread =
-                  notification.status ===
-                  "UNREAD";
+            >
+              {notifications.map((notification, index) => {
+                const unread = notification.status === "UNREAD";
 
                 return (
-
                   <div
                     key={notification.id}
                     className={`
-                      border-b
-                      border-white/[0.07]
-                      p-5
+                      notification-card border-b
+                      border-[#E6EAF0]
+                      p-5 transition-all duration-200
                       transition
                       last:border-b-0
-                      hover:bg-white/[0.025]
-                      ${
-                        unread
-                          ? "bg-white/[0.02]"
-                          : ""
-                      }
+                      hover:bg-[#F8FAFD]
+                      ${unread ? "bg-[#F2F6FF]" : ""}
                     `}
                   >
-
                     <div className="flex gap-4">
-
-
                       {/* =================================================
                           ICON
                       ================================================= */}
@@ -403,23 +356,17 @@ export default function Notifications() {
                           items-center
                           justify-center
                           rounded-xl
-                          ${getNotificationColor(
-                            notification.type
-                          )}
+                          ${getNotificationColor(notification.type)}
                         `}
                       >
-                        {getNotificationIcon(
-                          notification.type
-                        )}
+                        {getNotificationIcon(notification.type)}
                       </div>
-
 
                       {/* =================================================
                           CONTENT
                       ================================================= */}
 
                       <div className="min-w-0 flex-1">
-
                         <div
                           className="
                             flex
@@ -430,22 +377,17 @@ export default function Notifications() {
                             sm:justify-between
                           "
                         >
-
                           <div>
-
                             <div className="flex items-center gap-2">
-
                               {unread && (
-
                                 <span
                                   className="
                                     h-2
                                     w-2
                                     rounded-full
-                                    bg-emerald-400
+                                    bg-[#1557D6]
                                   "
                                 />
-
                               )}
 
                               <h2
@@ -453,56 +395,64 @@ export default function Notifications() {
                                   text-sm
                                   ${
                                     unread
-                                      ? "font-semibold text-white"
-                                      : "font-medium text-gray-300"
+                                      ? "font-semibold text-[#17233D]"
+                                      : "font-semibold text-black"
                                   }
                                 `}
                               >
                                 {notification.title}
                               </h2>
-
                             </div>
-
 
                             <p
                               className="
-                                mt-2
-                                text-sm
-                                leading-6
-                                text-gray-500
-                              "
+        mt-2
+        text-sm
+        leading-6
+        text-[#17233D]
+    "
                             >
-                              {notification.message}
+                              {(() => {
+                                const message = notification.message || "";
+
+                                // Detect the foundation name after "by"
+                                const match =
+                                  message.match(/^(.*?\sby\s)(.+)$/i);
+
+                                if (!match) {
+                                  return message;
+                                }
+
+                                return (
+                                  <>
+                                    {match[1]}
+                                    <strong className="font-bold text-[#111827]">
+                                      {match[2]}
+                                    </strong>
+                                  </>
+                                );
+                              })()}
                             </p>
-
                           </div>
-
 
                           {/* =================================================
                               STATUS
                           ================================================= */}
 
                           <span
+                            title={unread ? "Unread" : "Read"}
+                            aria-label={unread ? "Unread" : "Read"}
                             className={`
+                              inline-flex
                               shrink-0
-                              text-[10px]
-                              font-medium
-                              uppercase
-                              tracking-wider
-                              ${
-                                unread
-                                  ? "text-emerald-400"
-                                  : "text-gray-600"
-                              }
+                              items-center
+                              justify-center
+                              ${unread ? "text-[#9AA4B3]" : "text-[#1557D6]"}
                             `}
                           >
-                            {unread
-                              ? "Unread"
-                              : "Read"}
+                            <CheckCheck size={18} strokeWidth={2.5} />
                           </span>
-
                         </div>
-
 
                         {/* =================================================
                             FOOTER
@@ -517,42 +467,32 @@ export default function Notifications() {
                             gap-4
                           "
                         >
-
                           <span
                             className="
                               text-[11px]
-                              text-gray-600
+                              text-[#17233D]
                             "
                           >
-                            {formatDate(
-                              notification.createdAt
-                            )}
+                            {formatDate(notification.createdAt)}
                           </span>
 
-
-                          {notification.referenceId && (
+                          {/* {notification.referenceId && (
 
                             <span
                               className="
                                 text-[11px]
-                                text-gray-600
+                                text-[#17233D]
                               "
                             >
                               Reference #{notification.referenceId}
                             </span>
 
-                          )}
-
+                          )} */}
 
                           {unread && (
-
                             <button
                               type="button"
-                              onClick={() =>
-                                handleMarkAsRead(
-                                  notification
-                                )
-                              }
+                              onClick={() => handleMarkAsRead(notification)}
                               className="
                                 ml-auto
                                 inline-flex
@@ -560,43 +500,29 @@ export default function Notifications() {
                                 gap-1.5
                                 text-xs
                                 font-medium
-                                text-gray-400
+                                text-[#17233D]
                                 transition
-                                hover:text-emerald-400
+                                hover:text-[#1557D6]
                               "
                             >
-
                               <Check size={14} />
-
                               Mark as read
-
                             </button>
-
                           )}
-
                         </div>
-
                       </div>
-
                     </div>
-
                   </div>
-
                 );
-
-              }
-            )}
-
-          </div>
-
-        ) : (
-
-          /* =====================================================
+              })}
+            </div>
+          ) : (
+            /* =====================================================
              EMPTY STATE
           ===================================================== */
 
-          <div
-            className="
+            <div
+              className="
               flex
               min-h-[400px]
               flex-col
@@ -604,83 +530,75 @@ export default function Notifications() {
               justify-center
               rounded-2xl
               border
-              border-white/10
-              bg-[#090909]
+              border-[#E1E6EE]
+              bg-white
               px-6
+              shadow-[0_6px_24px_rgba(23,35,61,0.05)]
               text-center
             "
-          >
-
-            <div
-              className="
+            >
+              <div
+                className="
                 flex
                 h-16
                 w-16
                 items-center
                 justify-center
                 rounded-2xl
-                bg-white/[0.04]
-                text-gray-600
+                bg-[#F2F6FF]
+                text-[#17233D]
               "
-            >
+              >
+                <Bell size={28} />
+              </div>
 
-              <Bell size={28} />
-
-            </div>
-
-
-            <h2
-              className="
+              <h2
+                className="
                 mt-5
                 text-lg
                 font-semibold
-                text-gray-300
+                text-[#17233D]
               "
-            >
-              No notifications yet
-            </h2>
+              >
+                No notifications yet
+              </h2>
 
-
-            <p
-              className="
+              <p
+                className="
                 mt-2
                 max-w-sm
                 text-sm
                 leading-6
-                text-gray-600
+                text-[#17233D]
               "
-            >
-              When there is activity on your FoodBridge
-              account, you'll see notifications here.
-            </p>
+              >
+                When there is activity on your FoodBridge account, you'll see
+                notifications here.
+              </p>
 
-
-            <Link
-              to="/home"
-              className="
+              <Link
+                to="/home"
+                className="
                 mt-6
                 rounded-xl
                 border
-                border-white/10
+                border-[#E1E6EE]
                 px-4
                 py-2.5
                 text-sm
-                font-medium
-                text-gray-400
+                font-semibold
+                text-[#17233D]
                 transition
-                hover:bg-white/[0.04]
-                hover:text-white
+                hover:bg-[#F2F6FF]
+                hover:text-[#17233D]
               "
-            >
-              Back to Home
-            </Link>
-
-          </div>
-
-        )}
-
-      </div>
-
-    </main>
+              >
+                Back to Home
+              </Link>
+            </div>
+          )}
+        </div>
+      </main>
+    </>
   );
 }

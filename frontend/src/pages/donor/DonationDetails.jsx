@@ -152,13 +152,13 @@ function DonationDetails() {
 
         return (
 
-            <div className="min-h-screen bg-[#050505] text-white">
+            <div className="min-h-screen bg-[#F8FAFD] text-[#17233D]">
 
                 <main className="mx-auto flex min-h-[70vh] max-w-3xl items-center justify-center px-5">
 
-                    <div className="w-full rounded-3xl border border-red-400/10 bg-white/[0.02] p-8 text-center">
+                    <div className="w-full rounded-3xl border border-red-200 bg-white p-8 text-center">
 
-                        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-red-400/10 text-red-400">
+                        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-red-50 text-red-700">
 
                             <AlertCircle size={25} />
 
@@ -170,7 +170,7 @@ function DonationDetails() {
                         </h1>
 
 
-                        <p className="mt-2 text-sm leading-6 text-gray-600">
+                        <p className="mt-2 text-sm leading-6 text-[#17233D]">
                             {error}
                         </p>
 
@@ -180,7 +180,7 @@ function DonationDetails() {
                             <button
                                 type="button"
                                 onClick={() => fetchDonation()}
-                                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm font-semibold text-gray-400 transition hover:bg-white/[0.04] hover:text-white"
+                                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#D9E1ED] px-5 py-3 text-sm font-bold text-[#17233D] transition hover:bg-[#F2F6FF] hover:text-[#17233D]"
                             >
 
                                 <RefreshCw size={16} />
@@ -192,7 +192,7 @@ function DonationDetails() {
 
                             <Link
                                 to="/donor/donations"
-                                className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-400 px-5 py-3 text-sm font-bold text-black transition hover:bg-emerald-300"
+                                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#1557D6] px-5 py-3 text-sm font-bold text-black transition hover:bg-[#0F46B5]"
                             >
 
                                 <ArrowLeft size={16} />
@@ -231,7 +231,7 @@ function DonationDetails() {
 
     return (
 
-        <div className="min-h-screen bg-[#050505] text-white">
+        <div className="min-h-screen bg-[#F8FAFD] text-[#17233D]">
 
             <main className="mx-auto max-w-6xl px-5 py-10 sm:px-6 lg:px-8">
 
@@ -245,7 +245,7 @@ function DonationDetails() {
                     onClick={() =>
                         navigate("/donor/donations")
                     }
-                    className="inline-flex items-center gap-2 text-sm text-gray-500 transition hover:text-white"
+                    className="inline-flex items-center gap-2 text-sm text-[#17233D] transition hover:text-[#17233D]"
                 >
 
                     <ArrowLeft size={16} />
@@ -263,7 +263,7 @@ function DonationDetails() {
 
                     <div className="flex items-start gap-4">
 
-                        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-emerald-400/10 text-emerald-400">
+                        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#F2F6FF] text-[#1557D6]">
 
                             <UtensilsCrossed size={24} />
 
@@ -272,17 +272,17 @@ function DonationDetails() {
 
                         <div>
 
-                            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-400">
+                            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#1557D6]">
                                 Donation #{donation.id}
                             </p>
 
 
-                            <h1 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
+                            <h1 className="mt-2 text-2xl font-extrabold tracking-tight sm:text-3xl">
                                 {donation.foodName}
                             </h1>
 
 
-                            <p className="mt-2 text-sm text-gray-600">
+                            <p className="mt-2 text-sm text-[#17233D]">
                                 {donation.foodType}
                             </p>
 
@@ -308,11 +308,11 @@ function DonationDetails() {
                     STATUS TIMELINE
                 ================================================= */}
 
-                <section className="mt-8 rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6 sm:p-8">
+                <section className="mt-8 rounded-3xl border border-[#E6EAF0] bg-white p-6 shadow-[0_4px_18px_rgba(23,35,61,0.04)] sm:p-8">
 
                     <div>
 
-                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-gray-600">
+                        <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#17233D]">
                             Donation progress
                         </p>
 
@@ -342,7 +342,7 @@ function DonationDetails() {
                         FOOD INFORMATION
                     ================================================= */}
 
-                    <section className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6 lg:col-span-2">
+                    <section className="rounded-3xl border border-[#E6EAF0] bg-white p-6 lg:col-span-2">
 
                         <SectionTitle
                             icon={Package}
@@ -393,7 +393,7 @@ function DonationDetails() {
                         FOUNDATION
                     ================================================= */}
 
-                    <section className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6">
+                    <section className="rounded-3xl border border-[#E6EAF0] bg-white p-6">
 
                         <SectionTitle
                             icon={CheckCircle2}
@@ -405,19 +405,19 @@ function DonationDetails() {
 
                             <div className="mt-6">
 
-                                <p className="text-xs text-gray-700">
+                                <p className="text-xs text-[#17233D]">
                                     Accepted by
                                 </p>
 
 
-                                <p className="mt-2 text-sm font-semibold text-white">
+                                <p className="mt-2 text-sm font-bold text-[#17233D]">
                                     {donation.acceptedFoundationName}
                                 </p>
 
 
                                 {donation.acceptedFoundationId && (
 
-                                    <p className="mt-2 text-xs text-gray-600">
+                                    <p className="mt-2 text-xs text-[#17233D]">
 
                                         Foundation ID:{" "}
 
@@ -433,20 +433,20 @@ function DonationDetails() {
 
                         ) : (
 
-                            <div className="mt-6 rounded-2xl border border-white/[0.06] bg-black/20 p-4">
+                            <div className="mt-6 rounded-2xl border border-[#EEF1F5] bg-white p-4">
 
                                 <Clock3
                                     size={18}
-                                    className="text-gray-600"
+                                    className="text-[#17233D]"
                                 />
 
 
-                                <p className="mt-3 text-sm font-medium text-gray-400">
+                                <p className="mt-3 text-sm font-semibold text-[#17233D]">
                                     Waiting for a foundation
                                 </p>
 
 
-                                <p className="mt-1 text-xs leading-6 text-gray-700">
+                                <p className="mt-1 text-xs leading-6 text-[#17233D]">
                                     Nearby verified foundations
                                     can discover your available
                                     donation.
@@ -463,7 +463,7 @@ function DonationDetails() {
                         TIMING
                     ================================================= */}
 
-                    <section className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6">
+                    <section className="rounded-3xl border border-[#E6EAF0] bg-white p-6">
 
                         <SectionTitle
                             icon={CalendarClock}
@@ -497,7 +497,7 @@ function DonationDetails() {
                         PICKUP LOCATION
                     ================================================= */}
 
-                    <section className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6 lg:col-span-2">
+                    <section className="rounded-3xl border border-[#E6EAF0] bg-white p-6 lg:col-span-2">
 
                         <SectionTitle
                             icon={MapPin}
@@ -505,9 +505,9 @@ function DonationDetails() {
                         />
 
 
-                        <div className="mt-6 rounded-2xl border border-white/[0.06] bg-black/20 p-5">
+                        <div className="mt-6 rounded-2xl border border-[#EEF1F5] bg-white p-5">
 
-                            <p className="text-sm leading-7 text-gray-400">
+                            <p className="text-sm leading-7 text-[#17233D]">
 
                                 {donation.pickupAddress ||
                                     "Pickup address not available."}
@@ -550,7 +550,7 @@ function DonationDetails() {
                         DONATION INFORMATION
                     ================================================= */}
 
-                    <section className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6 lg:col-span-3">
+                    <section className="rounded-3xl border border-[#E6EAF0] bg-white p-6 lg:col-span-3">
 
                         <SectionTitle
                             icon={Clock3}
@@ -602,7 +602,7 @@ function DonationDetails() {
 
                     <Link
                         to="/donor/donations"
-                        className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/10 px-5 text-sm font-semibold text-gray-400 transition hover:bg-white/[0.04] hover:text-white"
+                        className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-[#D9E1ED] px-5 text-sm font-bold text-[#17233D] transition hover:bg-[#F2F6FF] hover:text-[#17233D]"
                     >
 
                         <ArrowLeft size={16} />
@@ -618,7 +618,7 @@ function DonationDetails() {
                         onClick={() =>
                             fetchDonation(true)
                         }
-                        className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/10 px-5 text-sm font-semibold text-gray-400 transition hover:bg-white/[0.04] hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+                        className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-[#D9E1ED] px-5 text-sm font-bold text-[#17233D] transition hover:bg-[#F2F6FF] hover:text-[#17233D] disabled:cursor-not-allowed disabled:opacity-50"
                     >
 
                         <RefreshCw
@@ -653,7 +653,6 @@ function DonationDetails() {
 function DonationTimeline({ status }) {
 
     const steps = [
-
         {
             key: "AVAILABLE",
             label: "Available",
@@ -661,7 +660,6 @@ function DonationTimeline({ status }) {
                 "Your donation is available for nearby foundations.",
             icon: Package
         },
-
         {
             key: "ACCEPTED",
             label: "Accepted",
@@ -669,7 +667,6 @@ function DonationTimeline({ status }) {
                 "A foundation has accepted your donation.",
             icon: CheckCircle2
         },
-
         {
             key: "PICKED_UP",
             label: "Picked up",
@@ -677,7 +674,6 @@ function DonationTimeline({ status }) {
                 "The foundation has collected the food.",
             icon: Truck
         },
-
         {
             key: "DELIVERED",
             label: "Delivered",
@@ -685,44 +681,31 @@ function DonationTimeline({ status }) {
                 "The food has been delivered successfully.",
             icon: CheckCircle2
         }
-
     ];
-
-
-    // =========================================================
-    // EXPIRED
-    // =========================================================
 
     if (status === "EXPIRED") {
 
         return (
 
-            <div className="mt-8">
+            <div className="mt-7">
 
-                <div className="rounded-2xl border border-red-400/10 bg-red-400/[0.04] p-5">
+                <div className="flex items-center gap-4 rounded-2xl border border-red-200 bg-red-50 p-5">
 
-                    <div className="flex items-center gap-3">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white text-red-600 shadow-sm ring-1 ring-red-100">
 
-                        <div className="flex h-10 w-10 items-center justify-center rounded-full border border-red-400/30 bg-red-400/10 text-red-400">
+                        <Clock3 size={18} />
 
-                            <Clock3 size={17} />
+                    </div>
 
-                        </div>
+                    <div>
 
+                        <p className="text-sm font-bold text-[#17233D]">
+                            Donation expired
+                        </p>
 
-                        <div>
-
-                            <p className="text-sm font-semibold text-red-400">
-                                Donation expired
-                            </p>
-
-
-                            <p className="mt-1 text-xs leading-6 text-gray-600">
-                                This donation was not accepted before
-                                its expiry time.
-                            </p>
-
-                        </div>
+                        <p className="mt-1 text-xs leading-5 text-[#53627A]">
+                            This donation was not accepted before its expiry time.
+                        </p>
 
                     </div>
 
@@ -731,49 +714,105 @@ function DonationTimeline({ status }) {
             </div>
 
         );
-
     }
 
-
     const currentIndex =
-        steps.findIndex(
-            step =>
-                step.key === status
+        Math.max(
+            steps.findIndex(
+                step => step.key === status
+            ),
+            0
         );
-
 
     return (
 
         <div className="mt-8">
 
+            <style>
+                {`
+                    @keyframes foodbridgeStepIn {
+                        0% {
+                            opacity: 0;
+                            transform: translateY(8px) scale(.96);
+                        }
+                        100% {
+                            opacity: 1;
+                            transform: translateY(0) scale(1);
+                        }
+                    }
 
-            {/* =================================================
-                DESKTOP
-            ================================================= */}
+                    @keyframes foodbridgePulse {
+                        0%, 100% {
+                            box-shadow:
+                                0 0 0 0 rgba(21, 87, 214, 0.18),
+                                0 5px 16px rgba(21, 87, 214, 0.10);
+                        }
+                        50% {
+                            box-shadow:
+                                0 0 0 8px rgba(21, 87, 214, 0.05),
+                                0 8px 22px rgba(21, 87, 214, 0.16);
+                        }
+                    }
+
+                    @keyframes foodbridgeProgress {
+                        from {
+                            transform: scaleX(0);
+                        }
+                        to {
+                            transform: scaleX(1);
+                        }
+                    }
+
+                    .foodbridge-step-in {
+                        animation: foodbridgeStepIn .45s ease-out both;
+                    }
+
+                    .foodbridge-active {
+                        animation: foodbridgePulse 2s ease-in-out infinite;
+                    }
+
+                    .foodbridge-progress {
+                        transform-origin: left center;
+                        animation: foodbridgeProgress .8s cubic-bezier(.22,1,.36,1) both;
+                    }
+
+                    @media (prefers-reduced-motion: reduce) {
+                        .foodbridge-step-in,
+                        .foodbridge-active,
+                        .foodbridge-progress {
+                            animation: none !important;
+                        }
+                    }
+                `}
+            </style>
+
+            {/* =====================================================
+                DESKTOP TIMELINE
+            ===================================================== */}
 
             <div className="hidden md:block">
 
-                <div className="relative">
+                <div className="relative px-3 pt-1">
 
-                    {/* Background line */}
+                    {/* Track */}
 
-                    <div className="absolute left-[7%] right-[7%] top-5 h-px bg-white/[0.08]" />
+                    <div className="absolute left-[10%] right-[10%] top-[25px] h-[3px] rounded-full bg-[#E7EDF6]" />
 
+                    {/* Completed progress */}
 
-                    {/* Progress line */}
+                    {currentIndex > 0 && (
 
-                    <div
-                        className="absolute left-[7%] top-5 h-px bg-emerald-400 transition-all duration-500"
-                        style={{
-                            width:
-                                currentIndex <= 0
-                                    ? "0%"
-                                    : `${(currentIndex / (steps.length - 1)) * 86}%`
-                        }}
-                    />
+                        <div
+                            className="foodbridge-progress absolute left-[10%] top-[25px] h-[3px] rounded-full bg-[#1557D6]"
+                            style={{
+                                width:
+                                    `${(currentIndex / (steps.length - 1)) * 80}%`
+                            }}
+                        />
 
+                    )}
 
-                    <div className="relative grid grid-cols-4">
+                    <div className="relative grid grid-cols-4 gap-5">
 
                         {steps.map(
                             (
@@ -784,71 +823,97 @@ function DonationTimeline({ status }) {
                                 const Icon =
                                     step.icon;
 
-
                                 const completed =
                                     currentIndex >= index;
-
 
                                 const current =
                                     currentIndex === index;
 
-
                                 return (
 
                                     <div
-                                        key={
-                                            step.key
-                                        }
-                                        className="flex flex-col items-center text-center"
+                                        key={step.key}
+                                        className="foodbridge-step-in flex flex-col items-center text-center"
+                                        style={{
+                                            animationDelay:
+                                                `${index * 90}ms`
+                                        }}
                                     >
+
+                                        {/* Step icon */}
 
                                         <div
                                             className={`
-                                                flex h-10 w-10 items-center justify-center
-                                                rounded-full border transition
+                                                relative z-10 flex h-12 w-12 items-center
+                                                justify-center rounded-full border-4 border-white
+                                                transition-all duration-300
                                                 ${
                                                     completed
-                                                        ? "border-emerald-400 bg-emerald-400 text-black"
-                                                        : "border-white/10 bg-[#0b0b0b] text-gray-700"
+                                                        ? "bg-[#1557D6] text-white shadow-[0_5px_16px_rgba(21,87,214,0.18)]"
+                                                        : "bg-white text-[#66748A] ring-1 ring-[#D9E1ED]"
+                                                }
+                                                ${
+                                                    current
+                                                        ? "foodbridge-active"
+                                                        : ""
                                                 }
                                             `}
                                         >
 
-                                            <Icon
-                                                size={17}
-                                            />
+                                            <Icon size={18} strokeWidth={2.2} />
+
+                                            {current && (
+
+                                                <span className="absolute -right-0.5 -top-0.5 h-3 w-3 rounded-full border-2 border-white bg-[#1557D6]" />
+
+                                            )}
 
                                         </div>
 
 
-                                        <p
-                                            className={`
-                                                mt-4 text-xs font-semibold
-                                                ${
-                                                    completed
-                                                        ? "text-white"
-                                                        : "text-gray-700"
-                                                }
-                                            `}
-                                        >
-                                            {step.label}
-                                        </p>
+                                        {/* Step content */}
 
+                                        <div className="mt-4 max-w-[190px]">
 
-                                        <p
-                                            className={`
-                                                mt-1 max-w-[150px] text-[10px] leading-5
-                                                ${
-                                                    current
-                                                        ? "text-gray-500"
-                                                        : "text-gray-800"
-                                                }
-                                            `}
-                                        >
-                                            {
-                                                step.description
-                                            }
-                                        </p>
+                                            <div className="flex items-center justify-center gap-2">
+
+                                                <p
+                                                    className={`
+                                                        text-sm font-extrabold
+                                                        ${
+                                                            completed
+                                                                ? "text-[#17233D]"
+                                                                : "text-[#66748A]"
+                                                        }
+                                                    `}
+                                                >
+                                                    {step.label}
+                                                </p>
+
+                                                {current && (
+
+                                                    <span className="rounded-full bg-[#EAF1FF] px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-[#1557D6]">
+                                                        Current
+                                                    </span>
+
+                                                )}
+
+                                            </div>
+
+                                            <p
+                                                className={`
+                                                    mt-2 text-xs leading-5
+                                                    ${
+                                                        completed
+                                                            ? "text-[#53627A]"
+                                                            : "text-[#8A96A8]"
+                                                    }
+                                                `}
+                                            >
+                                                {step.description}
+                                            </p>
+
+                                        </div>
 
                                     </div>
 
@@ -864,129 +929,144 @@ function DonationTimeline({ status }) {
             </div>
 
 
-            {/* =================================================
-                MOBILE
-            ================================================= */}
+            {/* =====================================================
+                MOBILE TIMELINE
+            ===================================================== */}
 
-            <div className="space-y-5 md:hidden">
+            <div className="md:hidden">
 
-                {steps.map(
-                    (
-                        step,
-                        index
-                    ) => {
+                <div className="relative space-y-1">
 
-                        const Icon =
-                            step.icon;
+                    {steps.map(
+                        (
+                            step,
+                            index
+                        ) => {
 
+                            const Icon =
+                                step.icon;
 
-                        const completed =
-                            currentIndex >= index;
+                            const completed =
+                                currentIndex >= index;
 
+                            const current =
+                                currentIndex === index;
 
-                        const current =
-                            currentIndex === index;
+                            const isLast =
+                                index === steps.length - 1;
 
+                            return (
 
-                        return (
+                                <div
+                                    key={step.key}
+                                    className="foodbridge-step-in relative flex gap-4"
+                                    style={{
+                                        animationDelay:
+                                            `${index * 90}ms`
+                                    }}
+                                >
 
-                            <div
-                                key={
-                                    step.key
-                                }
-                                className="flex gap-4"
-                            >
+                                    {/* Vertical connector */}
 
-                                <div className="flex flex-col items-center">
-
-                                    <div
-                                        className={`
-                                            flex h-9 w-9 shrink-0 items-center justify-center
-                                            rounded-full border
-                                            ${
-                                                completed
-                                                    ? "border-emerald-400 bg-emerald-400 text-black"
-                                                    : "border-white/10 bg-white/[0.02] text-gray-700"
-                                            }
-                                        `}
-                                    >
-
-                                        <Icon
-                                            size={15}
-                                        />
-
-                                    </div>
-
-
-                                    {index <
-                                        steps.length - 1 && (
+                                    {!isLast && (
 
                                         <div
                                             className={`
-                                                mt-2 h-full min-h-8 w-px
+                                                absolute left-[22px] top-[48px] h-[calc(100%-24px)]
+                                                w-[3px] rounded-full
                                                 ${
-                                                    currentIndex >
-                                                    index
-                                                        ? "bg-emerald-400"
-                                                        : "bg-white/[0.07]"
+                                                    currentIndex > index
+                                                        ? "bg-[#1557D6]"
+                                                        : "bg-[#E7EDF6]"
                                                 }
                                             `}
                                         />
 
                                     )}
 
-                                </div>
 
+                                    {/* Icon */}
 
-                                <div className="pb-3">
-
-                                    <p
+                                    <div
                                         className={`
-                                            text-sm font-semibold
+                                            relative z-10 flex h-11 w-11 shrink-0 items-center
+                                            justify-center rounded-full border-4 border-white
                                             ${
                                                 completed
-                                                    ? "text-white"
-                                                    : "text-gray-700"
+                                                    ? "bg-[#1557D6] text-white shadow-[0_5px_14px_rgba(21,87,214,0.16)]"
+                                                    : "bg-white text-[#66748A] ring-1 ring-[#D9E1ED]"
                                             }
-                                        `}
-                                    >
-                                        {
-                                            step.label
-                                        }
-                                    </p>
-
-
-                                    <p
-                                        className={`
-                                            mt-1 text-xs leading-6
                                             ${
                                                 current
-                                                    ? "text-gray-500"
-                                                    : "text-gray-800"
+                                                    ? "foodbridge-active"
+                                                    : ""
                                             }
                                         `}
                                     >
-                                        {
-                                            step.description
-                                        }
-                                    </p>
+
+                                        <Icon size={16} />
+
+                                    </div>
+
+
+                                    {/* Content */}
+
+                                    <div className="min-w-0 flex-1 pb-7 pt-1">
+
+                                        <div className="flex flex-wrap items-center gap-2">
+
+                                            <p
+                                                className={`
+                                                    text-sm font-extrabold
+                                                    ${
+                                                        completed
+                                                            ? "text-[#17233D]"
+                                                            : "text-[#66748A]"
+                                                    }
+                                                `}
+                                            >
+                                                {step.label}
+                                            </p>
+
+                                            {current && (
+
+                                                <span className="rounded-full bg-[#EAF1FF] px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-[#1557D6]">
+                                                    Current
+                                                </span>
+
+                                            )}
+
+                                        </div>
+
+                                        <p
+                                            className={`
+                                                mt-1 text-xs leading-5
+                                                ${
+                                                    completed
+                                                        ? "text-[#53627A]"
+                                                        : "text-[#8A96A8]"
+                                                }
+                                            `}
+                                        >
+                                            {step.description}
+                                        </p>
+
+                                    </div>
 
                                 </div>
 
-                            </div>
+                            );
 
-                        );
+                        }
+                    )}
 
-                    }
-                )}
+                </div>
 
             </div>
 
         </div>
-
     );
 }
-
 
 /* =============================================================
    SECTION TITLE
@@ -1001,14 +1081,14 @@ function SectionTitle({
 
         <div className="flex items-center gap-3">
 
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/[0.04] text-gray-500">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#F2F6FF] text-[#17233D]">
 
                 <Icon size={17} />
 
             </div>
 
 
-            <h2 className="text-sm font-semibold text-white">
+            <h2 className="text-sm font-bold text-[#17233D]">
                 {title}
             </h2>
 
@@ -1030,14 +1110,14 @@ function DetailCard({
 
     return (
 
-        <div className="rounded-2xl border border-white/[0.06] bg-black/20 p-4">
+        <div className="rounded-2xl border border-[#EEF1F5] bg-white p-4">
 
-            <p className="text-[10px] uppercase tracking-wider text-gray-700">
+            <p className="text-[10px] font-bold uppercase tracking-wider text-[#17233D]">
                 {label}
             </p>
 
 
-            <p className="mt-2 break-words text-sm font-medium text-gray-400">
+            <p className="mt-2 break-words text-sm font-bold text-[#17233D]">
                 {value || "-"}
             </p>
 
@@ -1059,14 +1139,14 @@ function Coordinate({
 
     return (
 
-        <div className="rounded-xl border border-white/[0.06] px-3 py-2">
+        <div className="rounded-xl border border-[#EEF1F5] px-3 py-2">
 
-            <span className="text-[9px] uppercase tracking-wider text-gray-700">
+            <span className="text-[9px] font-bold uppercase tracking-wider text-[#17233D]">
                 {label}
             </span>
 
 
-            <p className="mt-1 text-xs text-gray-500">
+            <p className="mt-1 text-xs text-[#17233D]">
                 {value}
             </p>
 
@@ -1092,7 +1172,7 @@ function getStatusConfig(status) {
                 label: "Available",
 
                 className:
-                    "border-emerald-400/20 bg-emerald-400/10 text-emerald-400"
+                    "border-[#C9D8F2] bg-[#F2F6FF] text-[#1557D6]"
 
             };
 
@@ -1104,7 +1184,7 @@ function getStatusConfig(status) {
                 label: "Accepted",
 
                 className:
-                    "border-blue-400/20 bg-blue-400/10 text-blue-400"
+                    "border-blue-200 bg-blue-50 text-blue-700"
 
             };
 
@@ -1116,7 +1196,7 @@ function getStatusConfig(status) {
                 label: "Picked up",
 
                 className:
-                    "border-amber-400/20 bg-amber-400/10 text-amber-400"
+                    "border-amber-200 bg-amber-50 text-amber-700"
 
             };
 
@@ -1128,7 +1208,7 @@ function getStatusConfig(status) {
                 label: "Delivered",
 
                 className:
-                    "border-purple-400/20 bg-purple-400/10 text-purple-400"
+                    "border-purple-200 bg-purple-50 text-purple-700"
 
             };
 
@@ -1140,7 +1220,7 @@ function getStatusConfig(status) {
                 label: "Expired",
 
                 className:
-                    "border-red-400/20 bg-red-400/10 text-red-400"
+                    "border-red-200 bg-red-50 text-red-700"
 
             };
 
@@ -1153,7 +1233,7 @@ function getStatusConfig(status) {
                     status || "Unknown",
 
                 className:
-                    "border-white/10 bg-white/5 text-gray-400"
+                    "border-[#D9E1ED] bg-white/5 text-[#17233D]"
 
             };
 
@@ -1211,38 +1291,38 @@ function LoadingState() {
 
     return (
 
-        <div className="min-h-screen bg-[#050505] text-white">
+        <div className="min-h-screen bg-[#F8FAFD] text-[#17233D]">
 
             <main className="mx-auto max-w-6xl px-5 py-10 sm:px-6 lg:px-8">
 
                 <div className="animate-pulse">
 
-                    <div className="h-4 w-28 rounded bg-white/[0.06]" />
+                    <div className="h-4 w-28 rounded bg-[#F2F6FF]" />
 
 
                     <div className="mt-8 flex items-center gap-4">
 
-                        <div className="h-14 w-14 rounded-2xl bg-white/[0.06]" />
+                        <div className="h-14 w-14 rounded-2xl bg-[#F2F6FF]" />
 
                         <div>
 
-                            <div className="h-3 w-24 rounded bg-white/[0.05]" />
+                            <div className="h-3 w-24 rounded bg-[#F2F6FF]" />
 
-                            <div className="mt-3 h-7 w-56 rounded bg-white/[0.07]" />
+                            <div className="mt-3 h-7 w-56 rounded bg-[#EEF3FB]" />
 
                         </div>
 
                     </div>
 
 
-                    <div className="mt-8 h-56 rounded-3xl border border-white/[0.05] bg-white/[0.02]" />
+                    <div className="mt-8 h-56 rounded-3xl border border-[#EEF1F5] bg-white" />
 
 
                     <div className="mt-6 grid gap-6 lg:grid-cols-3">
 
-                        <div className="h-48 rounded-3xl bg-white/[0.02] lg:col-span-2" />
+                        <div className="h-48 rounded-3xl bg-white lg:col-span-2" />
 
-                        <div className="h-48 rounded-3xl bg-white/[0.02]" />
+                        <div className="h-48 rounded-3xl bg-white" />
 
                     </div>
 

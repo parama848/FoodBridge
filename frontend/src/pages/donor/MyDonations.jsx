@@ -217,7 +217,7 @@ function MyDonations() {
 
     return (
 
-        <div className="min-h-screen bg-[#050505] text-white">
+        <div className="min-h-screen bg-[#F8FAFD] text-[#17233D]">
 
             <main
                 className="
@@ -257,7 +257,7 @@ function MyDonations() {
                                 font-semibold
                                 uppercase
                                 tracking-[0.18em]
-                                text-emerald-400
+                                text-[#1557D6]
                             "
                         >
                             Donor
@@ -285,7 +285,7 @@ function MyDonations() {
                                 max-w-2xl
                                 text-xs
                                 leading-6
-                                text-gray-500
+                                text-[#17233D]
 
                                 sm:mt-3
                                 sm:text-base
@@ -310,13 +310,13 @@ function MyDonations() {
                             justify-center
                             gap-2
                             rounded-xl
-                            bg-emerald-400
+                            bg-[#1557D6]
                             px-5
                             text-sm
                             font-bold
-                            text-black
+                            text-white
                             transition
-                            hover:bg-emerald-300
+                            hover:bg-[#0F46B5]
 
                             sm:min-h-11
                             sm:w-auto
@@ -445,7 +445,7 @@ function MyDonations() {
                                 left-4
                                 top-1/2
                                 -translate-y-1/2
-                                text-gray-600
+                                text-[#17233D]
                             "
                         />
 
@@ -463,18 +463,18 @@ function MyDonations() {
                                 w-full
                                 rounded-xl
                                 border
-                                border-white/10
-                                bg-white/[0.03]
+                                border-[#E1E6EE]
+                                bg-[#F8FAFD]
                                 py-3
                                 pl-11
                                 pr-4
                                 text-sm
-                                text-white
+                                text-[#17233D]
                                 outline-none
                                 transition
-                                placeholder:text-gray-700
-                                focus:border-emerald-400/40
-                                focus:bg-white/[0.04]
+                                placeholder:text-[#17233D]
+                                focus:border-[#1557D6]/50
+                                focus:bg-[#F2F6FF]
 
                                 sm:py-3.5
                             "
@@ -494,14 +494,14 @@ function MyDonations() {
                             w-full
                             rounded-xl
                             border
-                            border-white/10
-                            bg-white/[0.03]
+                            border-[#E1E6EE]
+                            bg-[#F8FAFD]
                             px-4
                             py-3
                             text-sm
-                            text-gray-300
+                            text-[#53627A]
                             outline-none
-                            focus:border-emerald-400/40
+                            focus:border-[#1557D6]/50
 
                             sm:py-3.5
 
@@ -558,15 +558,15 @@ function MyDonations() {
                             gap-2
                             rounded-xl
                             border
-                            border-white/10
+                            border-[#E1E6EE]
                             px-5
                             py-3
                             text-sm
                             font-semibold
-                            text-gray-400
+                            text-[#17233D]
                             transition
-                            hover:bg-white/[0.04]
-                            hover:text-white
+                            hover:bg-[#F2F6FF]
+                            hover:text-[#17233D]
                             disabled:opacity-50
 
                             sm:py-3.5
@@ -603,8 +603,8 @@ function MyDonations() {
                             gap-3
                             rounded-2xl
                             border
-                            border-red-400/20
-                            bg-red-400/[0.04]
+                            border-red-200
+                            bg-red-50
                             p-4
 
                             sm:mt-8
@@ -617,7 +617,7 @@ function MyDonations() {
                             className="
                                 mt-0.5
                                 shrink-0
-                                text-red-400
+                                text-red-600
                             "
                         />
 
@@ -628,7 +628,7 @@ function MyDonations() {
                                 className="
                                     text-sm
                                     font-semibold
-                                    text-red-300
+                                    text-red-700
                                 "
                             >
                                 Unable to load donations
@@ -641,7 +641,7 @@ function MyDonations() {
                                     break-words
                                     text-xs
                                     leading-6
-                                    text-red-400/70
+                                    text-red-600/70
                                 "
                             >
                                 {error}
@@ -657,8 +657,8 @@ function MyDonations() {
                                 shrink-0
                                 text-xs
                                 font-semibold
-                                text-red-300
-                                hover:text-white
+                                text-red-700
+                                hover:text-[#17233D]
                             "
                         >
                             Retry
@@ -813,8 +813,8 @@ function StatCard({
 
                 ${
                     active
-                        ? "border-emerald-400/20 bg-emerald-400/[0.05]"
-                        : "border-white/[0.07] bg-white/[0.02] hover:bg-white/[0.04]"
+                        ? "border-[#C9D8F2] bg-[#1557D6]/[0.05]"
+                        : "border-[#E6EAF0] bg-white hover:bg-[#F2F6FF]"
                 }
             `}
         >
@@ -822,7 +822,7 @@ function StatCard({
             <p
                 className="
                     text-[10px]
-                    text-gray-600
+                    text-[#17233D]
 
                     sm:text-xs
                 "
@@ -842,8 +842,8 @@ function StatCard({
 
                     ${
                         active
-                            ? "text-emerald-400"
-                            : "text-white"
+                            ? "text-[#1557D6]"
+                            : "text-[#17233D]"
                     }
                 `}
             >
@@ -891,13 +891,14 @@ function DonationCard({
                     overflow-hidden
                     rounded-2xl
                     border
-                    border-white/[0.08]
-                    bg-white/[0.02]
+                    border-[#E6EAF0]
+                    bg-white
                     p-4
                     transition
                     duration-200
-                    hover:border-white/[0.14]
-                    hover:bg-white/[0.035]
+                    hover:border-[#D5DEEB]
+                    hover:bg-[#F8FAFD]
+                    shadow-[0_3px_14px_rgba(23,35,61,0.035)]
 
                     sm:rounded-3xl
                     sm:p-6
@@ -945,8 +946,8 @@ function DonationCard({
                                 items-center
                                 justify-center
                                 rounded-xl
-                                bg-emerald-400/10
-                                text-emerald-400
+                                bg-[#1557D6]/10
+                                text-[#1557D6]
 
                                 sm:h-11
                                 sm:w-11
@@ -974,7 +975,7 @@ function DonationCard({
                                     truncate
                                     text-sm
                                     font-semibold
-                                    text-white
+                                    text-[#17233D]
 
                                     sm:text-base
                                 "
@@ -989,7 +990,7 @@ function DonationCard({
                                     mt-0.5
                                     truncate
                                     text-[11px]
-                                    text-gray-600
+                                    text-[#17233D]
 
                                     sm:mt-1
                                     sm:text-xs
@@ -1094,8 +1095,8 @@ function DonationCard({
                             overflow-hidden
                             rounded-xl
                             border
-                            border-white/[0.06]
-                            bg-black/20
+                            border-[#EEF1F5]
+                            bg-[#F8FAFD]
                             px-3
                             py-2.5
 
@@ -1111,7 +1112,7 @@ function DonationCard({
                                 text-[9px]
                                 uppercase
                                 tracking-wider
-                                text-gray-700
+                                text-[#17233D]
 
                                 sm:text-[10px]
                             "
@@ -1126,7 +1127,7 @@ function DonationCard({
                                 truncate
                                 text-[11px]
                                 font-medium
-                                text-gray-400
+                                text-[#17233D]
 
                                 sm:mt-1
                                 sm:text-xs
@@ -1154,7 +1155,7 @@ function DonationCard({
                             mt-3
                             truncate
                             text-[10px]
-                            text-gray-600
+                            text-[#17233D]
 
                             sm:mt-4
                             sm:text-xs
@@ -1178,7 +1179,7 @@ function DonationCard({
                         justify-between
                         gap-2
                         border-t
-                        border-white/[0.06]
+                        border-[#EEF1F5]
                         pt-3
 
                         sm:mt-5
@@ -1190,7 +1191,7 @@ function DonationCard({
                         className="
                             truncate
                             text-[10px]
-                            text-gray-700
+                            text-[#17233D]
 
                             sm:text-xs
                         "
@@ -1207,9 +1208,9 @@ function DonationCard({
                             gap-1
                             text-[10px]
                             font-semibold
-                            text-gray-500
+                            text-[#17233D]
                             transition
-                            group-hover:text-emerald-400
+                            group-hover:text-[#1557D6]
 
                             sm:text-xs
                         "
@@ -1256,8 +1257,8 @@ function InfoItem({
                 overflow-hidden
                 rounded-xl
                 border
-                border-white/[0.05]
-                bg-black/20
+                border-[#EEF1F5]
+                bg-[#F8FAFD]
                 px-2.5
                 py-2.5
 
@@ -1270,7 +1271,7 @@ function InfoItem({
                     text-[9px]
                     uppercase
                     tracking-wider
-                    text-gray-700
+                    text-[#17233D]
 
                     sm:text-[10px]
                 "
@@ -1285,7 +1286,7 @@ function InfoItem({
                     truncate
                     text-[11px]
                     font-medium
-                    text-gray-400
+                    text-[#17233D]
 
                     sm:text-xs
                 "
@@ -1311,7 +1312,7 @@ function getStatusConfig(status) {
             return {
                 label: "Available",
                 className:
-                    "border-emerald-400/20 bg-emerald-400/10 text-emerald-400"
+                    "border-[#C9D8F2] bg-[#1557D6]/10 text-[#1557D6]"
             };
 
 
@@ -1320,7 +1321,7 @@ function getStatusConfig(status) {
             return {
                 label: "Accepted",
                 className:
-                    "border-blue-400/20 bg-blue-400/10 text-blue-400"
+                    "border-blue-200 bg-blue-50 text-blue-700"
             };
 
 
@@ -1329,7 +1330,7 @@ function getStatusConfig(status) {
             return {
                 label: "Picked up",
                 className:
-                    "border-amber-400/20 bg-amber-400/10 text-amber-400"
+                    "border-amber-200 bg-amber-50 text-amber-700"
             };
 
 
@@ -1338,7 +1339,7 @@ function getStatusConfig(status) {
             return {
                 label: "Delivered",
                 className:
-                    "border-purple-400/20 bg-purple-400/10 text-purple-400"
+                    "border-purple-200 bg-purple-50 text-purple-700"
             };
 
 
@@ -1347,7 +1348,7 @@ function getStatusConfig(status) {
             return {
                 label: status || "Unknown",
                 className:
-                    "border-white/10 bg-white/5 text-gray-400"
+                    "border-[#E1E6EE] bg-white/5 text-[#17233D]"
             };
 
     }
@@ -1442,8 +1443,8 @@ function DonationSkeleton() {
                 animate-pulse
                 rounded-2xl
                 border
-                border-white/[0.06]
-                bg-white/[0.02]
+                border-[#EEF1F5]
+                bg-white
                 p-4
 
                 sm:rounded-3xl
@@ -1477,7 +1478,7 @@ function DonationSkeleton() {
                             w-10
                             shrink-0
                             rounded-xl
-                            bg-white/[0.06]
+                            bg-[#EEF3FB]
 
                             sm:h-11
                             sm:w-11
@@ -1492,7 +1493,7 @@ function DonationSkeleton() {
                                 h-3
                                 w-28
                                 rounded
-                                bg-white/[0.06]
+                                bg-[#EEF3FB]
 
                                 sm:h-4
                                 sm:w-36
@@ -1505,7 +1506,7 @@ function DonationSkeleton() {
                                 h-2.5
                                 w-16
                                 rounded
-                                bg-white/[0.04]
+                                bg-[#F2F6FF]
 
                                 sm:w-20
                             "
@@ -1522,7 +1523,7 @@ function DonationSkeleton() {
                         w-16
                         shrink-0
                         rounded-full
-                        bg-white/[0.05]
+                        bg-[#F2F6FF]
 
                         sm:h-6
                         sm:w-20
@@ -1548,7 +1549,7 @@ function DonationSkeleton() {
                     className="
                         h-12
                         rounded-xl
-                        bg-white/[0.04]
+                        bg-[#F2F6FF]
 
                         sm:h-14
                     "
@@ -1558,7 +1559,7 @@ function DonationSkeleton() {
                     className="
                         h-12
                         rounded-xl
-                        bg-white/[0.04]
+                        bg-[#F2F6FF]
 
                         sm:h-14
                     "
@@ -1568,7 +1569,7 @@ function DonationSkeleton() {
                     className="
                         h-12
                         rounded-xl
-                        bg-white/[0.04]
+                        bg-[#F2F6FF]
 
                         sm:h-14
                     "
@@ -1578,7 +1579,7 @@ function DonationSkeleton() {
                     className="
                         h-12
                         rounded-xl
-                        bg-white/[0.04]
+                        bg-[#F2F6FF]
 
                         sm:h-14
                     "
@@ -1608,8 +1609,8 @@ function EmptyState({
                 rounded-2xl
                 border
                 border-dashed
-                border-white/10
-                bg-white/[0.015]
+                border-[#E1E6EE]
+                bg-white
                 px-4
                 py-12
                 text-center
@@ -1630,8 +1631,8 @@ function EmptyState({
                     items-center
                     justify-center
                     rounded-2xl
-                    bg-white/[0.04]
-                    text-gray-600
+                    bg-[#F2F6FF]
+                    text-[#17233D]
                 "
             >
                 <Package size={24} />
@@ -1643,7 +1644,7 @@ function EmptyState({
                     mt-5
                     text-base
                     font-semibold
-                    text-white
+                    text-[#17233D]
 
                     sm:mt-6
                     sm:text-lg
@@ -1664,7 +1665,7 @@ function EmptyState({
                     max-w-md
                     text-xs
                     leading-6
-                    text-gray-600
+                    text-[#17233D]
 
                     sm:text-sm
                 "
@@ -1686,15 +1687,15 @@ function EmptyState({
                         mt-5
                         rounded-xl
                         border
-                        border-white/10
+                        border-[#E1E6EE]
                         px-5
                         py-3
                         text-sm
                         font-semibold
-                        text-gray-400
+                        text-[#17233D]
                         transition
-                        hover:bg-white/[0.04]
-                        hover:text-white
+                        hover:bg-[#F2F6FF]
+                        hover:text-[#17233D]
 
                         sm:mt-6
                     "
@@ -1712,14 +1713,14 @@ function EmptyState({
                         items-center
                         gap-2
                         rounded-xl
-                        bg-emerald-400
+                        bg-[#1557D6]
                         px-5
                         py-3
                         text-sm
                         font-bold
-                        text-black
+                        text-white
                         transition
-                        hover:bg-emerald-300
+                        hover:bg-[#0F46B5]
 
                         sm:mt-6
                     "

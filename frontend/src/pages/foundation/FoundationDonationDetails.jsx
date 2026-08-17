@@ -16,6 +16,145 @@ import {
 
 const API_URL = import.meta.env.VITE_API_BASE_URL;
 
+
+const progressAnimationStyles = `
+@keyframes trackingLineGrow {
+    from {
+        transform: scaleX(0);
+        transform-origin: left center;
+    }
+    to {
+        transform: scaleX(1);
+        transform-origin: left center;
+    }
+}
+
+@keyframes trackingNodeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px) scale(.72);
+    }
+    70% {
+        transform: translateY(-2px) scale(1.08);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes trackingLivePulse {
+    0%, 100% {
+        box-shadow:
+            0 0 0 0 rgba(21, 87, 214, .18),
+            0 4px 12px rgba(21, 87, 214, .08);
+    }
+    50% {
+        box-shadow:
+            0 0 0 11px rgba(21, 87, 214, .055),
+            0 7px 20px rgba(21, 87, 214, .16);
+    }
+}
+
+@keyframes trackingFlow {
+    0% {
+        transform: translateX(-160%);
+    }
+    100% {
+        transform: translateX(460%);
+    }
+}
+
+@keyframes trackingDotTravel {
+    0% {
+        left: 0%;
+        opacity: 0;
+    }
+    8% {
+        opacity: 1;
+    }
+    92% {
+        opacity: 1;
+    }
+    100% {
+        left: 100%;
+        opacity: 0;
+    }
+}
+
+@keyframes trackingRing {
+    0% {
+        opacity: .7;
+        transform: scale(.8);
+    }
+    70% {
+        opacity: 0;
+        transform: scale(1.65);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.65);
+    }
+}
+
+@keyframes trackingCheck {
+    0% {
+        opacity: 0;
+        transform: scale(.5) rotate(-15deg);
+    }
+    65% {
+        transform: scale(1.18) rotate(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+.tracking-line-grow {
+    animation: trackingLineGrow .9s cubic-bezier(.22, 1, .36, 1) .2s both;
+}
+
+.tracking-node-in {
+    animation: trackingNodeIn .55s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.tracking-live-pulse {
+    animation: trackingLivePulse 1.8s ease-in-out infinite;
+}
+
+.tracking-flow {
+    animation: trackingFlow 2.2s linear infinite;
+}
+
+.tracking-dot-travel {
+    animation: trackingDotTravel 2.6s cubic-bezier(.45, .05, .55, .95) infinite;
+}
+
+.tracking-ring {
+    animation: trackingRing 1.8s ease-out infinite;
+}
+
+.tracking-check {
+    animation: trackingCheck .45s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tracking-line-grow,
+    .tracking-node-in,
+    .tracking-live-pulse,
+    .tracking-flow,
+    .tracking-dot-travel,
+    .tracking-ring,
+    .tracking-check {
+        animation: none !important;
+    }
+}
+`;
+
+
+
+
 function FoundationDonationDetails() {
 
     const { donationId } = useParams();
@@ -362,22 +501,22 @@ function FoundationDonationDetails() {
         switch (status) {
 
             case "AVAILABLE":
-                return "border-emerald-500/30 bg-emerald-500/10 text-emerald-400";
+                return "border-emerald-500/30 bg-[#EAF1FF] text-[#1557D6]";
 
             case "ACCEPTED":
-                return "border-blue-500/30 bg-blue-500/10 text-blue-400";
+                return "border-blue-500/30 bg-blue-500/10 text-[#1557D6]";
 
             case "PICKED_UP":
-                return "border-amber-500/30 bg-amber-500/10 text-amber-400";
+                return "border-amber-500/30 bg-amber-500/10 text-[#B56F00]";
 
             case "DELIVERED":
-                return "border-emerald-500/30 bg-emerald-500/10 text-emerald-400";
+                return "border-emerald-500/30 bg-[#EAF1FF] text-[#1557D6]";
 
             case "EXPIRED":
-                return "border-red-500/30 bg-red-500/10 text-red-400";
+                return "border-red-200 bg-red-50 text-red-700";
 
             default:
-                return "border-white/10 bg-white/[0.03] text-slate-300";
+                return "border-[#E1E6EE] bg-[#F2F6FF] text-[#17233D]";
         }
     };
 
@@ -389,15 +528,15 @@ function FoundationDonationDetails() {
     if (loading) {
 
         return (
-            <div className="min-h-screen bg-[#050505] text-white">
+            <div className="min-h-screen bg-[#F8FAFD] text-[#17233D]">
 
                 <div className="mx-auto flex min-h-[70vh] max-w-7xl items-center justify-center px-6">
 
                     <div className="text-center">
 
-                        <div className="mx-auto h-10 w-10 animate-spin rounded-full border-2 border-white/10 border-t-emerald-400" />
+                        <div className="mx-auto h-10 w-10 animate-spin rounded-full border-2 border-[#E1E6EE] border-t-emerald-400" />
 
-                        <p className="mt-5 text-sm text-slate-400">
+                        <p className="mt-5 text-sm text-[#17233D]">
                             Loading donation...
                         </p>
 
@@ -417,26 +556,26 @@ function FoundationDonationDetails() {
     if (error && !donation) {
 
         return (
-            <div className="min-h-screen bg-[#050505] text-white">
+            <div className="min-h-screen bg-[#F8FAFD] text-[#17233D]">
 
                 <div className="mx-auto flex min-h-[70vh] max-w-4xl items-center justify-center px-6">
 
-                    <div className="w-full rounded-3xl border border-red-500/20 bg-red-500/[0.04] p-10 text-center">
+                    <div className="w-full rounded-3xl border border-red-200 bg-white p-10 text-center shadow-[0_6px_24px_rgba(23,35,61,0.05)]">
 
-                        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-red-500/10">
+                        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-red-50">
 
                             <AlertCircle
                                 size={30}
-                                className="text-red-400"
+                                className="text-red-700"
                             />
 
                         </div>
 
-                        <h2 className="mt-6 text-2xl font-semibold">
+                        <h2 className="mt-6 text-2xl font-extrabold">
                             Unable to load donation
                         </h2>
 
-                        <p className="mt-3 text-slate-400">
+                        <p className="mt-3 text-[#17233D]">
                             {error}
                         </p>
 
@@ -447,7 +586,7 @@ function FoundationDonationDetails() {
                                     "/foundation/available-food"
                                 )
                             }
-                            className="mt-7 inline-flex items-center gap-2 rounded-xl border border-white/10 px-6 py-3 text-sm font-medium transition hover:bg-white/5"
+                            className="mt-7 inline-flex items-center gap-2 rounded-xl border border-[#E1E6EE] px-6 py-3 text-sm font-semibold transition hover:bg-[#F2F6FF]"
                         >
                             <ArrowLeft size={17} />
                             Back to Available Food
@@ -503,7 +642,7 @@ function FoundationDonationDetails() {
     // =========================================================
 
     return (
-        <div className="min-h-screen bg-[#050505] text-white">
+        <div className="min-h-screen bg-[#F8FAFD] text-[#17233D]">
 
             <main className="mx-auto max-w-7xl px-6 py-10 lg:px-10">
 
@@ -520,7 +659,7 @@ function FoundationDonationDetails() {
                                 : "/foundation/donations"
                         )
                     }
-                    className="mb-10 inline-flex items-center gap-2 text-sm text-slate-400 transition hover:text-white"
+                    className="mb-10 inline-flex items-center gap-2 text-sm text-[#17233D] transition hover:text-[#17233D]"
                 >
 
                     <ArrowLeft size={18} />
@@ -540,22 +679,22 @@ function FoundationDonationDetails() {
 
                     <div className="flex items-center gap-5">
 
-                        <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-3xl bg-emerald-500/10">
+                        <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-3xl bg-[#EAF1FF] shadow-sm">
 
                             <Utensils
                                 size={34}
-                                className="text-emerald-400"
+                                className="text-[#1557D6]"
                             />
 
                         </div>
 
                         <div>
 
-                            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-emerald-400">
+                            <p className="text-xs font-extrabold uppercase tracking-[0.35em] text-[#1557D6]">
                                 Food Donation
                             </p>
 
-                            <h1 className="mt-2 text-4xl font-bold tracking-tight sm:text-5xl">
+                            <h1 className="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl font-extrabold">
                                 {donation.foodName}
                             </h1>
 
@@ -567,7 +706,7 @@ function FoundationDonationDetails() {
                     {/* STATUS */}
 
                     <div
-                        className={`inline-flex w-fit items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-semibold ${getStatusClass(
+                        className={`inline-flex w-fit items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-bold ${getStatusClass(
                             status
                         )}`}
                     >
@@ -575,13 +714,13 @@ function FoundationDonationDetails() {
                         <span
                             className={`h-2.5 w-2.5 rounded-full ${
                                 isDelivered
-                                    ? "bg-emerald-400"
+                                    ? "bg-[#1557D6]"
                                     : isPickedUp
-                                      ? "bg-amber-400"
+                                      ? "bg-[#D88A00]"
                                       : isAccepted
                                         ? "bg-blue-400"
                                         : isAvailable
-                                          ? "bg-emerald-400"
+                                          ? "bg-[#1557D6]"
                                           : "bg-slate-500"
                             }`}
                         />
@@ -599,7 +738,7 @@ function FoundationDonationDetails() {
 
                 {error && (
 
-                    <div className="mb-6 flex items-center gap-3 rounded-2xl border border-red-500/20 bg-red-500/[0.04] px-5 py-4 text-sm text-red-300">
+                    <div className="mb-6 flex items-center gap-3 rounded-2xl border border-red-200 bg-red-50 px-5 py-4 text-sm text-red-700">
 
                         <AlertCircle size={18} />
 
@@ -612,7 +751,7 @@ function FoundationDonationDetails() {
 
                 {successMessage && (
 
-                    <div className="mb-6 flex items-center gap-3 rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.04] px-5 py-4 text-sm text-emerald-300">
+                    <div className="mb-6 flex items-center gap-3 rounded-2xl border border-[#C9D8EC] bg-[#F0F6FF] px-5 py-4 text-sm text-[#1557D6]">
 
                         <CheckCircle2 size={18} />
 
@@ -627,114 +766,169 @@ function FoundationDonationDetails() {
                     PROGRESS
                 ================================================= */}
 
-                <section className="mb-8 rounded-3xl border border-white/10 bg-white/[0.015] p-6 sm:p-8">
+                <section className="progress-card-in mb-8 rounded-3xl border border-[#DCE4EF] bg-white p-6 shadow-[0_10px_30px_rgba(23,35,61,0.06)] sm:p-8">
 
                     <div className="mb-7">
 
-                        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-400">
+                        <p className="text-xs font-extrabold uppercase tracking-[0.3em] text-[#1557D6]">
                             Donation Progress
                         </p>
 
-                        <p className="mt-2 text-sm text-slate-500">
+                        <p className="mt-2 text-sm font-semibold text-[#53627A]">
                             {getStatusDescription(status)}
                         </p>
 
                     </div>
 
 
-                    <div className="grid grid-cols-3 gap-3 sm:gap-6">
+                    <div className="relative px-1 sm:px-4">
 
-                        {/* ACCEPTED */}
+                        {/* TRACKING RAIL */}
+                        <div className="pointer-events-none absolute left-[16.666%] right-[16.666%] top-[22px] hidden h-1.5 overflow-hidden rounded-full bg-[#E5EBF3] sm:block">
 
-                        <div className="text-center">
+                            <div className="tracking-line-grow relative h-full w-full overflow-hidden rounded-full bg-[#1557D6]">
 
-                            <div
-                                className={`mx-auto flex h-11 w-11 items-center justify-center rounded-full border ${
-                                    [
-                                        "ACCEPTED",
-                                        "PICKED_UP",
-                                        "DELIVERED",
-                                    ].includes(status)
-                                        ? "border-blue-400/40 bg-blue-400/10 text-blue-400"
-                                        : "border-white/10 bg-white/[0.03] text-gray-600"
-                                }`}
-                            >
+                                {/* Continuous flowing light highlight */}
+                                <div className="tracking-flow absolute inset-y-0 -left-1/3 w-1/3 rounded-full bg-gradient-to-r from-transparent via-white/80 to-transparent" />
 
-                                {[
-                                    "ACCEPTED",
-                                    "PICKED_UP",
-                                    "DELIVERED",
-                                ].includes(status) ? (
-                                    <Check size={18} />
-                                ) : (
-                                    <Package size={18} />
-                                )}
+                                {/* Live moving pulse */}
+                                <span
+                                    className="tracking-dot-travel absolute top-1/2 h-3.5 w-3.5 -translate-y-1/2 rounded-full border-2 border-white bg-white shadow-[0_2px_10px_rgba(21,87,214,0.45)]"
+                                />
 
                             </div>
-
-                            <p className="mt-3 text-xs font-medium text-gray-400 sm:text-sm">
-                                Accepted
-                            </p>
 
                         </div>
 
+                        <div className="grid grid-cols-3 gap-3 sm:gap-6">
 
-                        {/* PICKED UP */}
-
-                        <div className="text-center">
-
+                            {/* ACCEPTED */}
                             <div
-                                className={`mx-auto flex h-11 w-11 items-center justify-center rounded-full border ${
-                                    [
-                                        "PICKED_UP",
-                                        "DELIVERED",
-                                    ].includes(status)
-                                        ? "border-amber-400/40 bg-amber-400/10 text-amber-400"
-                                        : "border-white/10 bg-white/[0.03] text-gray-600"
-                                }`}
+                                className="tracking-node-in relative z-10 text-center"
+                                style={{ animationDelay: "300ms" }}
                             >
 
-                                {[
-                                    "PICKED_UP",
-                                    "DELIVERED",
-                                ].includes(status) ? (
-                                    <Check size={18} />
-                                ) : (
-                                    <Truck size={18} />
-                                )}
+                                <div
+                                    className={`relative mx-auto flex h-11 w-11 items-center justify-center rounded-full border-2 bg-white transition ${
+                                        ["ACCEPTED", "PICKED_UP", "DELIVERED"].includes(status)
+                                            ? "border-[#1557D6] bg-[#EAF1FF] text-[#1557D6]"
+                                            : "border-[#DCE4EF] text-[#7B8798]"
+                                    } ${
+                                        status === "ACCEPTED"
+                                            ? "tracking-live-pulse"
+                                            : ""
+                                    }`}
+                                >
+                                    {status === "ACCEPTED" && (
+                                        <span className="tracking-ring pointer-events-none absolute inset-0 rounded-full border-2 border-[#1557D6]" />
+                                    )}
+
+                                    {["ACCEPTED", "PICKED_UP", "DELIVERED"].includes(status) ? (
+                                        <span className="tracking-check">
+                                            <Check size={18} strokeWidth={2.7} />
+                                        </span>
+                                    ) : (
+                                        <span className="tracking-check">
+                                            <Package size={18} />
+                                        </span>
+                                    )}
+                                </div>
+
+                                <p className="mt-3 text-xs font-extrabold text-[#17233D] sm:text-sm">
+                                    Accepted
+                                </p>
+
+                                <p className="mx-auto mt-1 max-w-[150px] text-[10px] font-medium leading-5 text-[#53627A] sm:text-xs">
+                                    Donation accepted
+                                </p>
 
                             </div>
 
-                            <p className="mt-3 text-xs font-medium text-gray-400 sm:text-sm">
-                                Picked Up
-                            </p>
 
-                        </div>
-
-
-                        {/* DELIVERED */}
-
-                        <div className="text-center">
-
+                            {/* PICKED UP */}
                             <div
-                                className={`mx-auto flex h-11 w-11 items-center justify-center rounded-full border ${
-                                    status === "DELIVERED"
-                                        ? "border-emerald-400/40 bg-emerald-400/10 text-emerald-400"
-                                        : "border-white/10 bg-white/[0.03] text-gray-600"
-                                }`}
+                                className="tracking-node-in relative z-10 text-center"
+                                style={{ animationDelay: "500ms" }}
                             >
 
-                                {status === "DELIVERED" ? (
-                                    <Check size={18} />
-                                ) : (
-                                    <CheckCircle2 size={18} />
-                                )}
+                                <div
+                                    className={`relative mx-auto flex h-11 w-11 items-center justify-center rounded-full border-2 bg-white transition ${
+                                        ["PICKED_UP", "DELIVERED"].includes(status)
+                                            ? "border-[#D88A00] bg-[#FFF5DE] text-[#B56F00]"
+                                            : "border-[#DCE4EF] text-[#7B8798]"
+                                    } ${
+                                        status === "PICKED_UP"
+                                            ? "tracking-live-pulse"
+                                            : ""
+                                    }`}
+                                >
+                                    {status === "PICKED_UP" && (
+                                        <span className="tracking-ring pointer-events-none absolute inset-0 rounded-full border-2 border-[#D88A00]" />
+                                    )}
+
+                                    {["PICKED_UP", "DELIVERED"].includes(status) ? (
+                                        <span className="tracking-check">
+                                            <Check size={18} strokeWidth={2.7} />
+                                        </span>
+                                    ) : (
+                                        <span className="tracking-check">
+                                            <Truck size={18} />
+                                        </span>
+                                    )}
+                                </div>
+
+                                <p className="mt-3 text-xs font-extrabold text-[#17233D] sm:text-sm">
+                                    Picked Up
+                                </p>
+
+                                <p className="mx-auto mt-1 max-w-[150px] text-[10px] font-medium leading-5 text-[#53627A] sm:text-xs">
+                                    Food collected
+                                </p>
 
                             </div>
 
-                            <p className="mt-3 text-xs font-medium text-gray-400 sm:text-sm">
-                                Delivered
-                            </p>
+
+                            {/* DELIVERED */}
+                            <div
+                                className="tracking-node-in relative z-10 text-center"
+                                style={{ animationDelay: "700ms" }}
+                            >
+
+                                <div
+                                    className={`relative mx-auto flex h-11 w-11 items-center justify-center rounded-full border-2 bg-white transition ${
+                                        status === "DELIVERED"
+                                            ? "border-[#1A9B68] bg-[#E9F8F1] text-[#1A9B68]"
+                                            : "border-[#DCE4EF] text-[#7B8798]"
+                                    } ${
+                                        status === "DELIVERED"
+                                            ? "tracking-live-pulse"
+                                            : ""
+                                    }`}
+                                >
+                                    {status === "DELIVERED" && (
+                                        <span className="tracking-ring pointer-events-none absolute inset-0 rounded-full border-2 border-[#1A9B68]" />
+                                    )}
+
+                                    {status === "DELIVERED" ? (
+                                        <span className="tracking-check">
+                                            <Check size={18} strokeWidth={2.7} />
+                                        </span>
+                                    ) : (
+                                        <span className="tracking-check">
+                                            <CheckCircle2 size={18} />
+                                        </span>
+                                    )}
+                                </div>
+
+                                <p className="mt-3 text-xs font-extrabold text-[#17233D] sm:text-sm">
+                                    Delivered
+                                </p>
+
+                                <p className="mx-auto mt-1 max-w-[150px] text-[10px] font-medium leading-5 text-[#53627A] sm:text-xs">
+                                    Successfully delivered
+                                </p>
+
+                            </div>
 
                         </div>
 
@@ -754,15 +948,15 @@ function FoundationDonationDetails() {
                         FOOD INFORMATION
                     ================================================= */}
 
-                    <section className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.015]">
+                    <section className="overflow-hidden rounded-3xl border border-[#E1E6EE] bg-white shadow-[0_6px_24px_rgba(23,35,61,0.045)] tracking-card">
 
-                        <div className="border-b border-white/10 px-8 py-7">
+                        <div className="border-b border-[#E1E6EE] px-8 py-7">
 
-                            <h2 className="text-2xl font-semibold">
+                            <h2 className="text-2xl font-extrabold">
                                 Food information
                             </h2>
 
-                            <p className="mt-2 text-sm text-slate-500">
+                            <p className="mt-2 text-sm text-[#53627A]">
                                 Details provided by the donor.
                             </p>
 
@@ -773,9 +967,9 @@ function FoundationDonationDetails() {
 
                             {/* FOOD TYPE */}
 
-                            <div className="rounded-2xl border border-white/10 bg-black/20 p-6">
+                            <div className="rounded-2xl border border-[#E3E9F1] bg-[#F8FAFD] p-6">
 
-                                <div className="flex items-center gap-3 text-slate-500">
+                                <div className="flex items-center gap-3 text-[#53627A]">
 
                                     <Utensils size={22} />
 
@@ -785,7 +979,7 @@ function FoundationDonationDetails() {
 
                                 </div>
 
-                                <p className="mt-6 text-lg font-semibold text-white">
+                                <p className="mt-6 text-lg font-extrabold text-[#17233D]">
                                     {donation.foodType ||
                                         "Not specified"}
                                 </p>
@@ -795,9 +989,9 @@ function FoundationDonationDetails() {
 
                             {/* QUANTITY */}
 
-                            <div className="rounded-2xl border border-white/10 bg-black/20 p-6">
+                            <div className="rounded-2xl border border-[#E3E9F1] bg-[#F8FAFD] p-6">
 
-                                <div className="flex items-center gap-3 text-slate-500">
+                                <div className="flex items-center gap-3 text-[#53627A]">
 
                                     <Package size={22} />
 
@@ -807,7 +1001,7 @@ function FoundationDonationDetails() {
 
                                 </div>
 
-                                <p className="mt-6 text-lg font-semibold text-white">
+                                <p className="mt-6 text-lg font-extrabold text-[#17233D]">
 
                                     {quantity}{" "}
 
@@ -824,9 +1018,9 @@ function FoundationDonationDetails() {
 
                             {/* PREPARED */}
 
-                            <div className="rounded-2xl border border-white/10 bg-black/20 p-6">
+                            <div className="rounded-2xl border border-[#E3E9F1] bg-[#F8FAFD] p-6">
 
-                                <div className="flex items-center gap-3 text-slate-500">
+                                <div className="flex items-center gap-3 text-[#53627A]">
 
                                     <Clock3 size={22} />
 
@@ -836,7 +1030,7 @@ function FoundationDonationDetails() {
 
                                 </div>
 
-                                <p className="mt-6 text-lg font-semibold text-white">
+                                <p className="mt-6 text-lg font-extrabold text-[#17233D]">
                                     {formatDate(
                                         donation.preparedAt
                                     )}
@@ -847,9 +1041,9 @@ function FoundationDonationDetails() {
 
                             {/* EXPIRES */}
 
-                            <div className="rounded-2xl border border-red-500/10 bg-red-500/[0.03] p-6">
+                            <div className="rounded-2xl border border-red-200 bg-red-50 p-6">
 
-                                <div className="flex items-center gap-3 text-red-400">
+                                <div className="flex items-center gap-3 text-red-700">
 
                                     <Clock3 size={22} />
 
@@ -859,7 +1053,7 @@ function FoundationDonationDetails() {
 
                                 </div>
 
-                                <p className="mt-6 text-lg font-semibold text-red-400">
+                                <p className="mt-6 text-lg font-extrabold text-red-700">
                                     {formatDate(
                                         donation.expiresAt
                                     )}
@@ -876,16 +1070,16 @@ function FoundationDonationDetails() {
                         ACTION PANEL
                     ================================================= */}
 
-                    <aside className="h-fit rounded-3xl border border-white/10 bg-white/[0.015] p-8">
+                    <aside className="tracking-card h-fit rounded-3xl border border-[#E1E6EE] bg-white p-8 shadow-[0_6px_24px_rgba(23,35,61,0.045)]">
 
-                        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-400">
+                        <p className="text-xs font-extrabold uppercase tracking-[0.3em] text-[#1557D6]">
                             {isAvailable
                                 ? "Pickup Information"
                                 : "Donation Management"}
                         </p>
 
 
-                        <h2 className="mt-4 text-2xl font-semibold">
+                        <h2 className="mt-4 text-2xl font-extrabold">
 
                             {isAvailable
                                 ? "Request this donation"
@@ -900,22 +1094,22 @@ function FoundationDonationDetails() {
 
                         {/* PICKUP LOCATION */}
 
-                        <div className="mt-8 rounded-2xl border border-white/10 bg-black/20 p-6">
+                        <div className="mt-8 rounded-2xl border border-[#E3E9F1] bg-[#F8FAFD] p-6">
 
                             <div className="flex items-start gap-4">
 
                                 <MapPin
                                     size={25}
-                                    className="mt-1 shrink-0 text-emerald-400"
+                                    className="mt-1 shrink-0 text-[#1557D6]"
                                 />
 
                                 <div>
 
-                                    <p className="text-xs uppercase tracking-wider text-slate-500">
+                                    <p className="text-xs uppercase tracking-wider text-[#53627A]">
                                         Pickup location
                                     </p>
 
-                                    <p className="mt-3 text-base leading-7 text-slate-200">
+                                    <p className="mt-3 text-base leading-7 text-[#17233D]">
                                         {pickupAddress}
                                     </p>
 
@@ -936,7 +1130,7 @@ function FoundationDonationDetails() {
                                 type="button"
                                 disabled={processing}
                                 onClick={handleRequestDonation}
-                                className="mt-6 flex w-full items-center justify-center gap-3 rounded-2xl bg-emerald-400 px-6 py-4 text-base font-semibold text-black transition hover:bg-emerald-300 disabled:cursor-not-allowed disabled:opacity-50"
+                                className="mt-6 flex w-full items-center justify-center gap-3 rounded-2xl bg-[#1557D6] px-6 py-4 text-base font-bold text-black transition hover:bg-[#0F46B5] disabled:cursor-not-allowed disabled:opacity-50"
                             >
 
                                 {processing ? (
@@ -972,7 +1166,7 @@ function FoundationDonationDetails() {
                                 type="button"
                                 disabled={processing}
                                 onClick={handlePickup}
-                                className="mt-6 flex w-full items-center justify-center gap-3 rounded-2xl bg-amber-400 px-6 py-4 text-base font-semibold text-black transition hover:bg-amber-300 disabled:cursor-not-allowed disabled:opacity-50"
+                                className="mt-6 flex w-full items-center justify-center gap-3 rounded-2xl bg-[#D88A00] px-6 py-4 text-base font-bold text-black transition hover:bg-[#B56F00] disabled:cursor-not-allowed disabled:opacity-50"
                             >
 
                                 {processing ? (
@@ -1008,7 +1202,7 @@ function FoundationDonationDetails() {
                                 type="button"
                                 disabled={processing}
                                 onClick={handleDelivery}
-                                className="mt-6 flex w-full items-center justify-center gap-3 rounded-2xl bg-emerald-400 px-6 py-4 text-base font-semibold text-black transition hover:bg-emerald-300 disabled:cursor-not-allowed disabled:opacity-50"
+                                className="mt-6 flex w-full items-center justify-center gap-3 rounded-2xl bg-[#1557D6] px-6 py-4 text-base font-bold text-black transition hover:bg-[#0F46B5] disabled:cursor-not-allowed disabled:opacity-50"
                             >
 
                                 {processing ? (
@@ -1040,26 +1234,26 @@ function FoundationDonationDetails() {
 
                         {isDelivered && (
 
-                            <div className="mt-6 rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.06] p-6">
+                            <div className="mt-6 rounded-2xl border border-[#C9D8EC] bg-[#F0F6FF] p-6">
 
                                 <div className="flex items-start gap-4">
 
-                                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10">
+                                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#EAF1FF]">
 
                                         <CheckCircle2
                                             size={22}
-                                            className="text-emerald-400"
+                                            className="text-[#1557D6]"
                                         />
 
                                     </div>
 
                                     <div>
 
-                                        <p className="font-semibold text-emerald-300">
+                                        <p className="font-extrabold text-[#1557D6]">
                                             Donation Delivered
                                         </p>
 
-                                        <p className="mt-2 text-sm leading-6 text-slate-500">
+                                        <p className="mt-2 text-sm leading-6 text-[#53627A]">
                                             This donation has been successfully delivered.
                                             No further action is required.
                                         </p>
@@ -1079,22 +1273,22 @@ function FoundationDonationDetails() {
 
                         {status === "EXPIRED" && (
 
-                            <div className="mt-6 rounded-2xl border border-red-500/20 bg-red-500/[0.05] p-6">
+                            <div className="mt-6 rounded-2xl border border-red-200 bg-red-50 p-6">
 
                                 <div className="flex items-start gap-4">
 
                                     <AlertCircle
                                         size={22}
-                                        className="mt-1 shrink-0 text-red-400"
+                                        className="mt-1 shrink-0 text-red-700"
                                     />
 
                                     <div>
 
-                                        <p className="font-semibold text-red-300">
+                                        <p className="font-semibold text-red-700">
                                             Donation Expired
                                         </p>
 
-                                        <p className="mt-2 text-sm leading-6 text-slate-500">
+                                        <p className="mt-2 text-sm leading-6 text-[#53627A]">
                                             This donation is no longer available
                                             for pickup.
                                         </p>
@@ -1111,7 +1305,7 @@ function FoundationDonationDetails() {
                         {!isDelivered &&
                             status !== "EXPIRED" && (
 
-                                <p className="mt-5 text-center text-xs leading-6 text-slate-500">
+                                <p className="mt-5 text-center text-xs leading-6 text-[#53627A]">
 
                                     {isAvailable
                                         ? "By requesting this donation, your foundation confirms that it can arrange pickup from the donor location."

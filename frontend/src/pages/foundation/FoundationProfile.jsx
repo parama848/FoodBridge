@@ -3217,13 +3217,13 @@ function FoundationProfile() {
                 icon: CheckCircle2,
 
                 container:
-                    "border-emerald-400/20 bg-emerald-400/5",
+                    "border-[#BFE8D4] bg-[#F0FBF5] shadow-sm",
 
                 badge:
-                    "border-emerald-400/20 bg-emerald-400/10 text-emerald-400",
+                    "border-[#BFE8D4] bg-[#E9F8F0] text-[#087A4B]",
 
                 iconColor:
-                    "text-emerald-400",
+                    "text-[#087A4B]",
 
                 message:
                     "Your foundation has been verified by the FoodBridge administration."
@@ -3242,13 +3242,13 @@ function FoundationProfile() {
                 icon: XCircle,
 
                 container:
-                    "border-red-400/20 bg-red-400/5",
+                    "border-[#F2C5C5] bg-[#FFF6F6]",
 
                 badge:
-                    "border-red-400/20 bg-red-400/10 text-red-400",
+                    "border-[#F2C5C5] bg-[#FFF0F0] text-[#B42318]",
 
                 iconColor:
-                    "text-red-400",
+                    "text-[#B42318]",
 
                 message:
                     profile?.rejectionReason
@@ -3267,13 +3267,13 @@ function FoundationProfile() {
             icon: Clock3,
 
             container:
-                "border-yellow-400/20 bg-yellow-400/5",
+                "border-[#F4D79A] bg-[#FFF9EC]",
 
             badge:
-                "border-yellow-400/20 bg-yellow-400/10 text-yellow-400",
+                "border-[#F4D79A] bg-[#FFF4D6] text-[#A15C00]",
 
             iconColor:
-                "text-yellow-400",
+                "text-[#A15C00]",
 
             message:
                 "Your foundation profile has been submitted and is waiting for admin verification."
@@ -3291,17 +3291,17 @@ function FoundationProfile() {
 
         return (
 
-            <div className="min-h-screen bg-[#050505] text-white">
+            <div className="min-h-screen bg-[#F6F8FC] text-[#17233D]">
 
                 <div className="mx-auto flex min-h-[70vh] max-w-6xl items-center justify-center px-6">
 
                     <div className="text-center">
 
                         <Loader2
-                            className="mx-auto h-8 w-8 animate-spin text-emerald-400"
+                            className="mx-auto h-8 w-8 animate-spin text-[#087A4B]"
                         />
 
-                        <p className="mt-4 text-sm text-gray-500">
+                        <p className="mt-4 text-sm text-[#475569]">
                             Loading foundation profile...
                         </p>
 
@@ -3333,9 +3333,9 @@ function FoundationProfile() {
 
     return (
 
-        <div className="min-h-screen bg-[#050505] text-white">
+        <div className="min-h-screen bg-[#F6F8FC] text-[#17233D]">
 
-            <main className="mx-auto w-full max-w-6xl px-5 py-10 sm:px-8 lg:px-10">
+            <main className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
 
 
                 {/* =================================================
@@ -3346,10 +3346,10 @@ function FoundationProfile() {
 
                     <div className="flex items-start gap-4">
 
-                        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-emerald-400/10 bg-emerald-400/10">
+                        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-[#DCE7FF] bg-[#EEF4FF]">
 
                             <Building2
-                                className="h-7 w-7 text-emerald-400"
+                                className="h-7 w-7 text-[#087A4B]"
                             />
 
                         </div>
@@ -3357,7 +3357,7 @@ function FoundationProfile() {
 
                         <div>
 
-                            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-400">
+                            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#087A4B]">
                                 Foundation
                             </p>
 
@@ -3370,7 +3370,7 @@ function FoundationProfile() {
                             </h1>
 
 
-                            <p className="mt-2 text-sm text-gray-500">
+                            <p className="mt-2 text-sm text-[#475569]">
 
                                 {profile
                                     ? "Manage your organization profile"
@@ -3400,7 +3400,7 @@ function FoundationProfile() {
                                 setSuccess("");
 
                             }}
-                            className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-5 py-3 text-sm font-semibold text-gray-300 transition hover:border-white/20 hover:bg-white/[0.07] hover:text-white"
+                            className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#D8E0EC] bg-white px-5 py-3 text-sm font-semibold text-[#17233D] shadow-sm transition hover:border-[#B8C8E6] hover:bg-[#F7F9FD] hover:shadow-md"
                         >
 
                             <Pencil className="h-4 w-4" />
@@ -3420,11 +3420,11 @@ function FoundationProfile() {
 
                 {success && (
 
-                    <div className="mb-6 flex items-start gap-3 rounded-2xl border border-emerald-400/20 bg-emerald-400/5 px-5 py-4">
+                    <div className="mb-6 flex items-start gap-3 rounded-2xl border border-[#BFE8D4] bg-[#F0FBF5] px-5 py-4 shadow-sm">
 
-                        <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400" />
+                        <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#087A4B]" />
 
-                        <p className="text-sm leading-6 text-emerald-300">
+                        <p className="text-sm leading-6 text-[#087A4B]">
 
                             {success}
 
@@ -3441,11 +3441,11 @@ function FoundationProfile() {
 
                 {error && (
 
-                    <div className="mb-6 flex items-start gap-3 rounded-2xl border border-red-400/20 bg-red-400/5 px-5 py-4">
+                    <div className="mb-6 flex items-start gap-3 rounded-2xl border border-[#F2C5C5] bg-[#FFF6F6] px-5 py-4 shadow-sm">
 
-                        <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-400" />
+                        <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-[#B42318]" />
 
-                        <p className="text-sm leading-6 text-red-300">
+                        <p className="text-sm leading-6 text-[#B42318]">
 
                             {error}
 
@@ -3464,7 +3464,7 @@ function FoundationProfile() {
 
                     <section
                         className={
-                            `mb-6 rounded-3xl border p-6 sm:p-8 ${verification.container}`
+                            `mb-6 rounded-3xl border p-6 shadow-[0_8px_28px_rgba(23,35,61,0.05)] sm:p-8 ${verification.container}`
                         }
                     >
 
@@ -3472,7 +3472,7 @@ function FoundationProfile() {
 
                             <div className="flex items-center gap-4">
 
-                                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/[0.05]">
+                                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white">
 
                                     <VerificationIcon
                                         className={
@@ -3485,7 +3485,7 @@ function FoundationProfile() {
 
                                 <div>
 
-                                    <p className="text-xs font-medium uppercase tracking-[0.18em] text-gray-500">
+                                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#64748B]">
                                         Verification Status
                                     </p>
 
@@ -3511,7 +3511,7 @@ function FoundationProfile() {
                             </div>
 
 
-                            <p className="max-w-md text-sm leading-6 text-gray-500">
+                            <p className="max-w-md text-sm leading-6 text-[#475569]">
 
                                 {verification.message}
 
@@ -3530,11 +3530,11 @@ function FoundationProfile() {
 
                                 <div className="mt-6 rounded-2xl border border-red-400/10 bg-red-400/5 p-4">
 
-                                    <p className="text-xs font-semibold uppercase tracking-wider text-red-400">
+                                    <p className="text-xs font-semibold uppercase tracking-wider text-[#B42318]">
                                         Rejection reason
                                     </p>
 
-                                    <p className="mt-2 text-sm leading-6 text-gray-400">
+                                    <p className="mt-2 text-sm leading-6 text-[#1557D6]">
 
                                         {profile.rejectionReason}
 
@@ -3555,13 +3555,13 @@ function FoundationProfile() {
 
                 {!profile && (
 
-                    <section className="mb-6 rounded-3xl border border-yellow-400/20 bg-yellow-400/5 p-6 sm:p-8">
+                    <section className="mb-6 rounded-3xl border border-[#F4D79A] bg-[#FFF9EC] p-6 shadow-[0_8px_28px_rgba(23,35,61,0.05)] sm:p-8">
 
                         <div className="flex items-start gap-4">
 
                             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-yellow-400/10">
 
-                                <Clock3 className="h-5 w-5 text-yellow-400" />
+                                <Clock3 className="h-5 w-5 text-[#A15C00]" />
 
                             </div>
 
@@ -3573,7 +3573,7 @@ function FoundationProfile() {
                                 </h2>
 
 
-                                <p className="mt-2 text-sm leading-6 text-gray-500">
+                                <p className="mt-2 text-sm font-medium leading-6 text-[#475569]">
 
                                     Your foundation account has been created,
                                     but your foundation profile has not been
@@ -3598,7 +3598,7 @@ function FoundationProfile() {
 
                 <form
                     onSubmit={handleSubmit}
-                    className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.025]"
+                    className="relative overflow-hidden rounded-3xl border border-[#DCE3EE] bg-white shadow-[0_10px_35px_rgba(23,35,61,0.06)] before:absolute before:left-0 before:right-0 before:top-0 before:h-1 before:bg-[#1557D6]"
                 >
 
 
@@ -3606,13 +3606,13 @@ function FoundationProfile() {
                         ORGANIZATION
                     ================================================= */}
 
-                    <div className="border-b border-white/10 px-6 py-6 sm:px-8">
+                    <div className="border-b border-[#E5EAF1] bg-[#FBFCFE] px-6 py-6 sm:px-8">
 
                         <div className="flex items-center gap-4">
 
-                            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/[0.06]">
+                            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#EEF4FF]">
 
-                                <Building2 className="h-5 w-5 text-gray-400" />
+                                <Building2 className="h-5 w-5 text-[#1557D6]" />
 
                             </div>
 
@@ -3623,7 +3623,7 @@ function FoundationProfile() {
                                     Organization information
                                 </h2>
 
-                                <p className="mt-1 text-sm text-gray-500">
+                                <p className="mt-1 text-sm text-[#475569]">
                                     Basic details about your foundation.
                                 </p>
 
@@ -3645,7 +3645,7 @@ function FoundationProfile() {
 
                             <label
                                 htmlFor="organizationName"
-                                className="mb-2 block text-sm font-medium text-gray-300"
+                                className="mb-2 block text-sm font-medium text-[#17233D]"
                             >
                                 Organization name
                             </label>
@@ -3660,7 +3660,7 @@ function FoundationProfile() {
                                 disabled={!editing}
                                 maxLength={150}
                                 placeholder="Enter foundation organization name"
-                                className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3.5 text-white outline-none transition placeholder:text-gray-700 focus:border-emerald-400/50 focus:ring-4 focus:ring-emerald-400/10 disabled:cursor-not-allowed disabled:opacity-60"
+                                className="w-full rounded-xl border border-[#D5DDE9] bg-white px-4 py-3.5 text-[#17233D] shadow-sm outline-none transition placeholder:text-[#94A3B8] focus:border-[#1557D6] focus:ring-4 focus:ring-[#1557D6]/10 disabled:cursor-not-allowed disabled:bg-[#F4F6FA] disabled:text-[#334155] disabled:opacity-100"
                             />
 
                         </div>
@@ -3674,7 +3674,7 @@ function FoundationProfile() {
 
                             <label
                                 htmlFor="registrationNumber"
-                                className="mb-2 block text-sm font-medium text-gray-300"
+                                className="mb-2 block text-sm font-medium text-[#17233D]"
                             >
                                 Registration number
                             </label>
@@ -3683,7 +3683,7 @@ function FoundationProfile() {
                             <div className="relative">
 
                                 <Hash
-                                    className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-600"
+                                    className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#64748B]"
                                 />
 
                                 <input
@@ -3695,13 +3695,13 @@ function FoundationProfile() {
                                     disabled={!editing}
                                     maxLength={100}
                                     placeholder="Enter official registration number"
-                                    className="w-full rounded-xl border border-white/10 bg-black/30 py-3.5 pl-11 pr-4 text-white outline-none transition placeholder:text-gray-700 focus:border-emerald-400/50 focus:ring-4 focus:ring-emerald-400/10 disabled:cursor-not-allowed disabled:opacity-60"
+                                    className="w-full rounded-xl border border-[#D5DDE9] bg-white py-3.5 pl-11 pr-4 text-[#17233D] shadow-sm outline-none transition placeholder:text-[#94A3B8] focus:border-[#1557D6] focus:ring-4 focus:ring-[#1557D6]/10 disabled:cursor-not-allowed disabled:bg-[#F4F6FA] disabled:text-[#334155] disabled:opacity-100"
                                 />
 
                             </div>
 
 
-                            <p className="mt-2 text-xs text-gray-600">
+                            <p className="mt-2 text-xs text-[#64748B]">
 
                                 Official registration number of your foundation.
 
@@ -3718,7 +3718,7 @@ function FoundationProfile() {
 
                             <label
                                 htmlFor="phone"
-                                className="mb-2 block text-sm font-medium text-gray-300"
+                                className="mb-2 block text-sm font-medium text-[#17233D]"
                             >
                                 Contact phone number
                             </label>
@@ -3727,7 +3727,7 @@ function FoundationProfile() {
                             <div className="relative">
 
                                 <Phone
-                                    className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-600"
+                                    className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#64748B]"
                                 />
 
                                 <input
@@ -3740,13 +3740,13 @@ function FoundationProfile() {
                                     disabled={!editing}
                                     maxLength={10}
                                     placeholder="9876543210"
-                                    className="w-full rounded-xl border border-white/10 bg-black/30 py-3.5 pl-11 pr-4 text-white outline-none transition placeholder:text-gray-700 focus:border-emerald-400/50 focus:ring-4 focus:ring-emerald-400/10 disabled:cursor-not-allowed disabled:opacity-60"
+                                    className="w-full rounded-xl border border-[#D5DDE9] bg-white py-3.5 pl-11 pr-4 text-[#17233D] shadow-sm outline-none transition placeholder:text-[#94A3B8] focus:border-[#1557D6] focus:ring-4 focus:ring-[#1557D6]/10 disabled:cursor-not-allowed disabled:bg-[#F4F6FA] disabled:text-[#334155] disabled:opacity-100"
                                 />
 
                             </div>
 
 
-                            <p className="mt-2 text-xs text-gray-600">
+                            <p className="mt-2 text-xs text-[#64748B]">
 
                                 This number will be used as the foundation contact number.
 
@@ -3763,7 +3763,7 @@ function FoundationProfile() {
 
                             <label
                                 htmlFor="address"
-                                className="mb-2 block text-sm font-medium text-gray-300"
+                                className="mb-2 block text-sm font-medium text-[#17233D]"
                             >
                                 Address
                             </label>
@@ -3778,7 +3778,7 @@ function FoundationProfile() {
                                 disabled={!editing}
                                 maxLength={255}
                                 placeholder="Foundation street address"
-                                className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3.5 text-white outline-none transition placeholder:text-gray-700 focus:border-emerald-400/50 focus:ring-4 focus:ring-emerald-400/10 disabled:cursor-not-allowed disabled:opacity-60"
+                                className="w-full rounded-xl border border-[#D5DDE9] bg-white px-4 py-3.5 text-[#17233D] shadow-sm outline-none transition placeholder:text-[#94A3B8] focus:border-[#1557D6] focus:ring-4 focus:ring-[#1557D6]/10 disabled:cursor-not-allowed disabled:bg-[#F4F6FA] disabled:text-[#334155] disabled:opacity-100"
                             />
 
                         </div>
@@ -3792,7 +3792,7 @@ function FoundationProfile() {
 
                             <label
                                 htmlFor="city"
-                                className="mb-2 block text-sm font-medium text-gray-300"
+                                className="mb-2 block text-sm font-medium text-[#17233D]"
                             >
                                 City
                             </label>
@@ -3807,7 +3807,7 @@ function FoundationProfile() {
                                 disabled={!editing}
                                 maxLength={100}
                                 placeholder="Chennai"
-                                className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3.5 text-white outline-none transition placeholder:text-gray-700 focus:border-emerald-400/50 focus:ring-4 focus:ring-emerald-400/10 disabled:cursor-not-allowed disabled:opacity-60"
+                                className="w-full rounded-xl border border-[#D5DDE9] bg-white px-4 py-3.5 text-[#17233D] shadow-sm outline-none transition placeholder:text-[#94A3B8] focus:border-[#1557D6] focus:ring-4 focus:ring-[#1557D6]/10 disabled:cursor-not-allowed disabled:bg-[#F4F6FA] disabled:text-[#334155] disabled:opacity-100"
                             />
 
                         </div>
@@ -3821,7 +3821,7 @@ function FoundationProfile() {
 
                             <label
                                 htmlFor="state"
-                                className="mb-2 block text-sm font-medium text-gray-300"
+                                className="mb-2 block text-sm font-medium text-[#17233D]"
                             >
                                 State
                             </label>
@@ -3836,7 +3836,7 @@ function FoundationProfile() {
                                 disabled={!editing}
                                 maxLength={100}
                                 placeholder="Tamil Nadu"
-                                className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3.5 text-white outline-none transition placeholder:text-gray-700 focus:border-emerald-400/50 focus:ring-4 focus:ring-emerald-400/10 disabled:cursor-not-allowed disabled:opacity-60"
+                                className="w-full rounded-xl border border-[#D5DDE9] bg-white px-4 py-3.5 text-[#17233D] shadow-sm outline-none transition placeholder:text-[#94A3B8] focus:border-[#1557D6] focus:ring-4 focus:ring-[#1557D6]/10 disabled:cursor-not-allowed disabled:bg-[#F4F6FA] disabled:text-[#334155] disabled:opacity-100"
                             />
 
                         </div>
@@ -3850,7 +3850,7 @@ function FoundationProfile() {
 
                             <label
                                 htmlFor="pincode"
-                                className="mb-2 block text-sm font-medium text-gray-300"
+                                className="mb-2 block text-sm font-medium text-[#17233D]"
                             >
                                 Pincode
                             </label>
@@ -3866,7 +3866,7 @@ function FoundationProfile() {
                                 disabled={!editing}
                                 placeholder="600042"
                                 maxLength={6}
-                                className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3.5 text-white outline-none transition placeholder:text-gray-700 focus:border-emerald-400/50 focus:ring-4 focus:ring-emerald-400/10 disabled:cursor-not-allowed disabled:opacity-60"
+                                className="w-full rounded-xl border border-[#D5DDE9] bg-white px-4 py-3.5 text-[#17233D] shadow-sm outline-none transition placeholder:text-[#94A3B8] focus:border-[#1557D6] focus:ring-4 focus:ring-[#1557D6]/10 disabled:cursor-not-allowed disabled:bg-[#F4F6FA] disabled:text-[#334155] disabled:opacity-100"
                             />
 
                         </div>
@@ -3879,7 +3879,7 @@ function FoundationProfile() {
                         LOCATION
                     ================================================= */}
 
-                    <div className="border-t border-white/10 px-6 py-6 sm:px-8">
+                    <div className="border-t border-[#E5EAF1] bg-white px-6 py-7 sm:px-8">
 
                         <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
 
@@ -3887,7 +3887,7 @@ function FoundationProfile() {
 
                                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-400/10">
 
-                                    <MapPin className="h-5 w-5 text-emerald-400" />
+                                    <MapPin className="h-5 w-5 text-[#087A4B]" />
 
                                 </div>
 
@@ -3899,7 +3899,7 @@ function FoundationProfile() {
                                     </h2>
 
 
-                                    <p className="mt-1 max-w-xl text-sm leading-6 text-gray-500">
+                                    <p className="mt-1 max-w-xl text-sm leading-6 text-[#475569]">
 
                                         Your location is used to find food
                                         donations within the configured
@@ -3918,7 +3918,7 @@ function FoundationProfile() {
                                     type="button"
                                     onClick={detectLocation}
                                     disabled={locationLoading}
-                                    className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-emerald-400/20 bg-emerald-400/10 px-4 py-3 text-sm font-semibold text-emerald-400 transition hover:bg-emerald-400/15 disabled:cursor-not-allowed disabled:opacity-50"
+                                    className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-[#BFE8D4] bg-[#E9F8F0] px-4 py-3 text-sm font-semibold text-[#087A4B] transition hover:bg-emerald-400/15 disabled:cursor-not-allowed disabled:opacity-50"
                                 >
 
                                     {locationLoading ? (
@@ -3958,7 +3958,7 @@ function FoundationProfile() {
 
                                 <label
                                     htmlFor="latitude"
-                                    className="mb-2 block text-sm font-medium text-gray-300"
+                                    className="mb-2 block text-sm font-medium text-[#17233D]"
                                 >
                                     Latitude
                                 </label>
@@ -3973,7 +3973,7 @@ function FoundationProfile() {
                                     onChange={handleChange}
                                     disabled={!editing}
                                     placeholder="13.082680"
-                                    className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3.5 text-white outline-none transition placeholder:text-gray-700 focus:border-emerald-400/50 focus:ring-4 focus:ring-emerald-400/10 disabled:cursor-not-allowed disabled:opacity-60"
+                                    className="w-full rounded-xl border border-[#D5DDE9] bg-white px-4 py-3.5 text-[#17233D] shadow-sm outline-none transition placeholder:text-[#94A3B8] focus:border-[#1557D6] focus:ring-4 focus:ring-[#1557D6]/10 disabled:cursor-not-allowed disabled:bg-[#F4F6FA] disabled:text-[#334155] disabled:opacity-100"
                                 />
 
                             </div>
@@ -3987,7 +3987,7 @@ function FoundationProfile() {
 
                                 <label
                                     htmlFor="longitude"
-                                    className="mb-2 block text-sm font-medium text-gray-300"
+                                    className="mb-2 block text-sm font-medium text-[#17233D]"
                                 >
                                     Longitude
                                 </label>
@@ -4002,7 +4002,7 @@ function FoundationProfile() {
                                     onChange={handleChange}
                                     disabled={!editing}
                                     placeholder="80.270718"
-                                    className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3.5 text-white outline-none transition placeholder:text-gray-700 focus:border-emerald-400/50 focus:ring-4 focus:ring-emerald-400/10 disabled:cursor-not-allowed disabled:opacity-60"
+                                    className="w-full rounded-xl border border-[#D5DDE9] bg-white px-4 py-3.5 text-[#17233D] shadow-sm outline-none transition placeholder:text-[#94A3B8] focus:border-[#1557D6] focus:ring-4 focus:ring-[#1557D6]/10 disabled:cursor-not-allowed disabled:bg-[#F4F6FA] disabled:text-[#334155] disabled:opacity-100"
                                 />
 
                             </div>
@@ -4014,11 +4014,11 @@ function FoundationProfile() {
                             LOCATION PRIVACY
                         ================================================= */}
 
-                        <div className="mt-5 rounded-xl border border-white/10 bg-white/[0.02] px-4 py-3">
+                        <div className="mt-5 rounded-xl border border-white/10 bg-[#F7F9FC] px-4 py-3">
 
-                            <p className="text-xs leading-5 text-gray-500">
+                            <p className="text-xs leading-5 text-[#475569]">
 
-                                <span className="font-semibold text-gray-400">
+                                <span className="font-semibold text-[#1557D6]">
                                     Privacy:
                                 </span>{" "}
 
@@ -4038,7 +4038,7 @@ function FoundationProfile() {
 
                     {editing && (
 
-                        <div className="flex flex-col-reverse gap-3 border-t border-white/10 p-6 sm:flex-row sm:justify-end sm:px-8">
+                        <div className="flex flex-col-reverse gap-3 border-t border-[#E5EAF1] bg-[#FBFCFE] p-6 sm:flex-row sm:justify-end sm:px-8">
 
 
                             {/* =================================================
@@ -4049,7 +4049,7 @@ function FoundationProfile() {
                                 type="button"
                                 onClick={handleCancel}
                                 disabled={saving}
-                                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-transparent px-6 py-3.5 text-sm font-semibold text-gray-300 transition hover:bg-white/[0.05] hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+                                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-transparent px-6 py-3.5 text-sm font-semibold text-[#17233D] transition hover:bg-white hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
                             >
 
                                 <X className="h-4 w-4" />
@@ -4068,7 +4068,7 @@ function FoundationProfile() {
                             <button
                                 type="submit"
                                 disabled={saving}
-                                className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-400 px-7 py-3.5 text-sm font-bold text-black transition hover:bg-emerald-300 disabled:cursor-not-allowed disabled:opacity-60"
+                                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#1557D6] px-7 py-3.5 text-sm font-bold text-white shadow-[0_8px_18px_rgba(21,87,214,0.20)] transition hover:bg-[#1048B7] hover:shadow-[0_10px_22px_rgba(21,87,214,0.26)] disabled:cursor-not-allowed disabled:bg-[#F4F6FA] disabled:text-[#334155] disabled:opacity-100"
                             >
 
                                 {saving ? (
@@ -4110,7 +4110,7 @@ function FoundationProfile() {
                             "/foundation/dashboard"
                         )
                     }
-                    className="mt-6 text-sm text-gray-500 transition hover:text-white"
+                    className="mt-6 text-sm text-[#475569] transition hover:text-white"
                 >
 
                     ← Back to Dashboard
