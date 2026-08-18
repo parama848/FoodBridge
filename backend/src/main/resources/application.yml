@@ -29,7 +29,7 @@ foodbridge:
     donation-radius-km: ${DONATION_RADIUS_KM:25}
 
 jwt:
-  expiration: ${JWT_EXPIRATION:86400000}
+  expiration: ${JWT_EXPIRATION:1800000}
   secret: ${JWT_SECRET}
 
 app:
