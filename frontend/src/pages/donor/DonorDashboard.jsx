@@ -698,7 +698,7 @@ function DonorDashboard() {
 
 
                             <QuickAction
-                                to="/donor/notifications"
+                                to="/notifications"
                                 icon={CheckCircle2}
                                 title="Notifications"
                                 description="Check your latest updates"
